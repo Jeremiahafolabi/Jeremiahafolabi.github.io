@@ -348,6 +348,5 @@ footer {
     
 @media (max-width: 1024px) {
     nav a {
-        margin-left: 20px;
+        margin-left: 40px;
     }
-}
