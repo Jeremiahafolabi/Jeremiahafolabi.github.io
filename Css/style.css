@@ -69,6 +69,34 @@ nav a:hover {
     transition: all 0.3s ease;
 }
 
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        background-color: rgba(15, 15, 15, 0.95);
+        padding-top: 60px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out;
+    }
+    .main-nav.active {
+        display: flex;
+    }
+    .main-nav a {
+        margin: 20px 0;
+        font-size: 1.2rem;
+    }
+    .menu-toggle {
+        display: flex;
+        position: absolute;
+        right: 30px;
+        top: 25px;
+    }
+}
+
 /* Hero Section */
 .hero-section {
     display: flex;
