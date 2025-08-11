@@ -18,6 +18,10 @@ section {
     margin: auto;
 }
 
+#portfolio h2,
+#contact h2 {
+    text-align: center;
+}
 /* Header & Navigation */
 header {
     position: fixed;
