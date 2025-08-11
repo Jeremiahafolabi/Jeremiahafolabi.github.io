@@ -9,6 +9,17 @@ document.addEventListener("DOMContentLoaded", function() {
         mainNav.classList.toggle('active');
     });
 
+    // --- Header Scroll Effect ---
+const header = document.getElementById('main-header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
     // --- Portfolio Image Switching ---
     const portfolioButtons = document.querySelectorAll('.portfolio-btn');
     const portfolioImagesContainer = document.getElementById('portfolio-images');
