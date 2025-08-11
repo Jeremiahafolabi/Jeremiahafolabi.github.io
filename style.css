@@ -22,12 +22,13 @@ header {
     padding: 2rem 0;
 }
 
-.profile-img {
-    width: 150px;
+.profile-pic {
+    width: 150px;          /* Adjust size as you like */
     height: 150px;
-    border-radius: 50%;
-    border: 3px solid #ff9800;
-    margin-bottom: 1rem;
+    border-radius: 50%;    /* Makes it circular */
+    object-fit: cover;     /* Ensures it doesn’t stretch */
+    border: 2px solid #fff; /* Optional border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
 }
 
 .title {
