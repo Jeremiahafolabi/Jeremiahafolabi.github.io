@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afolabi Jeremiah Boluwatife - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Afolabi Jeremiah Boluwatife</div>
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    <nav class="main-nav">
+        <a href="#about">About</a>
+        <a href="#portfolio">Design Portfolio</a>
+        <a href="#contact">Get in Touch</a>
+    </nav>
+</header>
+
+<section id="hero" class="hero-section">
+    <div class="hero-content">
+        <h1>Afolabi Jeremiah Boluwatife</h1>
+        <h2>Graphic Designer | UI/UX Designer</h2>
+        <p>Crafting functional designs and user-centered solutions for startups and businesses.</p>
+        <div class="social-icons">
+            <p>Find me on:</p>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://x.com" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="assets/profile-picture.jpg" alt="Afolabi Jeremiah Boluwatife" class="profile-picture">
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        I'm a passionate Graphic Designer with a focus on clean, impactful visuals. I am currently expanding my skills into UI/UX design, driven by a commitment to creating not just beautiful designs, but also intuitive, user-centered digital experiences. I believe that effective design is about solving problems and telling a compelling story, and I am dedicated to crafting solutions that are both functional and memorable.
+    </p>
+</section>
+
+<section id="portfolio">
+    <h2>Design Portfolio</h2>
+    <div class="portfolio-buttons">
+        <a href="#" class="portfolio-btn active" data-category="graphic">Graphic Design</a>
+        <a href="#" class="portfolio-btn" data-category="uiux">UI/UX</a>
+    </div>
+    <div id="portfolio-images" class="portfolio-grid">
+        <div class="project-card">
+            <img src="assets/graphic-placeholder1.jpg" alt="Graphic Design Project 1">
+            <div class="project-overlay">
+                <a href="#" class="view-btn">View <i class="fas fa-eye"></i></a>
+                <div class="tools-label">Tools: Adobe Photoshop, Illustrator</div>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="assets/graphic-placeholder2.jpg" alt="Graphic Design Project 2">
+            <div class="project-overlay">
+                <a href="#" class="view-btn">View <i class="fas fa-eye"></i></a>
+                <div class="tools-label">Tools: Adobe InDesign, Figma</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Get in Touch</h2>
+    <form class="contact-form" action="https://formspree.io/f/yourformid" method="POST">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="_replyto" placeholder="Email" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" placeholder="Enter your message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2025 Afolabi Jeremiah Boluwatife. All rights reserved.</p>
+</footer>
+
+<script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
