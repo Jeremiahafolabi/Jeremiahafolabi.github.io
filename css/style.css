@@ -59,6 +59,10 @@ header {
   color: var(--accent);
 }
 
+.header-social-icons {
+  align-items: center; /* centers them vertically */
+}
+
 .main-nav {
   display: flex;
   align-items: center;
