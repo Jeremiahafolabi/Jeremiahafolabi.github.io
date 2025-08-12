@@ -369,3 +369,24 @@ footer {
       justify-content: center;
   }
 }
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff9800;
+  color: #000;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  display: none;
+  z-index: 2000;
+}
+
+.back-to-top.show {
+  display: block;
+}
