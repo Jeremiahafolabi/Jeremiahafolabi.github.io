@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Afolabi Jeremiah Boluwatife - Portfolio</title>
+
+    <!-- SEO & Social -->
+    <meta name="description" content="Portfolio of Afolabi Jeremiah Boluwatife - Graphic Designer & UI/UX Designer.">
+    <meta property="og:title" content="Afolabi Jeremiah Boluwatife - Portfolio">
+    <meta property="og:description" content="Functional, user-focused designs for startups and businesses.">
+    <meta property="og:image" content="assets/preview.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-D3f3uR7J6lBvD3m7EoEwXzzM2zZ5qv7uUb3i+f4XjS/vC5oRw9XEG5RzQ2Y7ZLhz8YhFMWfI6O6oYwz7tGht5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <a href="#contact" class="hire-me-btn">Hire Me</a>
-   <link rel="icon" href="assets/favicon.png" type="image/png"> 
 </head>
 <body>
 
@@ -29,31 +42,32 @@
     </nav>
 </header>
 
-<section id="hero" class="hero-section">
+<section id="hero" class="hero-section fade-in">
     <div class="hero-content">
         <h1>Afolabi Jeremiah Boluwatife</h1>
         <h2>Graphic Designer | UI/UX Designer</h2>
         <p>Crafting functional designs and user-centered solutions for startups and businesses.</p>
+        <a href="#portfolio" class="btn">View My Work</a>
         <div class="social-icons">
             <p>Find me on:</p>
             <a href="https://linkedin.com/in/afolabi-jeremiah" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://x.com/yourhandle" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://x.com/yourhandle" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
         </div>
     </div>
     <div class="hero-image">
-        <img src="assets/profile-picture.jpg" alt="Afolabi Jeremiah Boluwatife" class="profile-picture">
+        <img src="assets/profile-picture.jpg" alt="Afolabi Jeremiah Boluwatife" class="profile-picture" loading="lazy">
     </div>
 </section>
 
-<section id="about">
+<section id="about" class="fade-in">
     <h2>About Me</h2>
     <p>
         I'm a passionate Graphic Designer with a focus on clean, impactful visuals. I am currently expanding my skills into UI/UX design, driven by a commitment to creating not just beautiful designs, but also intuitive, user-centered digital experiences.
     </p>
 </section>
 
-<section id="portfolio">
+<section id="portfolio" class="fade-in">
     <h2>Design Portfolio</h2>
     <div class="portfolio-buttons">
         <a href="#" class="portfolio-btn active" data-category="graphic">Graphic Design</a>
@@ -62,7 +76,7 @@
     <div id="portfolio-images" class="portfolio-grid"></div>
 </section>
 
-<section id="contact">
+<section id="contact" class="fade-in">
     <h2>Get in Touch</h2>
     <form class="contact-form" action="https://formspree.io/f/yourformid" method="POST">
         <input type="text" name="name" placeholder="Name" required>
@@ -71,15 +85,37 @@
         <textarea name="message" placeholder="Enter your message" rows="5" required></textarea>
         <button type="submit">Send Message</button>
     </form>
+    <div class="alt-contact">
+        <a href="mailto:you@example.com">📧 Email Me</a>
+        <a href="https://wa.me/234XXXXXXXXXX" target="_blank">💬 WhatsApp</a>
+    </div>
 </section>
 
 <footer>
     <p>&copy; 2025 Afolabi Jeremiah Boluwatife. All rights reserved.</p>
 </footer>
 
+<!-- Back to Top -->
+<a href="#hero" class="back-to-top" aria-label="Back to top">↑</a>
+
+<!-- Sticky Hire Me Button -->
+<a href="#contact" class="hire-me-btn">Hire Me</a>
+
+<!-- Modal -->
+<div id="project-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <img id="modal-image" src="" alt="Project Image">
+        <h3 id="modal-title"></h3>
+        <p id="modal-tools"></p>
+        <a href="#contact" class="btn">Let’s Work Together</a>
+        <div class="modal-nav">
+            <span id="prev-project">&#10094;</span>
+            <span id="next-project">&#10095;</span>
+        </div>
+    </div>
+</div>
+
 <script src="js/main.js"></script>
-<a href="#hero" class="back-to-top" aria-label="Back to top">
-  ↑
-</a>
 </body>
 </html>
