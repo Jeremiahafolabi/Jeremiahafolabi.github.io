@@ -107,13 +107,13 @@ header {
   /* This is the key change. A value like 1 or 1.1 is usually a good starting point. */
   line-height: 1.2;
   /* You might also want to adjust the margin to bring the h2 closer */
-  margin-bottom: 0.1em;
+  margin-bottom: 0.5em;
 }
 
 .hero-content h2 {
   /* This will reduce the space between the name and the title */
   margin-top: 0;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 /* You might also want to check the overall spacing of the hero content */
