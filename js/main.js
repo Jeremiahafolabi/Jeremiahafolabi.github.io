@@ -79,6 +79,27 @@ document.addEventListener("DOMContentLoaded", function() {
         portfolioImagesContainer.innerHTML = graphicDesignProjects;
     }
 
+    // Highlight active section in nav
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".main-nav a");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href").substring(1) === entry.target.id
+        );
+      });
+    }
+  });
+}, { threshold: 0.6 });
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+
     if (portfolioButtons.length > 0 && portfolioImagesContainer) {
         portfolioButtons.forEach(button => {
             button.addEventListener('click', (e) => {
