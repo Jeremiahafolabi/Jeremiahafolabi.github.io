@@ -116,6 +116,16 @@ header {
   font-size: 1.2rem;
 }
 
+.hero-content {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    text-align: center;
+  }
+}
+
 .hero-content p {
   margin-bottom: 18px;
 }
