@@ -188,6 +188,9 @@ header {
   background: var(--alt-accent-hover);
 }
 
+.btn-alt:active {
+  background: var(--accent);
+}
 .hire-me-btn {
   position: fixed;
   bottom: 20px;
