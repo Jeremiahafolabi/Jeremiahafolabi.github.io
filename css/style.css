@@ -180,7 +180,7 @@ header {
 }
 
 .btn-alt {
-  background: var(--alt-accent);
+  background: var(--accent);
   color: #000;
 }
 
@@ -192,7 +192,7 @@ header {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background: var(--accent);
+  background: var(--alt-accent);
   color: #000;
   padding: 10px 16px;
   border-radius: 999px;
