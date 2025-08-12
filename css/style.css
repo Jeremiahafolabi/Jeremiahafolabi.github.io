@@ -107,7 +107,7 @@ header {
   /* This is the key change. A value like 1 or 1.1 is usually a good starting point. */
   line-height: 1.2;
   /* You might also want to adjust the margin to bring the h2 closer */
-  margin-bottom: 0.4em;
+  margin-bottom: 0.3em;
 }
 
 .hero-content h2 {
