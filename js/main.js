@@ -1,29 +1,46 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // --- Hamburger Menu Toggle ---
+    // --- Elements ---
     const mobileMenu = document.getElementById('mobile-menu');
     const mainNav = document.querySelector('.main-nav');
+    const navLinks = document.querySelectorAll('.main-nav a');
 
-    mobileMenu.addEventListener('click', () => {
-        mobileMenu.classList.toggle('is-active'); // Added animation toggle
-        mainNav.classList.toggle('active');
-    });
+    // --- Hamburger Menu Toggle ---
+    if (mobileMenu && mainNav) {
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('is-active');
+            mainNav.classList.toggle('active');
+        });
+    }
+
+    // --- Auto-close mobile menu on link click ---
+    if (mobileMenu && mainNav && navLinks.length > 0) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mobileMenu.classList.remove('is-active');
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+    }
 
     // --- Header Scroll Effect ---
     const header = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
 
     // --- Portfolio Image Switching ---
     const portfolioButtons = document.querySelectorAll('.portfolio-btn');
     const portfolioImagesContainer = document.getElementById('portfolio-images');
 
-    // Define the HTML for your Graphic Design and UI/UX projects
     const graphicDesignProjects = `
         <div class="project-card">
             <img src="assets/graphic-placeholder1.jpg" alt="Graphic Design Project 1">
@@ -58,25 +75,26 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     `;
 
-    // Set default content on page load
-    portfolioImagesContainer.innerHTML = graphicDesignProjects;
+    if (portfolioImagesContainer) {
+        portfolioImagesContainer.innerHTML = graphicDesignProjects;
+    }
 
-    portfolioButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Remove 'active' class from all buttons
-            portfolioButtons.forEach(btn => btn.classList.remove('active'));
-            // Add 'active' class to the clicked button
-            button.classList.add('active');
+    if (portfolioButtons.length > 0 && portfolioImagesContainer) {
+        portfolioButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
 
-            const category = button.getAttribute('data-category');
-            if (category === 'graphic') {
-                portfolioImagesContainer.innerHTML = graphicDesignProjects;
-            } else if (category === 'uiux') {
-                portfolioImagesContainer.innerHTML = uiuxProjects;
-            }
+                portfolioButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const category = button.getAttribute('data-category');
+                if (category === 'graphic') {
+                    portfolioImagesContainer.innerHTML = graphicDesignProjects;
+                } else if (category === 'uiux') {
+                    portfolioImagesContainer.innerHTML = uiuxProjects;
+                }
+            });
         });
-    });
+    }
 
 });
