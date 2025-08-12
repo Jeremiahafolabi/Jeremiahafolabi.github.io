@@ -9,6 +9,14 @@ document.addEventListener("DOMContentLoaded", function() {
         mainNav.classList.toggle('active');
     });
 
+    // --- Auto-close mobile menu on link click ---
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-active');
+            mainNav.classList.remove('active');
+        });
+    });
+
     // --- Header Scroll Effect ---
     const header = document.getElementById('main-header');
     window.addEventListener('scroll', () => {
