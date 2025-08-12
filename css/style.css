@@ -120,12 +120,6 @@ header {
   text-align: left;
 }
 
-@media (max-width: 768px) {
-  .hero-content {
-    text-align: center;
-  }
-}
-
 .hero-content p {
   margin-bottom: 18px;
 }
