@@ -102,6 +102,26 @@ header {
   min-height: 60vh;
 }
 
+/* Add this to your style.css file */
+.hero-content h1 {
+  /* This is the key change. A value like 1 or 1.1 is usually a good starting point. */
+  line-height: 1.1;
+  /* You might also want to adjust the margin to bring the h2 closer */
+  margin-bottom: 0.1em;
+}
+
+.hero-content h2 {
+  /* This will reduce the space between the name and the title */
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+/* You might also want to check the overall spacing of the hero content */
+.hero-content {
+  /* This can help to align everything better */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 .hero-content {
   max-width: 55%;
 }
