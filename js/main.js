@@ -5,20 +5,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const mainNav = document.querySelector('.main-nav');
 
     mobileMenu.addEventListener('click', () => {
-        mobileMenu.classList.toggle('is-active');
+        mobileMenu.classList.toggle('is-active'); // Added animation toggle
         mainNav.classList.toggle('active');
     });
 
     // --- Header Scroll Effect ---
-const header = document.getElementById('main-header');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 
     // --- Portfolio Image Switching ---
     const portfolioButtons = document.querySelectorAll('.portfolio-btn');
