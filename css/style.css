@@ -122,6 +122,19 @@ header {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+/* Add or modify this in your style.css file */
+.hero-content {
+  /* This will ensure all text inside the hero-content div is aligned to the left */
+  text-align: left;
+}
+
+.hero-content h1,
+.hero-content h2,
+.hero-content p {
+  /* This is to be sure any existing alignment is overridden */
+  text-align: left;
+}
 .hero-content {
   max-width: 55%;
 }
