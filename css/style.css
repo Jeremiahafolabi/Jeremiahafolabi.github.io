@@ -113,7 +113,7 @@ header {
 .hero-content h2 {
   /* This will reduce the space between the name and the title */
   margin-top: 0;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 /* You might also want to check the overall spacing of the hero content */
