@@ -238,21 +238,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-#contact .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-#contact .social-icons a {
-  color: var(--text);
-  font-size: 1.4rem;
-}
-
-#contact .social-icons a:hover {
-  color: var(--accent);
-}
-
 .contact-form {
   display: flex;
   flex-direction: column;
