@@ -7,11 +7,12 @@
 
   <!-- SEO -->
   <meta name="description" content="Portfolio of Afolabi Jeremiah Boluwatife - Graphic Designer & UI/UX Designer." />
+  <meta name="keywords" content="graphic design, UI/UX, portfolio, designer, Nigeria" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
@@ -21,90 +22,39 @@
 </head>
 <body>
 
+<!-- Header with improved navigation -->
 <header id="main-header">
-    <!-- Social icons in header -->
-  <div class="header-social-icons">
-    <a href="https://linkedin.com/in/afolabi-jeremiah" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://x.com/yourhandle" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-  </div>
-  <div class="menu-toggle" id="mobile-menu">
-    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-  </div>
-  <nav class="main-nav">
-    <a href="#hero">Home</a>
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section id="hero" class="hero-section fade-in">
-  <div class="hero-content">
-    <h1>Afolabi Jeremiah Boluwatife</h1>
-    <h2>Graphic Designer | UI/UX Designer</h2>
-    <p>Crafting functional designs and user-centered solutions for startups and businesses.</p>
-    <a href="#portfolio" class="btn btn-alt">View My Work</a>
-  </div>
-  <div class="hero-image">
-    <img src="assets/profile-picture.jpg" alt="Afolabi Jeremiah Boluwatife" class="profile-picture" loading="lazy"/>
-  </div>
-</section>
-
-<section id="about" class="fade-in">
-  <h2>About Me</h2>
-  <p>
-    I'm a passionate Graphic Designer with a focus on clean, impactful visuals. I am currently expanding my skills into UI/UX design, driven by a commitment to creating not just beautiful designs, but also intuitive, user-centered digital experiences.
-  </p>
-</section>
-
-<section id="portfolio" class="fade-in">
-  <h2>Portfolio</h2>
-  <div class="portfolio-buttons">
-    <a href="#" class="portfolio-btn active" data-category="graphic">Graphic Design</a>
-    <a href="#" class="portfolio-btn" data-category="uiux">UI/UX</a>
-  </div>
-  <div id="portfolio-images" class="portfolio-grid"></div>
-</section>
-
-<section id="contact" class="fade-in">
-  <form class="contact-form" action="https://formspree.io/f/xkgzyqek" method="POST">
-    <input type="text" name="name" placeholder="Name" required/>
-    <input type="email" name="_replyto" placeholder="Email" required/>
-    <input type="text" name="subject" placeholder="Subject" required/>
-    <textarea name="message" placeholder="Enter your message" rows="5" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-  <div class="alt-contact">
-  <a href="mailto:you@example.com"><i class="fas fa-envelope"></i> Email Me</a>
-  <a href="https://wa.me/234XXXXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-</div>
-</section>
-
-<footer>
-  <div class="footer-social-icons">
-    <a href="https://linkedin.com/in/afolabi-jeremiah" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/yourprofile" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://x.com/yourhandle" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-  </div>
-</footer>
-
-<a href="#hero" class="back-to-top" aria-label="Back to top">↑</a>
-  
-<!-- Modal -->
-<div id="project-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <img id="modal-image" src="" alt="Project Image"/>
-    <h3 id="modal-title"></h3>
-    <p id="modal-tools"></p>
-    <div class="modal-nav">
-      <span id="prev-project">&#10094;</span>
-      <span id="next-project">&#10095;</span>
+  <div class="container">
+    <div class="header-content">
+      <div class="header-social-icons">
+        <a href="https://linkedin.com/in/afolabi-jeremiah" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://dribbble.com" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+      </div>
+      <div class="menu-toggle" id="mobile-menu" aria-label="Mobile menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+      <nav class="main-nav">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
     </div>
   </div>
-</div>
+</header>
 
-<script src="js/main.js"></script>
-</body>
-</html>
+<!-- Hero Section with improved structure -->
+<section id="hero" class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Afolabi Jeremiah Boluwatife</h1>
+        <h2>Graphic Designer | UI/UX Designer</h2>
+        <p class="hero-description">Crafting functional designs and user-centered solutions for startups and businesses.</p>
+        <div class="hero-cta">
+          <a href="#portfolio" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Hire Me</a>
+        </div>
+      </div>
+      <div class="hero-image">
