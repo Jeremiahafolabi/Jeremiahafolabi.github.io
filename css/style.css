@@ -63,6 +63,18 @@ header {
   align-items: center; /* centers them vertically */
 }
 
+/* Mobile adjustments for header icons & hamburger */
+@media (max-width: 768px) {
+  header {
+    justify-content: space-between;
+  }
+  .header-social-icons {
+    margin-left: 5px; /* Closer to left edge */
+  }
+  .menu-toggle {
+    margin-right: 5px; /* Closer to right edge */
+  }
+}
 .main-nav {
   display: flex;
   align-items: center;
