@@ -69,10 +69,10 @@ header {
     justify-content: space-between;
   }
   .header-social-icons {
-    margin-left: -5px; /* Closer to left edge */
+    margin-left: -25px; /* Closer to left edge */
   }
   .menu-toggle {
-    margin-right: -5px; /* Closer to right edge */
+    margin-right: -25px; /* Closer to right edge */
   }
 }
 .main-nav {
