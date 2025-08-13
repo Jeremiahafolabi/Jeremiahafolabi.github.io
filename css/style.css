@@ -69,10 +69,10 @@ header {
     padding: 15px 5px; /* Reduce side padding so icons and hamburger are near edges */
   }
   .header-social-icons {
-    margin-left: 0; /* No extra margin */
+    margin-left: 2; /* No extra margin */
   }
   .menu-toggle {
-    margin-right: 0;
+    margin-right: 2;
   }
 }
 .main-nav {
