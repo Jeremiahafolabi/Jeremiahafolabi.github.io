@@ -272,7 +272,16 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Submit form (using Formspree)
       this.submit();
-      
+
+      // Form validation styling
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('blur', () => {
+    if (!el.validity.valid) {
+      el.style.borderColor = '#a10e2d';
+      el.nextElementSibling?.style.setProperty('color', '#a10e2d');
+    }
+  });
+});
       // Reset form
       this.reset();
       alert('Thank you for your message! I will get back to you soon.');
