@@ -1,14 +1,3 @@
-/**
- * Portfolio Website - Enhanced JavaScript
- * Features:
- * - Mobile menu toggle
- * - Smooth scrolling
- * - Portfolio filtering
- * - Project modal with navigation
- * - Back-to-top button
- * - Intersection observer for animations
- */
-
 document.addEventListener('DOMContentLoaded', function() {
   // ======================
   // Mobile Navigation
@@ -17,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  // Toggle mobile menu
+  // Improved hamburger menu animation
   mobileMenu.addEventListener('click', () => {
-    mobileMenu.classList.toggle('is-active');
+    mobileMenu.classList.toggle('active');
     navMenu.classList.toggle('active');
     document.body.classList.toggle('no-scroll');
   });
@@ -28,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (navMenu.classList.contains('active')) {
-        mobileMenu.classList.remove('is-active');
+        mobileMenu.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
       }
@@ -77,29 +66,117 @@ document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioGrid = document.querySelector('.portfolio-grid');
 
-  // Sample project data - replace with your actual projects
+  // Project data with 3 projects for each category
   const projects = [
+    // Graphic Design Projects
     {
       id: 1,
       title: 'Brand Identity Design',
       category: 'graphic',
       tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project1.jpg',
-      description: 'Complete brand identity package for a tech startup'
+      images: [
+        'assets/project1-1.jpg',
+        'assets/project1-2.jpg',
+        'assets/project1-3.jpg',
+        'assets/project1-4.jpg',
+        'assets/project1-5.jpg',
+        'assets/project1-6.jpg',
+        'assets/project1-7.jpg',
+        'assets/project1-8.jpg'
+      ]
     },
     {
       id: 2,
+      title: 'Marketing Materials',
+      category: 'graphic',
+      tools: ['Illustrator', 'InDesign'],
+      image: 'assets/project2.jpg',
+      images: [
+        'assets/project2-1.jpg',
+        'assets/project2-2.jpg',
+        'assets/project2-3.jpg',
+        'assets/project2-4.jpg',
+        'assets/project2-5.jpg',
+        'assets/project2-6.jpg',
+        'assets/project2-7.jpg',
+        'assets/project2-8.jpg'
+      ]
+    },
+    {
+      id: 3,
+      title: 'Packaging Design',
+      category: 'graphic',
+      tools: ['Photoshop', 'Illustrator', '3D Mockups'],
+      image: 'assets/project3.jpg',
+      images: [
+        'assets/project3-1.jpg',
+        'assets/project3-2.jpg',
+        'assets/project3-3.jpg',
+        'assets/project3-4.jpg',
+        'assets/project3-5.jpg',
+        'assets/project3-6.jpg',
+        'assets/project3-7.jpg',
+        'assets/project3-8.jpg'
+      ]
+    },
+    // UI/UX Design Projects
+    {
+      id: 4,
       title: 'Mobile App UI',
       category: 'uiux',
       tools: ['Figma', 'Adobe XD'],
-      image: 'assets/project2.jpg',
-      description: 'User interface design for a fitness tracking app'
+      image: 'assets/project4.jpg',
+      images: [
+        'assets/project4-1.jpg',
+        'assets/project4-2.jpg',
+        'assets/project4-3.jpg',
+        'assets/project4-4.jpg',
+        'assets/project4-5.jpg',
+        'assets/project4-6.jpg',
+        'assets/project4-7.jpg',
+        'assets/project4-8.jpg'
+      ]
     },
-    // Add more projects as needed
+    {
+      id: 5,
+      title: 'Website Redesign',
+      category: 'uiux',
+      tools: ['Figma', 'Photoshop'],
+      image: 'assets/project5.jpg',
+      images: [
+        'assets/project5-1.jpg',
+        'assets/project5-2.jpg',
+        'assets/project5-3.jpg',
+        'assets/project5-4.jpg',
+        'assets/project5-5.jpg',
+        'assets/project5-6.jpg',
+        'assets/project5-7.jpg',
+        'assets/project5-8.jpg'
+      ]
+    },
+    {
+      id: 6,
+      title: 'Dashboard Interface',
+      category: 'uiux',
+      tools: ['Figma', 'Illustrator'],
+      image: 'assets/project6.jpg',
+      images: [
+        'assets/project6-1.jpg',
+        'assets/project6-2.jpg',
+        'assets/project6-3.jpg',
+        'assets/project6-4.jpg',
+        'assets/project6-5.jpg',
+        'assets/project6-6.jpg',
+        'assets/project6-7.jpg',
+        'assets/project6-8.jpg'
+      ]
+    }
   ];
 
-  // Display all projects initially
-  displayProjects('all');
+  // Set first filter button as active by default
+  filterButtons[0].classList.add('active');
+  displayProjects('graphic');
 
   // Filter projects
   filterButtons.forEach(button => {
@@ -136,9 +213,14 @@ document.addEventListener('DOMContentLoaded', function() {
             ${project.tools.map(tool => `<span class="project-tool">${tool}</span>`).join('')}
           </div>
         </div>
+        <button class="view-project-btn">View Project</button>
       `;
       
-      projectCard.addEventListener('click', () => openModal(project.id));
+      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(project.id);
+      });
+      
       portfolioGrid.appendChild(projectCard);
     });
   }
@@ -147,13 +229,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // Project Modal
   // ======================
   const modal = document.getElementById('project-modal');
-  const modalImage = document.getElementById('modal-image');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDescription = document.getElementById('modal-description');
-  const modalTools = document.getElementById('modal-tools');
+  const modalImages = document.querySelector('.modal-images');
+  const modalTitle = document.getElementById('modal-project-title');
   const closeModalBtn = document.querySelector('.close-modal');
   const prevProjectBtn = document.getElementById('prev-project');
   const nextProjectBtn = document.getElementById('next-project');
+  const successModal = document.getElementById('success-modal');
 
   let currentProjectIndex = 0;
   let filteredProjects = [];
@@ -164,97 +245,70 @@ document.addEventListener('DOMContentLoaded', function() {
     if (projectIndex === -1) return;
     
     currentProjectIndex = projectIndex;
-    filteredProjects = [...projects]; // Copy all projects
+    const project = projects[projectIndex];
     
-    updateModal();
+    // Update modal content
+    modalTitle.textContent = project.title;
+    modalImages.innerHTML = '';
+    
+    // Add all images to modal
+    project.images.forEach(img => {
+      const imgElement = document.createElement('img');
+      imgElement.src = img;
+      imgElement.alt = `${project.title} - ${project.images.indexOf(img) + 1}`;
+      modalImages.appendChild(imgElement);
+    });
+    
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
   }
 
-  function updateModal() {
-    const project = filteredProjects[currentProjectIndex];
-    
-    modalImage.src = project.image;
-    modalImage.alt = project.title;
-    modalTitle.textContent = project.title;
-    modalDescription.textContent = project.description;
-    
-    // Update tools
-    modalTools.innerHTML = '';
-    project.tools.forEach(tool => {
-      const toolSpan = document.createElement('span');
-      toolSpan.className = 'skill-tag';
-      toolSpan.textContent = tool;
-      modalTools.appendChild(toolSpan);
-    });
-    
-    // Update navigation buttons state
-    prevProjectBtn.disabled = currentProjectIndex === 0;
-    nextProjectBtn.disabled = currentProjectIndex === filteredProjects.length - 1;
-  }
-
-  function navigateProjects(direction) {
-    if (direction === 'prev' && currentProjectIndex > 0) {
-      currentProjectIndex--;
-    } else if (direction === 'next' && currentProjectIndex < filteredProjects.length - 1) {
-      currentProjectIndex++;
-    }
-    
-    updateModal();
+  function closeModal() {
+    modal.classList.remove('active');
+    successModal.classList.remove('active');
+    document.body.classList.remove('no-scroll');
   }
 
   // Event listeners
-  closeModalBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.classList.remove('no-scroll');
-  });
+  closeModalBtn.addEventListener('click', closeModal);
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal || e.target.classList.contains('modal-overlay')) {
-      modal.classList.remove('active');
-      document.body.classList.remove('no-scroll');
+      closeModal();
     }
   });
 
-  prevProjectBtn.addEventListener('click', () => navigateProjects('prev'));
-  nextProjectBtn.addEventListener('click', () => navigateProjects('next'));
+  prevProjectBtn.addEventListener('click', () => {
+    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
+    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
+    currentProjectIndex = (currentProjectIndex - 1 + filteredProjects.length) % filteredProjects.length;
+    openModal(filteredProjects[currentProjectIndex].id);
+  });
+
+  nextProjectBtn.addEventListener('click', () => {
+    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
+    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
+    currentProjectIndex = (currentProjectIndex + 1) % filteredProjects.length;
+    openModal(filteredProjects[currentProjectIndex].id);
+  });
 
   // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('active')) return;
     
     if (e.key === 'Escape') {
-      modal.classList.remove('active');
-      document.body.classList.remove('no-scroll');
+      closeModal();
     } else if (e.key === 'ArrowLeft') {
-      navigateProjects('prev');
+      prevProjectBtn.click();
     } else if (e.key === 'ArrowRight') {
-      navigateProjects('next');
+      nextProjectBtn.click();
     }
   });
 
   // ======================
-  // Scroll Animations
+  // Contact Form Handling
   // ======================
-  const animateElements = document.querySelectorAll('.fade-in');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  animateElements.forEach(element => {
-    observer.observe(element);
-  });
-
-  // ======================
-  // Form Handling
-  // ======================
-  const contactForm = document.querySelector('.contact-form');
+  const contactForm = document.getElementById('contact-form');
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -262,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Form validation
       const name = this.elements['name'].value.trim();
-      const email = this.elements['_replyto'].value.trim();
+      const email = this.elements['email'].value.trim();
       const message = this.elements['message'].value.trim();
       
       if (!name || !email || !message) {
@@ -271,11 +325,29 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Submit form (using Formspree)
-      this.submit();
-      
-      // Reset form
-      this.reset();
-      alert('Thank you for your message! I will get back to you soon.');
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          successModal.classList.add('active');
+          document.body.classList.add('no-scroll');
+          this.reset();
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      }).catch(error => {
+        alert('There was a problem sending your message. Please try again later.');
+      });
     });
   }
+
+  // Close success modal
+  document.querySelector('#success-modal .close-modal').addEventListener('click', () => {
+    successModal.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  });
 });
