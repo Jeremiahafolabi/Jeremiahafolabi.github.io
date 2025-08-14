@@ -834,5 +834,70 @@ body {
   z-index: 1;
   text-transform: uppercase;
 }
-   
+
+   /* ====================
+   YELLOW (#efa80a) UPDATE 
+   ==================== */
+:root {
+  --primary: #efa80a;        /* New primary yellow */
+  --primary-hover: #ffc107;  /* Brighter hover */
+  --accent: #a10e2d;         /* Crimson red */
+  --accent-light: #d43a5a;   /* Lighter red */
+}
+
+/* Buttons */
+.btn-primary, 
+.btn-primary:focus {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #000 !important;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* Icons */
+.header-social-icons a:hover,
+.footer-social-icons a:hover,
+.alt-contact a:hover i {
+  color: var(--primary) !important;
+}
+
+/* Active States */
+.nav-link.active,
+.portfolio-filter .active {
+  color: var(--primary) !important;
+}
+
+/* Decorative Elements */
+.section-title::after,
+.back-to-top {
+  background: var(--primary);
+}
+
+/* ====================
+   CRIMSON RED (#a10e2d) ACCENTS 
+   ==================== */
+/* Danger/Hover States */
+.btn-secondary:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Form Errors */
+input:invalid, 
+textarea:invalid {
+  border-color: var(--accent) !important;
+}
+
+/* Active Navigation Indicator */
+.nav-link.active::after {
+  background: var(--accent);
+}
+
+/* Portfolio Hover Effects */
+.project-card:hover {
+  outline: 2px solid var(--accent);
 }
