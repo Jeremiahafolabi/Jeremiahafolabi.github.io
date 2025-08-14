@@ -1,14 +1,7 @@
 /**
  * Portfolio Website - Enhanced JavaScript
- * Features:
- * - Mobile menu toggle
- * - Smooth scrolling
- * - Portfolio filtering
- * - Project modal with navigation
- * - Back-to-top button
- * - Intersection observer for animations
+ * Color Scheme: Yellow (#efa80a) + Crimson Red (#a10e2d)
  */
-
 document.addEventListener('DOMContentLoaded', function() {
   // ======================
   // Mobile Navigation
@@ -17,14 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  // Toggle mobile menu
   mobileMenu.addEventListener('click', () => {
     mobileMenu.classList.toggle('is-active');
     navMenu.classList.toggle('active');
     document.body.classList.toggle('no-scroll');
   });
 
-  // Close mobile menu when link is clicked
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (navMenu.classList.contains('active')) {
@@ -39,19 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // Smooth Scrolling
   // ======================
   navLinks.forEach(link => {
-    link.addEventListener('click', smoothScroll);
-  });
-
-  function smoothScroll(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
-    
-    window.scrollTo({
-      top: targetElement.offsetTop - 80,
-      behavior: 'smooth'
+    link.addEventListener('click', function(e) {
+      if (this.hash !== '') {
+        e.preventDefault();
+        const target = document.querySelector(this.hash);
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
     });
-  }
+  });
 
   // ======================
   // Back to Top Button
@@ -94,32 +83,16 @@ document.addEventListener('DOMContentLoaded', function() {
       tools: ['Figma', 'Adobe XD'],
       image: 'assets/project2.jpg',
       description: 'User interface design for a fitness tracking app'
-    },
+    }
     // Add more projects as needed
   ];
 
-  // Display all projects initially
-  displayProjects('all');
-
-  // Filter projects
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Update active button
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      // Filter projects
-      const filter = button.dataset.filter;
-      displayProjects(filter);
-    });
-  });
-
+  // Display projects with yellow/red color scheme
   function displayProjects(filter) {
     portfolioGrid.innerHTML = '';
     
-    const filteredProjects = filter === 'all' 
-      ? projects 
-      : projects.filter(project => project.category === filter);
+    const filteredProjects = filter === 'all' ? projects : 
+      projects.filter(project => project.category === filter);
     
     filteredProjects.forEach(project => {
       const projectCard = document.createElement('div');
@@ -131,26 +104,50 @@ document.addEventListener('DOMContentLoaded', function() {
         <img src="${project.image}" alt="${project.title}" class="project-img">
         <div class="project-overlay">
           <h3 class="project-title">${project.title}</h3>
-          <span class="project-category">${project.category === 'graphic' ? 'Graphic Design' : 'UI/UX Design'}</span>
+          <span class="project-category" style="color: #efa80a">
+            ${project.category === 'graphic' ? 'Graphic Design' : 'UI/UX Design'}
+          </span>
           <div class="project-tools">
-            ${project.tools.map(tool => `<span class="project-tool">${tool}</span>`).join('')}
+            ${project.tools.map(tool => 
+              `<span class="project-tool" style="background: rgba(239, 168, 10, 0.1); color: #efa80a">
+                ${tool}
+              </span>`
+            ).join('')}
           </div>
         </div>
       `;
+      
+      // Crimson red hover effect
+      projectCard.addEventListener('mouseenter', () => {
+        projectCard.style.boxShadow = '0 15px 30px rgba(161, 14, 45, 0.3)';
+      });
+      projectCard.addEventListener('mouseleave', () => {
+        projectCard.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+      });
       
       projectCard.addEventListener('click', () => openModal(project.id));
       portfolioGrid.appendChild(projectCard);
     });
   }
 
+  // Initialize with yellow active filter
+  displayProjects('all');
+  document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      this.style.backgroundColor = '#efa80a';
+      this.style.color = '#000';
+      displayProjects(this.dataset.filter);
+    });
+  });
+
   // ======================
   // Project Modal
   // ======================
   const modal = document.getElementById('project-modal');
-  const modalImage = document.getElementById('modal-image');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDescription = document.getElementById('modal-description');
-  const modalTools = document.getElementById('modal-tools');
   const closeModalBtn = document.querySelector('.close-modal');
   const prevProjectBtn = document.getElementById('prev-project');
   const nextProjectBtn = document.getElementById('next-project');
@@ -159,12 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
   let filteredProjects = [];
 
   function openModal(projectId) {
-    // Find the project
     const projectIndex = projects.findIndex(p => p.id === projectId);
     if (projectIndex === -1) return;
     
     currentProjectIndex = projectIndex;
-    filteredProjects = [...projects]; // Copy all projects
+    filteredProjects = [...projects];
     
     updateModal();
     modal.classList.add('active');
@@ -174,21 +170,19 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateModal() {
     const project = filteredProjects[currentProjectIndex];
     
-    modalImage.src = project.image;
-    modalImage.alt = project.title;
-    modalTitle.textContent = project.title;
-    modalDescription.textContent = project.description;
+    document.getElementById('modal-image').src = project.image;
+    document.getElementById('modal-title').textContent = project.title;
+    document.getElementById('modal-description').textContent = project.description;
     
-    // Update tools
-    modalTools.innerHTML = '';
-    project.tools.forEach(tool => {
-      const toolSpan = document.createElement('span');
-      toolSpan.className = 'skill-tag';
-      toolSpan.textContent = tool;
-      modalTools.appendChild(toolSpan);
-    });
+    // Style tools with yellow
+    const toolsContainer = document.getElementById('modal-tools');
+    toolsContainer.innerHTML = project.tools.map(tool => 
+      `<span class="skill-tag" style="background: rgba(239, 168, 10, 0.1); color: #efa80a">
+        ${tool}
+      </span>`
+    ).join('');
     
-    // Update navigation buttons state
+    // Update navigation buttons
     prevProjectBtn.disabled = currentProjectIndex === 0;
     nextProjectBtn.disabled = currentProjectIndex === filteredProjects.length - 1;
   }
@@ -199,7 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (direction === 'next' && currentProjectIndex < filteredProjects.length - 1) {
       currentProjectIndex++;
     }
-    
     updateModal();
   }
 
@@ -234,57 +227,31 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ======================
-  // Scroll Animations
-  // ======================
-  const animateElements = document.querySelectorAll('.fade-in');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  animateElements.forEach(element => {
-    observer.observe(element);
-  });
-
-  // ======================
-  // Form Handling
+  // Form Validation
   // ======================
   const contactForm = document.querySelector('.contact-form');
-  
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+      let isValid = true;
       
-      // Form validation
-      const name = this.elements['name'].value.trim();
-      const email = this.elements['_replyto'].value.trim();
-      const message = this.elements['message'].value.trim();
+      this.querySelectorAll('[required]').forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = '#a10e2d'; // Crimson red for errors
+          isValid = false;
+        } else {
+          field.style.borderColor = '';
+        }
+      });
       
-      if (!name || !email || !message) {
-        alert('Please fill in all fields');
-        return;
+      if (!isValid) {
+        e.preventDefault();
+        alert('Please fill all required fields');
       }
-      
-      // Submit form (using Formspree)
-      this.submit();
-
-      // Form validation styling
-document.querySelectorAll('input, textarea').forEach(el => {
-  el.addEventListener('blur', () => {
-    if (!el.validity.valid) {
-      el.style.borderColor = '#a10e2d';
-      el.nextElementSibling?.style.setProperty('color', '#a10e2d');
-    }
-  });
-});
-      // Reset form
-      this.reset();
-      alert('Thank you for your message! I will get back to you soon.');
     });
   }
+
+  // ======================
+  // Initialize Current Year
+  // ======================
+  document.getElementById('year').textContent = new Date().getFullYear();
 });
