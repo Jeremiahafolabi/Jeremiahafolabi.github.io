@@ -1,19 +1,23 @@
-/* =========================
-   Enhanced CSS - Portfolio Focus
-   ========================= */
-
-/* Global Styles */
+/* ====================
+   GLOBAL STYLES
+   ==================== */
 :root {
-  --primary: #ff9800;
-  --primary-hover: #ffb74d;
-  --secondary: #00bfa6;
-  --secondary-hover: #00d8bb;
-  --dark: #0f0f0f;
-  --darker: #0a0a0a;
-  --card-bg: #1a1a1a;
-  --text: #f5f5f5;
-  --text-muted: #aaa;
-  --border: rgba(255,255,255,0.1);
+  /* Color System */
+  --primary: #efa80a;        /* New yellow */
+  --primary-hover: #ffc107;  /* Brighter yellow */
+  --primary-text: #000000;   /* Black text on yellow */
+  
+  --accent: #a10e2d;         /* Crimson red */
+  --accent-hover: #d43a5a;   /* Lighter red */
+  --accent-text: #ffffff;    /* White text on red */
+  
+  --dark: #0f0f0f;           /* Background */
+  --darker: #0a0a0a;         /* Secondary bg */
+  --card-bg: #1a1a1a;        /* Card backgrounds */
+  --text: #f5f5f5;           /* Main text */
+  --text-muted: #aaa;        /* Secondary text */
+  --border: rgba(255,255,255,0.1); /* Borders */
+  
   --transition: all 0.3s ease;
 }
 
@@ -66,14 +70,9 @@ body {
   border-radius: 2px;
 }
 
-.section-subtitle {
-  color: var(--text-muted);
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 40px;
-}
-
-/* Header Styles */
+/* ====================
+   HEADER & NAVIGATION
+   ==================== */
 #main-header {
   position: fixed;
   top: 0;
@@ -100,6 +99,22 @@ body {
 
 .header-social-icons a:hover {
   color: var(--primary);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background: var(--text);
+  transition: var(--transition);
 }
 
 .main-nav {
@@ -137,7 +152,9 @@ body {
   color: var(--primary);
 }
 
-/* Hero Section */
+/* ====================
+   HERO SECTION
+   ==================== */
 .hero-section {
   padding: 160px 0 100px;
   background: linear-gradient(to right, var(--darker) 0%, rgba(15,15,15,0.8) 100%);
@@ -198,7 +215,9 @@ body {
   transform: translateY(-5px);
 }
 
-/* Button Styles */
+/* ====================
+   BUTTONS
+   ==================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -215,13 +234,14 @@ body {
 
 .btn-primary {
   background: var(--primary);
-  color: #000;
+  color: var(--primary-text);
+  border: 2px solid var(--primary);
 }
 
 .btn-primary:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255,152,0,0.3);
+  box-shadow: 0 5px 15px rgba(239, 168, 10, 0.3);
 }
 
 .btn-secondary {
@@ -231,8 +251,9 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(255,152,0,0.1);
-  transform: translateY(-2px);
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
 }
 
 .btn-outline {
@@ -245,7 +266,9 @@ body {
   background: rgba(255,255,255,0.1);
 }
 
-/* About Section */
+/* ====================
+   ABOUT SECTION
+   ==================== */
 .about-section {
   background: var(--darker);
 }
@@ -279,7 +302,7 @@ body {
 }
 
 .skill-tag {
-  background: rgba(255,152,0,0.1);
+  background: rgba(239, 168, 10, 0.1);
   color: var(--primary);
   padding: 8px 15px;
   border-radius: 50px;
@@ -287,7 +310,9 @@ body {
   font-weight: 500;
 }
 
-/* Portfolio Section */
+/* ====================
+   PORTFOLIO SECTION
+   ==================== */
 .portfolio-section {
   background: var(--dark);
 }
@@ -335,7 +360,8 @@ body {
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  outline: 2px solid var(--accent);
+  box-shadow: 0 15px 30px rgba(161, 14, 45, 0.3);
 }
 
 .project-img {
@@ -382,7 +408,9 @@ body {
   margin-top: 50px;
 }
 
-/* Contact Section */
+/* ====================
+   CONTACT SECTION
+   ==================== */
 .contact-section {
   background: var(--darker);
 }
@@ -417,7 +445,7 @@ body {
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background: rgba(255,152,0,0.05);
+  background: rgba(239, 168, 10, 0.05);
 }
 
 .contact-info {
@@ -452,7 +480,9 @@ body {
   color: var(--primary);
 }
 
-/* Footer */
+/* ====================
+   FOOTER
+   ==================== */
 .main-footer {
   background: #0a0a0a;
   padding: 60px 0 20px;
@@ -532,7 +562,9 @@ body {
   font-size: 0.9rem;
 }
 
-/* Back to Top */
+/* ====================
+   BACK TO TOP
+   ==================== */
 .back-to-top {
   position: fixed;
   bottom: 30px;
@@ -563,7 +595,9 @@ body {
   transform: translateY(-5px);
 }
 
-/* Modal */
+/* ====================
+   MODAL
+   ==================== */
 .modal {
   position: fixed;
   top: 0;
@@ -659,6 +693,12 @@ body {
   font-size: 1.1rem;
 }
 
+.modal-tools .skill-tag {
+  background: rgba(239, 168, 10, 0.1);
+  color: var(--primary);
+  margin-right: 8px;
+}
+
 .modal-nav {
   display: flex;
   justify-content: space-between;
@@ -684,7 +724,9 @@ body {
   color: #000;
 }
 
-/* Responsive Styles */
+/* ====================
+   RESPONSIVE STYLES
+   ==================== */
 @media (max-width: 992px) {
   .hero-content {
     flex-direction: column;
@@ -721,6 +763,10 @@ body {
     font-size: 2rem;
   }
   
+  .menu-toggle {
+    display: flex;
+  }
+  
   .main-nav {
     position: fixed;
     top: 80px;
@@ -743,34 +789,6 @@ body {
   
   .nav-link {
     margin: 15px 0;
-  }
-  
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-  }
-  
-  .menu-toggle .bar {
-    height: 3px;
-    width: 100%;
-    background: var(--text);
-    transition: var(--transition);
-  }
-  
-  .menu-toggle.active .bar:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  
-  .menu-toggle.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .menu-toggle.active .bar:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
   }
   
   .portfolio-grid {
@@ -800,104 +818,4 @@ body {
     padding: 6px 15px;
     font-size: 0.9rem;
   }
-
-   /* ========================
-   Circular Profile Frame
-   ======================== */
-.profile-frame {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  border: 5px solid white;
-  margin: 0 auto; /* Centers the frame */
-}
-
-.profile-picture {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  position: relative;
-  z-index: 2;
-}
-
-.initials-placeholder {
-  position: absolute;
-  font-size: 4rem;
-  font-weight: 700;
-  color: white;
-  z-index: 1;
-  text-transform: uppercase;
-}
-
-   /* ====================
-   YELLOW (#efa80a) UPDATE 
-   ==================== */
-:root {
-  --primary: #efa80a;        /* New primary yellow */
-  --primary-hover: #ffc107;  /* Brighter hover */
-  --accent: #a10e2d;         /* Crimson red */
-  --accent-light: #d43a5a;   /* Lighter red */
-}
-
-/* Buttons */
-.btn-primary, 
-.btn-primary:focus {
-  background: var(--primary) !important;
-  border-color: var(--primary) !important;
-  color: #000 !important;
-}
-
-.btn-primary:hover {
-  background: var(--primary-hover) !important;
-  transform: translateY(-2px);
-}
-
-/* Icons */
-.header-social-icons a:hover,
-.footer-social-icons a:hover,
-.alt-contact a:hover i {
-  color: var(--primary) !important;
-}
-
-/* Active States */
-.nav-link.active,
-.portfolio-filter .active {
-  color: var(--primary) !important;
-}
-
-/* Decorative Elements */
-.section-title::after,
-.back-to-top {
-  background: var(--primary);
-}
-
-/* ====================
-   CRIMSON RED (#a10e2d) ACCENTS 
-   ==================== */
-/* Danger/Hover States */
-.btn-secondary:hover {
-  background: var(--accent) !important;
-  border-color: var(--accent) !important;
-}
-
-/* Form Errors */
-input:invalid, 
-textarea:invalid {
-  border-color: var(--accent) !important;
-}
-
-/* Active Navigation Indicator */
-.nav-link.active::after {
-  background: var(--accent);
-}
-
-/* Portfolio Hover Effects */
-.project-card:hover {
-  outline: 2px solid var(--accent);
 }
