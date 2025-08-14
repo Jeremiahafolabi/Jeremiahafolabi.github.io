@@ -25,18 +25,18 @@
           <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
         </div>
         
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        
         <nav class="main-nav">
           <a href="#hero" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#portfolio" class="nav-link">Portfolio</a>
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
-        
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
       </div>
     </div>
   </header>
@@ -96,7 +96,19 @@
       </div>
       
       <div class="portfolio-grid">
-        <!-- Project cards will be dynamically inserted here -->
+        <!-- Project cards will be inserted here by JavaScript -->
+        <!-- Sample project card (you can duplicate this structure) -->
+        <div class="project-card" data-category="graphic">
+          <img src="assets/project1.jpg" alt="Project 1" class="project-img">
+          <div class="project-overlay">
+            <h3 class="project-title">Brand Identity</h3>
+            <span class="project-category">Graphic Design</span>
+            <div class="project-tools">
+              <span class="project-tool">Photoshop</span>
+              <span class="project-tool">Illustrator</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -156,14 +168,6 @@
             <li><a href="#portfolio">Portfolio</a></li>
           </ul>
         </div>
-        <div class="footer-social">
-          <h3>Connect</h3>
-          <div class="social-icons">
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
-            <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
-          </div>
-        </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; <span id="year"></span> All Rights Reserved</p>
@@ -175,31 +179,6 @@
   <a href="#hero" class="back-to-top">
     <i class="fas fa-arrow-up"></i>
   </a>
-
-  <!-- ======= Project Modal ======= -->
-  <div id="project-modal" class="modal">
-    <div class="modal-overlay"></div>
-    <div class="modal-container">
-      <button class="close-modal">&times;</button>
-      <div class="modal-content">
-        <div class="modal-image-container">
-          <img id="modal-image" src="" alt="Project Image" class="modal-image">
-        </div>
-        <div class="modal-details">
-          <h3 id="modal-title"></h3>
-          <p id="modal-description"></p>
-          <div class="modal-tools">
-            <h4>Tools Used:</h4>
-            <div id="modal-tools"></div>
-          </div>
-          <div class="modal-nav">
-            <button id="prev-project" class="modal-nav-btn"><i class="fas fa-chevron-left"></i></button>
-            <button id="next-project" class="modal-nav-btn"><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ======= JavaScript ======= -->
   <script src="js/main.js"></script>
