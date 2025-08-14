@@ -1,60 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Afolabi Jeremiah Boluwatife - Portfolio</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Portfolio of Afolabi Jeremiah Boluwatife - Graphic Designer & UI/UX Designer." />
-  <meta name="keywords" content="graphic design, UI/UX, portfolio, designer, Nigeria" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afolabi Jeremiah - Designer Portfolio</title>
+  <meta name="description" content="Graphic & UI/UX Designer Portfolio">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
   <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-
-<!-- Header with improved navigation -->
-<header id="main-header">
-  <div class="container">
-    <div class="header-content">
-      <div class="header-social-icons">
-        <a href="https://linkedin.com/in/afolabi-jeremiah" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://dribbble.com" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+  <!-- ======= Header ======= -->
+  <header id="main-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="header-social-icons">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+        </div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        
+        <nav class="main-nav">
+          <a href="#hero" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
       </div>
-      <div class="menu-toggle" id="mobile-menu" aria-label="Mobile menu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </div>
-      <nav class="main-nav">
-        <a href="#hero" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#portfolio" class="nav-link">Portfolio</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- Hero Section with improved structure -->
-<section id="hero" class="hero-section">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>Afolabi Jeremiah Boluwatife</h1>
-        <h2>Graphic Designer | UI/UX Designer</h2>
-        <p class="hero-description">Crafting functional designs and user-centered solutions for startups and businesses.</p>
-        <div class="hero-cta">
-          <a href="#portfolio" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-secondary">Hire Me</a>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Afolabi Jeremiah Boluwatife</h1>
+          <h2>Graphic Designer | UI/UX Designer</h2>
+          <p class="hero-description">Crafting functional designs and user-centered solutions for startups and businesses.</p>
+          <div class="hero-cta">
+            <a href="#portfolio" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Hire Me</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="assets/profile.jpg" alt="Profile Photo" loading="lazy">
         </div>
       </div>
-      <div class="hero-image">
+    </div>
+  </section>
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a passionate Graphic Designer with a focus on clean, impactful visuals. Currently expanding into UI/UX design to create intuitive, user-centered digital experiences.</p>
+          <a href="#" class="btn btn-outline">Download CV</a>
+        </div>
+        <div class="skills">
+          <h3>My Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Photoshop</span>
+            <span class="skill-tag">Illustrator</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">UI/UX</span>
+            <span class="skill-tag">Web Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Portfolio Section ======= -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <h2 class="section-title">My Portfolio</h2>
+      
+      <div class="portfolio-filter">
+        <button class="filter-btn active" data-filter="all">All Works</button>
+        <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+        <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
+      </div>
+      
+      <div class="portfolio-grid">
+        <!-- Project cards will be inserted here by JavaScript -->
+        <!-- Sample project card (you can duplicate this structure) -->
+        <div class="project-card" data-category="graphic">
+          <img src="assets/project1.jpg" alt="Project 1" class="project-img">
+          <div class="project-overlay">
+            <h3 class="project-title">Brand Identity</h3>
+            <span class="project-category">Graphic Design</span>
+            <div class="project-tools">
+              <span class="project-tool">Photoshop</span>
+              <span class="project-tool">Illustrator</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      
+      <div class="contact-content">
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+        
+        <div class="contact-info">
+          <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:hello@example.com">hello@example.com</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+              <h3>WhatsApp</h3>
+              <a href="https://wa.me/1234567890">+123 456 7890</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>Afolabi Jeremiah</h3>
+          <p>Creating beautiful, functional designs that solve problems.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======= Back to Top Button ======= -->
+  <a href="#hero" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- ======= JavaScript ======= -->
+  <script src="js/main.js"></script>
+  
+  <!-- Initialize current year -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
