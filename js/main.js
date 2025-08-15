@@ -207,17 +207,19 @@ document.addEventListener('DOMContentLoaded', function() {
       projectCard.innerHTML = `
         <img src="${project.image}" alt="${project.title}" class="project-img">
         <div class="project-overlay">
-          <h3 class="project-title">${project.title}</h3>
+          <h3 class="project-title">Project Title</h3>
           <span class="project-category">${project.category === 'graphic' ? 'Graphic Design' : 'UI/UX Design'}</span>
-          <div class="project-tools">
-            ${project.tools.map(tool => `<span class="project-tool">${tool}</span>`).join('')}
-          </div>
         </div>
-        <button class="view-project-btn">View Project</button>
+        <button class="view-project-btn">View</button>
       `;
       
-      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
+      const viewBtn = projectCard.querySelector('.view-project-btn');
+      viewBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        openModal(project.id);
+      });
+      
+      projectCard.addEventListener('click', () => {
         openModal(project.id);
       });
       
@@ -236,28 +238,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const nextProjectBtn = document.getElementById('next-project');
   const successModal = document.getElementById('success-modal');
 
-  let currentProjectIndex = 0;
-  let filteredProjects = [];
+  let currentProjectImages = [];
+  let currentImageIndex = 0;
+  let currentProjectId = null;
 
   function openModal(projectId) {
     // Find the project
-    const projectIndex = projects.findIndex(p => p.id === projectId);
-    if (projectIndex === -1) return;
+    const project = projects.find(p => p.id === projectId);
+    if (!project) return;
     
-    currentProjectIndex = projectIndex;
-    const project = projects[projectIndex];
+    currentProjectId = projectId;
+    currentProjectImages = project.images;
+    currentImageIndex = 0;
     
     // Update modal content
-    modalTitle.textContent = project.title;
+    modalTitle.textContent = "Project Title";
     modalImages.innerHTML = '';
     
-    // Add all images to modal
-    project.images.forEach(img => {
-      const imgElement = document.createElement('img');
-      imgElement.src = img;
-      imgElement.alt = `${project.title} - ${project.images.indexOf(img) + 1}`;
-      modalImages.appendChild(imgElement);
-    });
+    // Add first image to modal
+    const imgElement = document.createElement('img');
+    imgElement.src = currentProjectImages[currentImageIndex];
+    imgElement.alt = `Project Image ${currentImageIndex + 1}`;
+    modalImages.appendChild(imgElement);
     
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
@@ -269,6 +271,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.remove('no-scroll');
   }
 
+  function navigateModal(direction) {
+    currentImageIndex = (currentImageIndex + direction + currentProjectImages.length) % currentProjectImages.length;
+    
+    modalImages.innerHTML = '';
+    const imgElement = document.createElement('img');
+    imgElement.src = currentProjectImages[currentImageIndex];
+    imgElement.alt = `Project Image ${currentImageIndex + 1}`;
+    modalImages.appendChild(imgElement);
+  }
+
   // Event listeners
   closeModalBtn.addEventListener('click', closeModal);
 
@@ -278,18 +290,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  prevProjectBtn.addEventListener('click', () => {
-    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
-    currentProjectIndex = (currentProjectIndex - 1 + filteredProjects.length) % filteredProjects.length;
-    openModal(filteredProjects[currentProjectIndex].id);
+  prevProjectBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigateModal(-1);
   });
 
-  nextProjectBtn.addEventListener('click', () => {
-    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
-    currentProjectIndex = (currentProjectIndex + 1) % filteredProjects.length;
-    openModal(filteredProjects[currentProjectIndex].id);
+  nextProjectBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigateModal(1);
   });
 
   // Keyboard navigation
@@ -299,9 +307,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape') {
       closeModal();
     } else if (e.key === 'ArrowLeft') {
-      prevProjectBtn.click();
+      navigateModal(-1);
     } else if (e.key === 'ArrowRight') {
-      nextProjectBtn.click();
+      navigateModal(1);
     }
   });
 
