@@ -4,12 +4,10 @@
 
 /* Global Styles */
 :root {
-  --primary: #efa80a;
-  --primary-hover: #f8ba2b;
+  --primary: #ff9800;
+  --primary-hover: #ffb74d;
   --secondary: #00bfa6;
   --secondary-hover: #00d8bb;
-  --accent: #a10e2d;
-  --accent-hover: #b81a3a;
   --dark: #0f0f0f;
   --darker: #0a0a0a;
   --card-bg: #1a1a1a;
@@ -54,8 +52,6 @@ body {
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
-  text-align: center;
-  width: 100%;
 }
 
 .section-title::after {
@@ -234,7 +230,7 @@ body {
 .btn-primary:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(239, 168, 10, 0.3);
+  box-shadow: 0 5px 15px rgba(255,152,0,0.3);
 }
 
 .btn-secondary {
@@ -244,7 +240,7 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(239, 168, 10, 0.1);
+  background: rgba(255,152,0,0.1);
   transform: translateY(-2px);
 }
 
@@ -284,21 +280,15 @@ body {
   flex: 0 0 40%;
 }
 
-.skills-title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
-  justify-content: center;
 }
 
 .skill-tag {
-  background: rgba(239, 168, 10, 0.1);
+  background: rgba(255,152,0,0.1);
   color: var(--primary);
   padding: 8px 15px;
   border-radius: 50px;
@@ -350,7 +340,6 @@ body {
   transition: var(--transition);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   position: relative;
-  cursor: pointer;
 }
 
 .project-card:hover {
@@ -367,13 +356,11 @@ body {
 
 .project-overlay {
   padding: 20px;
-  position: relative;
 }
 
 .project-title {
   font-size: 1.2rem;
   margin-bottom: 8px;
-  color: var(--text);
 }
 
 .project-category {
@@ -382,6 +369,21 @@ body {
   font-weight: 500;
   margin-bottom: 15px;
   display: block;
+}
+
+.project-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.project-tool {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.8rem;
 }
 
 .view-project-btn {
@@ -396,12 +398,21 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
-  z-index: 2;
+  opacity: 0;
+}
+
+.project-card:hover .view-project-btn {
+  opacity: 1;
 }
 
 .view-project-btn:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
+}
+
+.portfolio-cta {
+  text-align: center;
+  margin-top: 50px;
 }
 
 /* Contact Section */
@@ -417,8 +428,6 @@ body {
 
 .contact-form {
   flex: 1;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .form-group {
@@ -446,45 +455,26 @@ body {
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background: rgba(239, 168, 10, 0.05);
-}
-
-.form-submit {
-  text-align: center;
-  margin-top: 30px;
+  background: rgba(255,152,0,0.05);
 }
 
 .contact-info {
   flex: 0 0 40%;
   display: flex;
-  justify-content: center;
-}
-
-.contact-methods {
-  display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 100%;
-  max-width: 400px;
 }
 
 .contact-method {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 15px;
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 10px;
-  transition: var(--transition);
-}
-
-.contact-method:hover {
-  background: rgba(255,255,255,0.1);
 }
 
 .contact-method i {
   font-size: 1.5rem;
   color: var(--primary);
+  margin-top: 5px;
 }
 
 .contact-method h3 {
@@ -736,16 +726,6 @@ body {
   .modal-content {
     flex-direction: column;
   }
-
-  .contact-methods {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .contact-method {
-    flex: 1 1 300px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -848,15 +828,6 @@ body {
   .modal-nav-btn {
     display: none;
   }
-
-  .contact-method {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .contact-method i {
-    margin-bottom: 10px;
-  }
 }
 
 @media (max-width: 576px) {
@@ -890,35 +861,5 @@ body {
 
   .contact-method i {
     margin-bottom: 10px;
-  }
-/* Contact Form Updates */
-.contact-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact-form {
-  width: 100%;
-  max-width: 600px;
-}
-
-.form-submit {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.contact-methods {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-  .contact-methods {
-    flex-direction: column;
-    gap: 15px;
   }
 }
