@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentImageIndex = 0;
   let currentProjectId = null;
 
- function openModal(projectId) {
+function openModal(projectId) {
   // Find the project
   const project = projects.find(p => p.id === projectId);
   if (!project) return;
@@ -254,21 +254,50 @@ document.addEventListener('DOMContentLoaded', function() {
   modalTitle.textContent = "Project Title";
   modalImages.innerHTML = '';
   
-  // Add all images to modal (stacked vertically on mobile)
-  currentProjectImages.forEach((imgSrc, index) => {
-    const imgElement = document.createElement('img');
-    imgElement.src = imgSrc;
-    imgElement.alt = `Project Image ${index + 1}`;
-    modalImages.appendChild(imgElement);
-  });
+  // First image (loaded immediately)
+  const firstImg = document.createElement('img');
+  firstImg.src = project.images[0];
+  firstImg.alt = `Project Image 1`;
+  firstImg.loading = 'eager';
+  modalImages.appendChild(firstImg);
+  
+  // Lazy load other images
+  for (let i = 1; i < project.images.length; i++) {
+    const img = document.createElement('img');
+    img.src = project.images[i];
+    img.alt = `Project Image ${i+1}`;
+    img.loading = 'lazy';
+    img.style.display = 'none';
+    modalImages.appendChild(img);
+  }
   
   modal.classList.add('active');
   document.body.classList.add('no-scroll');
   
-  // Hide arrows on mobile
+  // Progressive loading
+  setTimeout(() => {
+    const images = modalImages.querySelectorAll('img');
+    for (let i = 1; i < images.length; i++) {
+      setTimeout(() => {
+        images[i].style.display = 'block';
+      }, 100 * i);
+    }
+  }, 300);
+  
+  // Mobile adjustments
   if (window.innerWidth <= 768) {
     prevProjectBtn.style.display = 'none';
     nextProjectBtn.style.display = 'none';
+    
+    firstImg.onload = function() {
+      const aspectRatio = this.naturalHeight / this.naturalWidth;
+      const viewportWidth = window.innerWidth * 0.9;
+      const calculatedHeight = viewportWidth * aspectRatio;
+      
+      modalImages.querySelectorAll('img').forEach(img => {
+        img.style.height = `${Math.min(calculatedHeight, 80)}vh`;
+      });
+    };
   } else {
     prevProjectBtn.style.display = 'flex';
     nextProjectBtn.style.display = 'flex';
