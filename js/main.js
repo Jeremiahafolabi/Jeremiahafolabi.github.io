@@ -242,29 +242,38 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentImageIndex = 0;
   let currentProjectId = null;
 
-  function openModal(projectId) {
-    // Find the project
-    const project = projects.find(p => p.id === projectId);
-    if (!project) return;
-    
-    currentProjectId = projectId;
-    currentProjectImages = project.images;
-    currentImageIndex = 0;
-    
-    // Update modal content
-    modalTitle.textContent = "Project Title";
-    modalImages.innerHTML = '';
-    
-    // Add first image to modal
+ function openModal(projectId) {
+  // Find the project
+  const project = projects.find(p => p.id === projectId);
+  if (!project) return;
+  
+  currentProjectId = projectId;
+  currentProjectImages = project.images;
+  
+  // Update modal content
+  modalTitle.textContent = "Project Title";
+  modalImages.innerHTML = '';
+  
+  // Add all images to modal (stacked vertically on mobile)
+  currentProjectImages.forEach((imgSrc, index) => {
     const imgElement = document.createElement('img');
-    imgElement.src = currentProjectImages[currentImageIndex];
-    imgElement.alt = `Project Image ${currentImageIndex + 1}`;
+    imgElement.src = imgSrc;
+    imgElement.alt = `Project Image ${index + 1}`;
     modalImages.appendChild(imgElement);
-    
-    modal.classList.add('active');
-    document.body.classList.add('no-scroll');
+  });
+  
+  modal.classList.add('active');
+  document.body.classList.add('no-scroll');
+  
+  // Hide arrows on mobile
+  if (window.innerWidth <= 768) {
+    prevProjectBtn.style.display = 'none';
+    nextProjectBtn.style.display = 'none';
+  } else {
+    prevProjectBtn.style.display = 'flex';
+    nextProjectBtn.style.display = 'flex';
   }
-
+}
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
