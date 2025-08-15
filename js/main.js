@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
+  const socialIcons = document.querySelectorAll('.header-social-icons a');
 
   // Improved hamburger menu animation
   mobileMenu.addEventListener('click', () => {
@@ -21,6 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
       }
+    });
+  });
+
+  // ======================
+  // Social Media Links (Mobile fix)
+  // ======================
+  socialIcons.forEach(icon => {
+    icon.addEventListener('click', (e) => {
+      // Prevent default behavior to ensure links work correctly on touch devices
+      e.stopPropagation();
     });
   });
 
@@ -61,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ======================
-  // Portfolio Filtering
+  // Portfolio Filtering & Project Data
   // ======================
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioGrid = document.querySelector('.portfolio-grid');
@@ -71,9 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Graphic Design Projects
     {
       id: 1,
-      title: 'Brand Identity Design',
+      title: 'Project Title',
       category: 'graphic',
-      tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project1.jpg',
       images: [
         'assets/project1-1.jpg',
@@ -88,9 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 2,
-      title: 'Marketing Materials',
+      title: 'Project Title',
       category: 'graphic',
-      tools: ['Illustrator', 'InDesign'],
       image: 'assets/project2.jpg',
       images: [
         'assets/project2-1.jpg',
@@ -105,9 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 3,
-      title: 'Packaging Design',
+      title: 'Project Title',
       category: 'graphic',
-      tools: ['Photoshop', 'Illustrator', '3D Mockups'],
       image: 'assets/project3.jpg',
       images: [
         'assets/project3-1.jpg',
@@ -123,9 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // UI/UX Design Projects
     {
       id: 4,
-      title: 'Mobile App UI',
+      title: 'Project Title',
       category: 'uiux',
-      tools: ['Figma', 'Adobe XD'],
       image: 'assets/project4.jpg',
       images: [
         'assets/project4-1.jpg',
@@ -140,9 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 5,
-      title: 'Website Redesign',
+      title: 'Project Title',
       category: 'uiux',
-      tools: ['Figma', 'Photoshop'],
       image: 'assets/project5.jpg',
       images: [
         'assets/project5-1.jpg',
@@ -157,9 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 6,
-      title: 'Dashboard Interface',
+      title: 'Project Title',
       category: 'uiux',
-      tools: ['Figma', 'Illustrator'],
       image: 'assets/project6.jpg',
       images: [
         'assets/project6-1.jpg',
@@ -207,19 +212,21 @@ document.addEventListener('DOMContentLoaded', function() {
       projectCard.innerHTML = `
         <img src="${project.image}" alt="${project.title}" class="project-img">
         <div class="project-overlay">
-          <h3 class="project-title">Project Title</h3>
-          <span class="project-category">${project.category === 'graphic' ? 'Graphic Design' : 'UI/UX Design'}</span>
+          <h3 class="project-title">${project.title}</h3>
+          <button class="view-project-btn">View</button>
         </div>
-        <button class="view-project-btn">View</button>
       `;
-      
-      const viewBtn = projectCard.querySelector('.view-project-btn');
-      viewBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(project.id);
+
+      // Make image and button clickable
+      projectCard.addEventListener('click', (e) => {
+        // Only open modal if the click is on the card itself or the overlay
+        if (e.target.classList.contains('project-card') || e.target.classList.contains('project-img') || e.target.classList.contains('project-overlay')) {
+          openModal(project.id);
+        }
       });
       
-      projectCard.addEventListener('click', () => {
+      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents click from propagating to the parent card
         openModal(project.id);
       });
       
@@ -234,52 +241,67 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalImages = document.querySelector('.modal-images');
   const modalTitle = document.getElementById('modal-project-title');
   const closeModalBtn = document.querySelector('.close-modal');
-  const prevProjectBtn = document.getElementById('prev-project');
-  const nextProjectBtn = document.getElementById('next-project');
-  const successModal = document.getElementById('success-modal');
+  const prevModalBtn = document.getElementById('prev-project');
+  const nextModalBtn = document.getElementById('next-project');
 
-  let currentProjectImages = [];
+  let currentImages = []; // Stores the images for the currently active project
   let currentImageIndex = 0;
-  let currentProjectId = null;
 
   function openModal(projectId) {
-    // Find the project
+    // Find the project and its images
     const project = projects.find(p => p.id === projectId);
     if (!project) return;
     
-    currentProjectId = projectId;
-    currentProjectImages = project.images;
+    currentImages = project.images;
     currentImageIndex = 0;
     
     // Update modal content
-    modalTitle.textContent = "Project Title";
+    modalTitle.textContent = project.title;
+    
     modalImages.innerHTML = '';
     
-    // Add first image to modal
-    const imgElement = document.createElement('img');
-    imgElement.src = currentProjectImages[currentImageIndex];
-    imgElement.alt = `Project Image ${currentImageIndex + 1}`;
-    modalImages.appendChild(imgElement);
+    // Add all images to modal
+    currentImages.forEach(img => {
+      const imgElement = document.createElement('img');
+      imgElement.src = img;
+      imgElement.alt = `Project image`;
+      modalImages.appendChild(imgElement);
+    });
     
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
+    updateModalButtons();
   }
 
   function closeModal() {
     modal.classList.remove('active');
-    successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
   }
 
-  function navigateModal(direction) {
-    currentImageIndex = (currentImageIndex + direction + currentProjectImages.length) % currentProjectImages.length;
-    
-    modalImages.innerHTML = '';
-    const imgElement = document.createElement('img');
-    imgElement.src = currentProjectImages[currentImageIndex];
-    imgElement.alt = `Project Image ${currentImageIndex + 1}`;
-    modalImages.appendChild(imgElement);
+  // Update modal navigation buttons visibility
+  function updateModalButtons() {
+    prevModalBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
+    nextModalBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
   }
+
+  // Modal navigation logic
+  prevModalBtn.addEventListener('click', () => {
+    // Scroll to the previous image
+    currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+    modalImages.scrollTo({
+      left: modalImages.children[currentImageIndex].offsetLeft,
+      behavior: 'smooth'
+    });
+  });
+
+  nextModalBtn.addEventListener('click', () => {
+    // Scroll to the next image
+    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+    modalImages.scrollTo({
+      left: modalImages.children[currentImageIndex].offsetLeft,
+      behavior: 'smooth'
+    });
+  });
 
   // Event listeners
   closeModalBtn.addEventListener('click', closeModal);
@@ -290,16 +312,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  prevProjectBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navigateModal(-1);
-  });
-
-  nextProjectBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navigateModal(1);
-  });
-
   // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('active')) return;
@@ -307,9 +319,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape') {
       closeModal();
     } else if (e.key === 'ArrowLeft') {
-      navigateModal(-1);
+      prevModalBtn.click();
     } else if (e.key === 'ArrowRight') {
-      navigateModal(1);
+      nextModalBtn.click();
     }
   });
 
@@ -317,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Contact Form Handling
   // ======================
   const contactForm = document.getElementById('contact-form');
+  const successModal = document.getElementById('success-modal');
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
