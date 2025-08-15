@@ -710,18 +710,22 @@ body {
 
    /* Add this to the mobile media query */
 .modal-images {
-  flex-direction: column;
-  overflow-y: auto;
-  max-height: 70vh;
-  gap: 15px;
-  scroll-snap-type: y mandatory;
-}
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 60vh;
+    gap: 10px;
+    scroll-snap-type: y mandatory;
+    padding-bottom: 30px;
+  }
 
-.modal-images img {
-  min-height: 80vh;
-  scroll-snap-align: start;
-  margin-bottom: 10px;
-}
+  .modal-images img {
+    height: auto;
+    max-height: 85vh;
+    width: 100%;
+    scroll-snap-align: start;
+    object-fit: contain;
+    margin-bottom: 0;
+  }
 
 /* Scroll indicator */
 .modal-container::after {
@@ -734,6 +738,10 @@ body {
   font-size: 0.8rem;
   animation: bounce 2s infinite;
   opacity: 0.8;
+}
+   .modal:not(.active) .modal-images img {
+    display: none;
+  }
 }
 
 @keyframes bounce {
@@ -880,4 +888,25 @@ body {
     flex-direction: column;
     gap: 20px;
   }
+}
+
+.modal-container::after {
+  content: "↓ Scroll ↓";
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text);
+  background: rgba(0,0,0,0.7);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  animation: bounce 2s infinite;
+  z-index: 3;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+  40% {transform: translateY(-10px) translateX(-50%);}
+  60% {transform: translateY(-5px) translateX(-50%);}
 }
