@@ -193,6 +193,73 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // ======================
+// Project Modal
+// ======================
+const modal = document.getElementById('project-modal');
+const modalImages = document.querySelector('.modal-images');
+const modalTitle = document.getElementById('modal-project-title');
+const closeModalBtn = document.querySelector('.close-modal');
+const prevBtn = document.getElementById('prev-project');
+const nextBtn = document.getElementById('next-project');
+
+let currentProject = null;
+let currentImageIndex = 0;
+
+function openModal(project) {
+  currentProject = project;
+  currentImageIndex = 0;
+  updateModalImages();
+  modal.classList.add('active');
+  document.body.classList.add('no-scroll');
+}
+
+function updateModalImages() {
+  modalImages.innerHTML = '';
+  
+  currentProject.images.forEach((img, index) => {
+    const imgElement = document.createElement('img');
+    imgElement.src = img;
+    imgElement.alt = `${currentProject.title} - ${index + 1}`;
+    imgElement.style.display = index === currentImageIndex ? 'block' : 'none';
+    modalImages.appendChild(imgElement);
+  });
+}
+
+function navigateImages(direction) {
+  if (direction === 'prev') {
+    currentImageIndex = Math.max(0, currentImageIndex - 1);
+  } else {
+    currentImageIndex = Math.min(currentProject.images.length - 1, currentImageIndex + 1);
+  }
+  updateModalImages();
+}
+
+// Event listeners
+closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.classList.remove('active');
+});
+
+prevBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navigateImages('prev');
+});
+
+nextBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navigateImages('next');
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!modal.classList.contains('active')) return;
+  
+  if (e.key === 'Escape') modal.classList.remove('active');
+  if (e.key === 'ArrowLeft') navigateImages('prev');
+  if (e.key === 'ArrowRight') navigateImages('next');
+});
   function displayProjects(filter) {
     portfolioGrid.innerHTML = '';
     
