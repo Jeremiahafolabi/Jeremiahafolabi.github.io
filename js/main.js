@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Fix mobile social icons
+document.querySelectorAll('.header-social-icons a').forEach(icon => {
+  icon.addEventListener('click', (e) => e.stopPropagation());
+});
+  
   // Fix mobile social media links
   const socialIcons = document.querySelectorAll('.header-social-icons a');
   socialIcons.forEach(icon => {
