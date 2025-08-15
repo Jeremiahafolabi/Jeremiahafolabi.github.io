@@ -859,30 +859,6 @@ body {
     text-align: center;
   }
 
-   /* Center align the send button - works for both mobile and desktop */
-.form-submit {
-  text-align: center;
-  width: 100%;
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .form-submit {
-    margin-top: 20px;
-  }
-  
-  .btn-primary {
-    width: 100%;
-    max-width: 200px; /* Optional: sets a maximum width */
-  }
-}
-
   .contact-method i {
     margin-bottom: 10px;
   }
