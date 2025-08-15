@@ -73,7 +73,7 @@
           <a href="assets/cv.pdf" download="Afolabi_Jeremiah_CV.pdf" class="btn btn-outline">Download CV</a>
         </div>
         <div class="skills">
-          <h3 class="skills-title">My Skills</h3>
+          <h3>My Skills</h3>
           <div class="skill-tags">
             <span class="skill-tag">Photoshop</span>
             <span class="skill-tag">Illustrator</span>
@@ -93,69 +93,12 @@
       <h2 class="section-title">My Portfolio</h2>
       
       <div class="portfolio-filter">
-  <button class="filter-btn active" data-filter="graphic">Graphic Design</button>
-  <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
-</div>
+        <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+        <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
+      </div>
       
-    <div class="portfolio-grid">
-  <!-- Graphic Design Projects -->
-  <div class="project-card" data-id="1" data-category="graphic">
-    <img src="assets/project1.jpg" alt="Project 1" class="project-img">
-    <div class="project-overlay">
-      <h3 class="project-title">Project Title</h3>
-      <span class="project-category">Graphic Design</span>
-    </div>
-    <button class="view-project-btn">View</button>
-  </div>
-  
-  <!-- Repeat for all 6 projects -->
-</div>
-        
-        <div class="project-card" data-id="2" data-category="graphic">
-          <img src="assets/project2.jpg" alt="Project Title 2" class="project-img">
-          <div class="project-overlay">
-            <h3 class="project-title">Project Title 2</h3>
-            <span class="project-category">Graphic Design</span>
-          </div>
-          <button class="view-project-btn">View</button>
-        </div>
-        
-        <div class="project-card" data-id="3" data-category="graphic">
-          <img src="assets/project3.jpg" alt="Project Title 3" class="project-img">
-          <div class="project-overlay">
-            <h3 class="project-title">Project Title 3</h3>
-            <span class="project-category">Graphic Design</span>
-          </div>
-          <button class="view-project-btn">View</button>
-        </div>
-        
-        <!-- UI/UX Design Projects -->
-        <div class="project-card" data-id="4" data-category="uiux">
-          <img src="assets/project4.jpg" alt="Project Title 4" class="project-img">
-          <div class="project-overlay">
-            <h3 class="project-title">Project Title 4</h3>
-            <span class="project-category">UI/UX Design</span>
-          </div>
-          <button class="view-project-btn">View</button>
-        </div>
-        
-        <div class="project-card" data-id="5" data-category="uiux">
-          <img src="assets/project5.jpg" alt="Project Title 5" class="project-img">
-          <div class="project-overlay">
-            <h3 class="project-title">Project Title 5</h3>
-            <span class="project-category">UI/UX Design</span>
-          </div>
-          <button class="view-project-btn">View</button>
-        </div>
-        
-        <div class="project-card" data-id="6" data-category="uiux">
-          <img src="assets/project6.jpg" alt="Project Title 6" class="project-img">
-          <div class="project-overlay">
-            <h3 class="project-title">Project Title 6</h3>
-            <span class="project-category">UI/UX Design</span>
-          </div>
-          <button class="view-project-btn">View</button>
-        </div>
+      <div class="portfolio-grid">
+        <!-- Project cards will be inserted here by JavaScript -->
       </div>
     </div>
   </section>
@@ -176,26 +119,22 @@
           <div class="form-group">
             <textarea name="message" placeholder="Your Message" required></textarea>
           </div>
-          <div class="form-submit">
-            <button type="submit" class="btn btn-primary">Send Message</button>
-          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
         
         <div class="contact-info">
-          <div class="contact-methods">
-            <div class="contact-method">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h3>Email</h3>
-                <a href="mailto:hello@example.com">hello@example.com</a>
-              </div>
+          <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:hello@example.com">hello@example.com</a>
             </div>
-            <div class="contact-method">
-              <i class="fab fa-whatsapp"></i>
-              <div>
-                <h3>WhatsApp</h3>
-                <a href="https://wa.me/1234567890">+123 456 7890</a>
-              </div>
+          </div>
+          <div class="contact-method">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+              <h3>WhatsApp</h3>
+              <a href="https://wa.me/1234567890">+123 456 7890</a>
             </div>
           </div>
         </div>
@@ -218,6 +157,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- ======= Back to Top Button ======= -->
+  <a href="#hero" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
 
   <!-- ======= Project Modal ======= -->
   <div id="project-modal" class="modal">
