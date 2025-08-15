@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelectorAll('.nav-link');
 
   // Improved hamburger menu animation
-  mobileMenu.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
+  mobileMenu.addEventListener('click', function() {
+    this.classList.toggle('active');
     navMenu.classList.toggle('active');
     document.body.classList.toggle('no-scroll');
   });
 
   // Close mobile menu when link is clicked
   navLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', function() {
       if (navMenu.classList.contains('active')) {
         mobileMenu.classList.remove('active');
         navMenu.classList.remove('active');
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Fix mobile social media links
   const socialIcons = document.querySelectorAll('.header-social-icons a');
   socialIcons.forEach(icon => {
-    icon.addEventListener('click', (e) => {
+    icon.addEventListener('click', function(e) {
       e.stopPropagation(); // Prevent event from bubbling up
     });
   });
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ======================
   const backToTop = document.querySelector('.back-to-top');
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', function() {
     if (window.scrollY > 300) {
       backToTop.classList.add('active');
     } else {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  backToTop.addEventListener('click', (e) => {
+  backToTop.addEventListener('click', function(e) {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -182,13 +182,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Filter projects
   filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', function() {
       // Update active button
       filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+      this.classList.add('active');
       
       // Filter projects
-      const filter = button.dataset.filter;
+      const filter = this.dataset.filter;
       displayProjects(filter);
     });
   });
@@ -196,9 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function displayProjects(filter) {
     portfolioGrid.innerHTML = '';
     
-    const filteredProjects = filter === 'all' 
-      ? projects 
-      : projects.filter(project => project.category === filter);
+    const filteredProjects = projects.filter(project => project.category === filter);
     
     filteredProjects.forEach(project => {
       const projectCard = document.createElement('div');
@@ -216,14 +214,14 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
       
       // Click handler for the entire card
-      projectCard.addEventListener('click', () => {
-        openModal(project.id);
+      projectCard.addEventListener('click', function() {
+        openModal(project);
       });
       
       // Click handler for the view button (stops event bubbling)
-      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
+      projectCard.querySelector('.view-project-btn').addEventListener('click', function(e) {
         e.stopPropagation();
-        openModal(project.id);
+        openModal(project);
       });
       
       portfolioGrid.appendChild(projectCard);
@@ -237,21 +235,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalImages = document.querySelector('.modal-images');
   const modalTitle = document.getElementById('modal-project-title');
   const closeModalBtn = document.querySelector('.close-modal');
-  const prevProjectBtn = document.getElementById('prev-project');
-  const nextProjectBtn = document.getElementById('next-project');
+  const prevBtn = document.getElementById('prev-project');
+  const nextBtn = document.getElementById('next-project');
   const successModal = document.getElementById('success-modal');
 
-  let currentProjectIndex = 0;
-  let currentProjectImages = [];
+  let currentProject = null;
   let currentImageIndex = 0;
 
-  function openModal(projectId) {
-    // Find the project
-    const projectIndex = projects.findIndex(p => p.id === projectId);
-    if (projectIndex === -1) return;
-    
-    const project = projects[projectIndex];
-    currentProjectImages = project.images;
+  function openModal(project) {
+    currentProject = project;
     currentImageIndex = 0;
     
     // Update modal content
@@ -266,24 +258,20 @@ document.addEventListener('DOMContentLoaded', function() {
     modalImages.innerHTML = '';
     
     // Add all images to modal
-    currentProjectImages.forEach((img, index) => {
+    currentProject.images.forEach((img, index) => {
       const imgElement = document.createElement('img');
       imgElement.src = img;
-      imgElement.alt = `Project Image ${index + 1}`;
-      if (index === currentImageIndex) {
-        imgElement.style.display = 'block';
-      } else {
-        imgElement.style.display = 'none';
-      }
+      imgElement.alt = `${currentProject.title} - ${index + 1}`;
+      imgElement.style.display = index === currentImageIndex ? 'block' : 'none';
       modalImages.appendChild(imgElement);
     });
   }
 
   function navigateImages(direction) {
     if (direction === 'prev') {
-      currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
+      currentImageIndex = (currentImageIndex - 1 + currentProject.images.length) % currentProject.images.length;
     } else {
-      currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
+      currentImageIndex = (currentImageIndex + 1) % currentProject.images.length;
     }
     updateModalImages();
   }
@@ -297,32 +285,36 @@ document.addEventListener('DOMContentLoaded', function() {
   // Event listeners
   closeModalBtn.addEventListener('click', closeModal);
 
-  modal.addEventListener('click', (e) => {
+  modal.addEventListener('click', function(e) {
     if (e.target === modal || e.target.classList.contains('modal-overlay')) {
       closeModal();
     }
   });
 
-  prevProjectBtn.addEventListener('click', (e) => {
+  prevBtn.addEventListener('click', function(e) {
     e.stopPropagation();
     navigateImages('prev');
   });
 
-  nextProjectBtn.addEventListener('click', (e) => {
+  nextBtn.addEventListener('click', function(e) {
     e.stopPropagation();
     navigateImages('next');
   });
 
   // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', function(e) {
     if (!modal.classList.contains('active')) return;
     
-    if (e.key === 'Escape') {
-      closeModal();
-    } else if (e.key === 'ArrowLeft') {
-      navigateImages('prev');
-    } else if (e.key === 'ArrowRight') {
-      navigateImages('next');
+    switch(e.key) {
+      case 'Escape':
+        closeModal();
+        break;
+      case 'ArrowLeft':
+        navigateImages('prev');
+        break;
+      case 'ArrowRight':
+        navigateImages('next');
+        break;
     }
   });
 
@@ -352,7 +344,8 @@ document.addEventListener('DOMContentLoaded', function() {
         headers: {
           'Accept': 'application/json'
         }
-      }).then(response => {
+      })
+      .then(response => {
         if (response.ok) {
           successModal.classList.add('active');
           document.body.classList.add('no-scroll');
@@ -360,15 +353,20 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           throw new Error('Network response was not ok');
         }
-      }).catch(error => {
+      })
+      .catch(error => {
         alert('There was a problem sending your message. Please try again later.');
+        console.error('Error:', error);
       });
     });
   }
 
   // Close success modal
-  document.querySelector('#success-modal .close-modal').addEventListener('click', () => {
+  document.querySelector('#success-modal .close-modal').addEventListener('click', function() {
     successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
   });
+
+  // Initialize projects on load
+  displayProjects('graphic');
 });
