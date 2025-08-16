@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
-  const socialIcons = document.querySelectorAll('.header-social-icons a');
 
   // Improved hamburger menu animation
   mobileMenu.addEventListener('click', () => {
@@ -22,16 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
       }
-    });
-  });
-
-  // ======================
-  // Social Media Links (Mobile fix)
-  // ======================
-  socialIcons.forEach(icon => {
-    icon.addEventListener('click', (e) => {
-      // Prevent default behavior to ensure links work correctly on touch devices
-      e.stopPropagation();
     });
   });
 
@@ -72,14 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ======================
-  // Portfolio Filtering & Project Data
+  // Portfolio Filtering
   // ======================
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioGrid = document.querySelector('.portfolio-grid');
 
-  // Project data with 3 projects for each category
+  // Updated project data with 6 projects for each category
   const projects = [
-    // Graphic Design Projects
+    // Graphic Design Projects (6 projects)
     {
       id: 1,
       title: 'Project Title',
@@ -128,11 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'assets/project3-8.jpg'
       ]
     },
-    // UI/UX Design Projects
     {
       id: 4,
       title: 'Project Title',
-      category: 'uiux',
+      category: 'graphic',
       image: 'assets/project4.jpg',
       images: [
         'assets/project4-1.jpg',
@@ -148,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       id: 5,
       title: 'Project Title',
-      category: 'uiux',
+      category: 'graphic',
       image: 'assets/project5.jpg',
       images: [
         'assets/project5-1.jpg',
@@ -164,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       id: 6,
       title: 'Project Title',
-      category: 'uiux',
+      category: 'graphic',
       image: 'assets/project6.jpg',
       images: [
         'assets/project6-1.jpg',
@@ -175,6 +163,103 @@ document.addEventListener('DOMContentLoaded', function() {
         'assets/project6-6.jpg',
         'assets/project6-7.jpg',
         'assets/project6-8.jpg'
+      ]
+    },
+    // UI/UX Design Projects (6 projects)
+    {
+      id: 7,
+      title: 'Project Title',
+      category: 'uiux',
+      image: 'assets/project7.jpg',
+      images: [
+        'assets/project7-1.jpg',
+        'assets/project7-2.jpg',
+        'assets/project7-3.jpg',
+        'assets/project7-4.jpg',
+        'assets/project7-5.jpg',
+        'assets/project7-6.jpg',
+        'assets/project7-7.jpg',
+        'assets/project7-8.jpg'
+      ]
+    },
+    {
+      id: 8,
+      title: 'Project Title',
+      category: 'uiux',
+      image: 'assets/project8.jpg',
+      images: [
+        'assets/project8-1.jpg',
+        'assets/project8-2.jpg',
+        'assets/project8-3.jpg',
+        'assets/project8-4.jpg',
+        'assets/project8-5.jpg',
+        'assets/project8-6.jpg',
+        'assets/project8-7.jpg',
+        'assets/project8-8.jpg'
+      ]
+    },
+    {
+      id: 9,
+      title: 'Project Title',
+      category: 'uiux',
+      image: 'assets/project9.jpg',
+      images: [
+        'assets/project9-1.jpg',
+        'assets/project9-2.jpg',
+        'assets/project9-3.jpg',
+        'assets/project9-4.jpg',
+        'assets/project9-5.jpg',
+        'assets/project9-6.jpg',
+        'assets/project9-7.jpg',
+        'assets/project9-8.jpg'
+      ]
+    },
+    {
+      id: 10,
+      title: 'Project Title',
+      category: 'uiux',
+      image: 'assets/project10.jpg',
+      images: [
+        'assets/project10-1.jpg',
+        'assets/project10-2.jpg',
+        'assets/project10-3.jpg',
+        'assets/project10-4.jpg',
+        'assets/project10-5.jpg',
+        'assets/project10-6.jpg',
+        'assets/project10-7.jpg',
+        'assets/project10-8.jpg'
+      ]
+    },
+    {
+      id: 11,
+      title: 'Project Title',
+      category: 'uiux',
+      image: 'assets/project11.jpg',
+      images: [
+        'assets/project11-1.jpg',
+        'assets/project11-2.jpg',
+        'assets/project11-3.jpg',
+        'assets/project11-4.jpg',
+        'assets/project11-5.jpg',
+        'assets/project11-6.jpg',
+        'assets/project11-7.jpg',
+        'assets/project11-8.jpg'
+      ]
+    },
+    {
+      id: 12,
+      title: 'Project Title',
+      category: 'uiux',
+      image: 'assets/project12.jpg',
+      images: [
+        'assets/project12-1.jpg',
+        'assets/project12-2.jpg',
+        'assets/project12-3.jpg',
+        'assets/project12-4.jpg',
+        'assets/project12-5.jpg',
+        'assets/project12-6.jpg',
+        'assets/project12-7.jpg',
+        'assets/project12-8.jpg'
       ]
     }
   ];
@@ -210,25 +295,24 @@ document.addEventListener('DOMContentLoaded', function() {
       projectCard.dataset.category = project.category;
       
       projectCard.innerHTML = `
-        <img src="${project.image}" alt="${project.title}" class="project-img">
-        <div class="project-overlay">
-          <h3 class="project-title">${project.title}</h3>
-          <button class="view-project-btn">View</button>
+        <div class="project-image-container" style="position: relative;">
+          <img src="${project.image}" alt="${project.title}" class="project-img">
+          <div class="project-title">${project.title}</div>
         </div>
+        <button class="view-project-btn">View</button>
       `;
-
-      // Make image and button clickable
-      projectCard.addEventListener('click', (e) => {
-        // Only open modal if the click is on the card itself or the overlay
-        if (e.target.classList.contains('project-card') || e.target.classList.contains('project-img') || e.target.classList.contains('project-overlay')) {
-          openModal(project.id);
-        }
-      });
       
-      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevents click from propagating to the parent card
+      // Make both image and button clickable
+      const projectImg = projectCard.querySelector('.project-img');
+      const viewBtn = projectCard.querySelector('.view-project-btn');
+      
+      const openModalHandler = (e) => {
+        e.stopPropagation();
         openModal(project.id);
-      });
+      };
+      
+      projectImg.addEventListener('click', openModalHandler);
+      viewBtn.addEventListener('click', openModalHandler);
       
       portfolioGrid.appendChild(projectCard);
     });
@@ -241,67 +325,70 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalImages = document.querySelector('.modal-images');
   const modalTitle = document.getElementById('modal-project-title');
   const closeModalBtn = document.querySelector('.close-modal');
-  const prevModalBtn = document.getElementById('prev-project');
-  const nextModalBtn = document.getElementById('next-project');
+  const prevImageBtn = document.getElementById('prev-image');
+  const nextImageBtn = document.getElementById('next-image');
+  const successModal = document.getElementById('success-modal');
 
-  let currentImages = []; // Stores the images for the currently active project
+  let currentProject = null;
   let currentImageIndex = 0;
 
   function openModal(projectId) {
-    // Find the project and its images
+    // Find the project
     const project = projects.find(p => p.id === projectId);
     if (!project) return;
     
-    currentImages = project.images;
+    currentProject = project;
     currentImageIndex = 0;
     
     // Update modal content
     modalTitle.textContent = project.title;
-    
     modalImages.innerHTML = '';
     
     // Add all images to modal
-    currentImages.forEach(img => {
+    project.images.forEach((img, index) => {
       const imgElement = document.createElement('img');
       imgElement.src = img;
-      imgElement.alt = `Project image`;
+      imgElement.alt = `${project.title} - ${index + 1}`;
+      imgElement.style.display = index === 0 ? 'block' : 'none';
       modalImages.appendChild(imgElement);
     });
     
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
-    updateModalButtons();
+    
+    updateModalNavigation();
+  }
+
+  function updateModalNavigation() {
+    if (!currentProject) return;
+    
+    const images = modalImages.querySelectorAll('img');
+    images.forEach((img, index) => {
+      img.style.display = index === currentImageIndex ? 'block' : 'none';
+    });
+  }
+
+  function showPreviousImage() {
+    if (!currentProject) return;
+    
+    currentImageIndex = (currentImageIndex - 1 + currentProject.images.length) % currentProject.images.length;
+    updateModalNavigation();
+  }
+
+  function showNextImage() {
+    if (!currentProject) return;
+    
+    currentImageIndex = (currentImageIndex + 1) % currentProject.images.length;
+    updateModalNavigation();
   }
 
   function closeModal() {
     modal.classList.remove('active');
+    successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
+    currentProject = null;
+    currentImageIndex = 0;
   }
-
-  // Update modal navigation buttons visibility
-  function updateModalButtons() {
-    prevModalBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
-    nextModalBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
-  }
-
-  // Modal navigation logic
-  prevModalBtn.addEventListener('click', () => {
-    // Scroll to the previous image
-    currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-    modalImages.scrollTo({
-      left: modalImages.children[currentImageIndex].offsetLeft,
-      behavior: 'smooth'
-    });
-  });
-
-  nextModalBtn.addEventListener('click', () => {
-    // Scroll to the next image
-    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-    modalImages.scrollTo({
-      left: modalImages.children[currentImageIndex].offsetLeft,
-      behavior: 'smooth'
-    });
-  });
 
   // Event listeners
   closeModalBtn.addEventListener('click', closeModal);
@@ -312,16 +399,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  prevImageBtn.addEventListener('click', showPreviousImage);
+  nextImageBtn.addEventListener('click', showNextImage);
+
+  // Touch/swipe support for mobile
+  let startY = 0;
+  let startX = 0;
+
+  modalImages.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
+  });
+
+  modalImages.addEventListener('touchend', (e) => {
+    if (!startY || !startX) return;
+
+    const endY = e.changedTouches[0].clientY;
+    const endX = e.changedTouches[0].clientX;
+    const diffY = startY - endY;
+    const diffX = startX - endX;
+
+    // Determine if it's a vertical or horizontal swipe
+    if (Math.abs(diffY) > Math.abs(diffX)) {
+      // Vertical swipe
+      if (Math.abs(diffY) > 50) { // minimum swipe distance
+        if (diffY > 0) {
+          showNextImage(); // swipe up = next
+        } else {
+          showPreviousImage(); // swipe down = previous
+        }
+      }
+    } else {
+      // Horizontal swipe
+      if (Math.abs(diffX) > 50) { // minimum swipe distance
+        if (diffX > 0) {
+          showNextImage(); // swipe left = next
+        } else {
+          showPreviousImage(); // swipe right = previous
+        }
+      }
+    }
+
+    startY = 0;
+    startX = 0;
+  });
+
   // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('active')) return;
     
     if (e.key === 'Escape') {
       closeModal();
-    } else if (e.key === 'ArrowLeft') {
-      prevModalBtn.click();
-    } else if (e.key === 'ArrowRight') {
-      nextModalBtn.click();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      showPreviousImage();
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      showNextImage();
     }
   });
 
@@ -329,7 +461,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Contact Form Handling
   // ======================
   const contactForm = document.getElementById('contact-form');
-  const successModal = document.getElementById('success-modal');
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -370,5 +501,29 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#success-modal .close-modal').addEventListener('click', () => {
     successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
+  });
+
+  // ======================
+  // Social Media Icons Fix for Mobile
+  // ======================
+  const socialIcons = document.querySelectorAll('.header-social-icons a');
+  
+  socialIcons.forEach(icon => {
+    icon.addEventListener('click', function(e) {
+      // Ensure the link works on mobile
+      const href = this.getAttribute('href');
+      if (href) {
+        window.open(href, '_blank');
+      }
+    });
+    
+    // Add touch event for better mobile interaction
+    icon.addEventListener('touchstart', function() {
+      this.style.transform = 'translateY(-2px)';
+    });
+    
+    icon.addEventListener('touchend', function() {
+      this.style.transform = '';
+    });
   });
 });
