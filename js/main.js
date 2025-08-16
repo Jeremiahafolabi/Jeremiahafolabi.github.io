@@ -55,9 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioGrid = document.querySelector('.portfolio-grid');
 
-  // NOTE: Per request, remove tool descriptions and any texts on placeholders.
-  // Card shows only the bottom-left "Project Title" label + sticky View button.
-  const placeholder = 'assets/placeholder.jpg'; // swap with actual placeholder image
+  const placeholder = 'assets/placeholder.jpg';
   const projects = [
     // Graphic (6)
     { id: 1, title: 'Project Title', category: 'graphic', image: 'assets/project1.jpg',
@@ -115,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
         <button class="view-project-btn" type="button" aria-label="View Project">View</button>
       `;
 
-      // Open modal on image or button click
       projectCard.querySelector('.project-img').addEventListener('click', (e) => {
         e.stopPropagation();
         openModal(project.id, 0);
@@ -125,9 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
         openModal(project.id, 0);
       });
 
-      // Also allow clicking the whole card (optional)
       projectCard.addEventListener('click', () => openModal(project.id, 0));
-
       portfolioGrid.appendChild(projectCard);
     });
   }
@@ -157,15 +152,15 @@ document.addEventListener('DOMContentLoaded', function () {
     modalImages.innerHTML = '';
 
     if (isMobile()) {
-      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
       currentProject.images.forEach((src, idx) => {
         const img = document.createElement('img');
         img.src = src;
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
+      // ✅ FIX: Reset scroll position to top when opening modal on mobile
+      modalImages.scrollTop = 0;
     } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
       img.src = currentProject.images[currentImageIndex];
       img.alt = `Project image ${currentImageIndex + 1}`;
@@ -184,15 +179,9 @@ document.addEventListener('DOMContentLoaded', function () {
     currentImageIndex = 0;
   }
 
-  // Close modal buttons
   closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-  // Close when clicking outside container
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  // Desktop-only image navigation within current project (no cross-project jumping)
   function showDesktopImage(index) {
     if (!currentProject) return;
     modalImages.innerHTML = '';
@@ -209,14 +198,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (isMobile() || !currentProject) return;
     showDesktopImage(currentImageIndex - 1);
   });
-
   nextImageBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (isMobile() || !currentProject) return;
     showDesktopImage(currentImageIndex + 1);
   });
 
-  // Keyboard navigation on desktop
   document.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('active') || isMobile() || !currentProject) return;
     if (e.key === 'Escape') closeModal();
@@ -231,16 +218,12 @@ document.addEventListener('DOMContentLoaded', function () {
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-
       const name = this.elements['name'].value.trim();
       const email = this.elements['email'].value.trim();
       const message = this.elements['message'].value.trim();
-
       if (!name || !email || !message) {
-        alert('Please fill in all fields');
-        return;
+        alert('Please fill in all fields'); return;
       }
-
       fetch(this.action, {
         method: 'POST',
         body: new FormData(this),
@@ -250,16 +233,13 @@ document.addEventListener('DOMContentLoaded', function () {
           successModal.classList.add('active');
           document.body.classList.add('no-scroll');
           this.reset();
-        } else {
-          throw new Error('Network response was not ok');
-        }
+        } else { throw new Error('Network response was not ok'); }
       }).catch(() => {
         alert('There was a problem sending your message. Please try again later.');
       });
     });
   }
 
-  // Close success modal
   document.querySelector('#success-modal .close-modal').addEventListener('click', () => {
     successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
