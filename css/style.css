@@ -199,7 +199,7 @@ body {
 
 .modal-container {
   background: var(--card-bg); border-radius: 15px; width: 90%; max-width: 900px;
-  max-height: 90vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
+  max-height: 90vh; overflow-y: auto; position: relative; z-index: 2; padding: 30px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
@@ -210,41 +210,44 @@ body {
 }
 .close-modal:hover { color: var(--primary); }
 
-.modal-content { position: relative; margin: 10px 0 0; }
+.modal-content { position: relative; margin: 20px 0; }
 
-/* Scroll hint for mobile */
-.scroll-indicator {
-  display: none;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-/* Image area */
 .modal-images {
   display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
   gap: 20px;
+  padding-bottom: 20px;
+}
+
+.modal-images img {
+  scroll-snap-align: start;
+  min-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
   align-items: center;
   justify-content: center;
-}
-.modal-images img {
-  border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 70vh; width: auto; height: auto;
-}
-
-/* Desktop-only nav arrows that stay visible */
-.modal-nav-btn {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  background: rgba(255,255,255,0.12); color: var(--text); border: none;
-  width: 50px; height: 50px; border-radius: 50%; cursor: pointer; transition: var(--transition);
-  display: flex; align-items: center; justify-content: center; z-index: 4;
+  z-index: 4;
 }
 .modal-nav-btn:hover { background: var(--primary); color: #000; }
-#prev-image { left: 15px; }
-#next-image { right: 15px; }
+#prev-project { left: 15px; }
+#next-project { right: 15px; }
 
-/* Hide modal title inside modal (label appears only on placeholders) */
 .project-title-container { display: none; }
 
 /* Desktop alignment changes for CONTACT section */
@@ -307,9 +310,22 @@ body {
   .quick-links { flex-direction: column; gap: 15px; align-items: center; }
 
   /* Modal: stack all 8 images vertically and show scroll hint */
-  .scroll-indicator { display: block; }
-  .modal-images { flex-direction: column; overflow-y: auto; max-height: 60vh; }
-  .modal-images img { width: 100%; height: auto; max-height: none; }
+  .modal-images {
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 75vh;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-images img {
+    min-width: auto;
+    margin-bottom: 20px;
+    scroll-snap-align: start;
+    width: 100%;
+    height: auto;
+  }
+
   .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
 
   /* Center "Send Message" button on mobile */
