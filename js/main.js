@@ -1,120 +1,134 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-    // Helper function to get project images by ID
-    const getProjectImages = (projectId) => {
-        // This is a placeholder for your project images.
-        // In a real application, you would fetch these dynamically.
-        // For now, we'll use a hardcoded list for demonstration.
-        const projectImages = {
-            '1': ['https://via.placeholder.com/800x600?text=Graphic+Design+1', 'https://via.placeholder.com/800x600?text=Graphic+Design+1-2', 'https://via.placeholder.com/800x600?text=Graphic+Design+1-3', 'https://via.placeholder.com/800x600?text=Graphic+Design+1-4', 'https://via.placeholder.com/800x600?text=Graphic+Design+1-5', 'https://via.placeholder.com/800x600?text=Graphic+Design+1-6', 'https://via.placeholder.com/800x600?text=Graphic+Design+1-7', 'https://via.placeholder.com/800x600?text=Graphic+Design+1-8'],
-            '2': ['https://via.placeholder.com/800x600?text=Graphic+Design+2', 'https://via.placeholder.com/800x600?text=Graphic+Design+2-2', 'https://via.placeholder.com/800x600?text=Graphic+Design+2-3', 'https://via.placeholder.com/800x600?text=Graphic+Design+2-4', 'https://via.placeholder.com/800x600?text=Graphic+Design+2-5', 'https://via.placeholder.com/800x600?text=Graphic+Design+2-6', 'https://via.placeholder.com/800x600?text=Graphic+Design+2-7', 'https://via.placeholder.com/800x600?text=Graphic+Design+2-8'],
-            '3': ['https://via.placeholder.com/800x600?text=Graphic+Design+3', 'https://via.placeholder.com/800x600?text=Graphic+Design+3-2', 'https://via.placeholder.com/800x600?text=Graphic+Design+3-3', 'https://via.placeholder.com/800x600?text=Graphic+Design+3-4', 'https://via.placeholder.com/800x600?text=Graphic+Design+3-5', 'https://via.placeholder.com/800x600?text=Graphic+Design+3-6', 'https://via.placeholder.com/800x600?text=Graphic+Design+3-7', 'https://via.placeholder.com/800x600?text=Graphic+Design+3-8'],
-            '4': ['https://via.placeholder.com/800x600?text=Graphic+Design+4', 'https://via.placeholder.com/800x600?text=Graphic+Design+4-2', 'https://via.placeholder.com/800x600?text=Graphic+Design+4-3', 'https://via.placeholder.com/800x600?text=Graphic+Design+4-4', 'https://via.placeholder.com/800x600?text=Graphic+Design+4-5', 'https://via.placeholder.com/800x600?text=Graphic+Design+4-6', 'https://via.placeholder.com/800x600?text=Graphic+Design+4-7', 'https://via.placeholder.com/800x600?text=Graphic+Design+4-8'],
-            '5': ['https://via.placeholder.com/800x600?text=Graphic+Design+5', 'https://via.placeholder.com/800x600?text=Graphic+Design+5-2', 'https://via.placeholder.com/800x600?text=Graphic+Design+5-3', 'https://via.placeholder.com/800x600?text=Graphic+Design+5-4', 'https://via.placeholder.com/800x600?text=Graphic+Design+5-5', 'https://via.placeholder.com/800x600?text=Graphic+Design+5-6', 'https://via.placeholder.com/800x600?text=Graphic+Design+5-7', 'https://via.placeholder.com/800x600?text=Graphic+Design+5-8'],
-            '6': ['https://via.placeholder.com/800x600?text=Graphic+Design+6', 'https://via.placeholder.com/800x600?text=Graphic+Design+6-2', 'https://via.placeholder.com/800x600?text=Graphic+Design+6-3', 'https://via.placeholder.com/800x600?text=Graphic+Design+6-4', 'https://via.placeholder.com/800x600?text=Graphic+Design+6-5', 'https://via.placeholder.com/800x600?text=Graphic+Design+6-6', 'https://via.placeholder.com/800x600?text=Graphic+Design+6-7', 'https://via.placeholder.com/800x600?text=Graphic+Design+6-8'],
-            '7': ['https://via.placeholder.com/800x600?text=UIUX+Design+1', 'https://via.placeholder.com/800x600?text=UIUX+Design+1-2', 'https://via.placeholder.com/800x600?text=UIUX+Design+1-3', 'https://via.placeholder.com/800x600?text=UIUX+Design+1-4', 'https://via.placeholder.com/800x600?text=UIUX+Design+1-5', 'https://via.placeholder.com/800x600?text=UIUX+Design+1-6', 'https://via.placeholder.com/800x600?text=UIUX+Design+1-7', 'https://via.placeholder.com/800x600?text=UIUX+Design+1-8'],
-            '8': ['https://via.placeholder.com/800x600?text=UIUX+Design+2', 'https://via.placeholder.com/800x600?text=UIUX+Design+2-2', 'https://via.placeholder.com/800x600?text=UIUX+Design+2-3', 'https://via.placeholder.com/800x600?text=UIUX+Design+2-4', 'https://via.placeholder.com/800x600?text=UIUX+Design+2-5', 'https://via.placeholder.com/800x600?text=UIUX+Design+2-6', 'https://via.placeholder.com/800x600?text=UIUX+Design+2-7', 'https://via.placeholder.com/800x600?text=UIUX+Design+2-8'],
-            '9': ['https://via.placeholder.com/800x600?text=UIUX+Design+3', 'https://via.placeholder.com/800x600?text=UIUX+Design+3-2', 'https://via.placeholder.com/800x600?text=UIUX+Design+3-3', 'https://via.placeholder.com/800x600?text=UIUX+Design+3-4', 'https://via.placeholder.com/800x600?text=UIUX+Design+3-5', 'https://via.placeholder.com/800x600?text=UIUX+Design+3-6', 'https://via.placeholder.com/800x600?text=UIUX+Design+3-7', 'https://via.placeholder.com/800x600?text=UIUX+Design+3-8'],
-            '10': ['https://via.placeholder.com/800x600?text=UIUX+Design+4', 'https://via.placeholder.com/800x600?text=UIUX+Design+4-2', 'https://via.placeholder.com/800x600?text=UIUX+Design+4-3', 'https://via.placeholder.com/800x600?text=UIUX+Design+4-4', 'https://via.placeholder.com/800x600?text=UIUX+Design+4-5', 'https://via.placeholder.com/800x600?text=UIUX+Design+4-6', 'https://via.placeholder.com/800x600?text=UIUX+Design+4-7', 'https://via.placeholder.com/800x600?text=UIUX+Design+4-8'],
-            '11': ['https://via.placeholder.com/800x600?text=UIUX+Design+5', 'https://via.placeholder.com/800x600?text=UIUX+Design+5-2', 'https://via.placeholder.com/800x600?text=UIUX+Design+5-3', 'https://via.placeholder.com/800x600?text=UIUX+Design+5-4', 'https://via.placeholder.com/800x600?text=UIUX+Design+5-5', 'https://via.placeholder.com/800x600?text=UIUX+Design+5-6', 'https://via.placeholder.com/800x600?text=UIUX+Design+5-7', 'https://via.placeholder.com/800x600?text=UIUX+Design+5-8'],
-            '12': ['https://via.placeholder.com/800x600?text=UIUX+Design+6', 'https://via.placeholder.com/800x600?text=UIUX+Design+6-2', 'https://via.placeholder.com/800x600?text=UIUX+Design+6-3', 'https://via.placeholder.com/800x600?text=UIUX+Design+6-4', 'https://via.placeholder.com/800x600?text=UIUX+Design+6-5', 'https://via.placeholder.com/800x600?text=UIUX+Design+6-6', 'https://via.placeholder.com/800x600?text=UIUX+Design+6-7', 'https://via.placeholder.com/800x600?text=UIUX+Design+6-8']
-        };
-        return projectImages[projectId] || [];
+document.addEventListener('DOMContentLoaded', () => {
+    // Portfolio Data (can be replaced with a dynamic data source)
+    const portfolioData = {
+        'graphic-design': [
+            { id: 1, title: 'Project Title 1', images: ['https://via.placeholder.com/800x600?text=Graphic+Design+1+Image+1', 'https://via.placeholder.com/800x600?text=Graphic+Design+1+Image+2'] },
+            { id: 2, title: 'Project Title 2', images: ['https://via.placeholder.com/800x600?text=Graphic+Design+2+Image+1', 'https://via.placeholder.com/800x600?text=Graphic+Design+2+Image+2'] },
+            { id: 3, title: 'Project Title 3', images: ['https://via.placeholder.com/800x600?text=Graphic+Design+3+Image+1', 'https://via.placeholder.com/800x600?text=Graphic+Design+3+Image+2'] },
+            { id: 4, title: 'Project Title 4', images: ['https://via.placeholder.com/800x600?text=Graphic+Design+4+Image+1', 'https://via.placeholder.com/800x600?text=Graphic+Design+4+Image+2'] },
+            { id: 5, title: 'Project Title 5', images: ['https://via.placeholder.com/800x600?text=Graphic+Design+5+Image+1', 'https://via.placeholder.com/800x600?text=Graphic+Design+5+Image+2'] },
+            { id: 6, title: 'Project Title 6', images: ['https://via.placeholder.com/800x600?text=Graphic+Design+6+Image+1', 'https://via.placeholder.com/800x600?text=Graphic+Design+6+Image+2'] },
+        ],
+        'uiux-design': [
+            { id: 7, title: 'UIUX Project 1', images: ['https://via.placeholder.com/800x600?text=UIUX+Design+1+Image+1', 'https://via.placeholder.com/800x600?text=UIUX+Design+1+Image+2'] },
+            { id: 8, title: 'UIUX Project 2', images: ['https://via.placeholder.com/800x600?text=UIUX+Design+2+Image+1', 'https://via.placeholder.com/800x600?text=UIUX+Design+2+Image+2'] },
+            { id: 9, title: 'UIUX Project 3', images: ['https://via.placeholder.com/800x600?text=UIUX+Design+3+Image+1', 'https://via.placeholder.com/800x600?text=UIUX+Design+3+Image+2'] },
+            { id: 10, title: 'UIUX Project 4', images: ['https://via.placeholder.com/800x600?text=UIUX+Design+4+Image+1', 'https://via.placeholder.com/800x600?text=UIUX+Design+4+Image+2'] },
+            { id: 11, title: 'UIUX Project 5', images: ['https://via.placeholder.com/800x600?text=UIUX+Design+5+Image+1', 'https://via.placeholder.com/800x600?text=UIUX+Design+5+Image+2'] },
+            { id: 12, title: 'UIUX Project 6', images: ['https://via.placeholder.com/800x600?text=UIUX+Design+6+Image+1', 'https://via.placeholder.com/800x600?text=UIUX+Design+6+Image+2'] },
+        ]
     };
 
-    const modal = document.getElementById('project-modal');
-    const closeButton = document.querySelector('.close-button');
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
-    const modalImage = document.getElementById('modal-image');
-    const modalImagesMobile = document.querySelector('.modal-images-mobile');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    // Tab Functionality
     const tabButtons = document.querySelectorAll('.tab-button');
+    const portfolioGrids = document.querySelectorAll('.portfolio-grid');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and grids
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            portfolioGrids.forEach(grid => grid.classList.remove('active'));
+
+            // Add active class to the clicked button and corresponding grid
+            const targetTab = button.getAttribute('data-tab');
+            button.classList.add('active');
+            document.getElementById(targetTab).classList.add('active');
+        });
+    });
+
+    // Modal Functionality
+    const modal = document.getElementById("project-modal");
+    const closeButton = document.querySelector(".close-button");
+    const portfolioItems = document.querySelectorAll(".portfolio-item");
+    const modalImage = document.getElementById("modal-image");
+    const prevButton = document.querySelector(".prev-button");
+    const nextButton = document.querySelector(".next-button");
+    const modalMobileImages = document.querySelector(".modal-images-mobile");
+    const modalDesktopCarousel = document.querySelector(".modal-carousel-desktop");
 
     let currentProjectImages = [];
     let currentImageIndex = 0;
-
-    const isMobile = () => window.innerWidth <= 768;
-
-    // Open Modal Function
+    let currentProjectType = '';
+    
+    // Function to handle opening the modal
     const openModal = (projectId) => {
-        currentProjectImages = getProjectImages(projectId);
-        currentImageIndex = 0;
-
-        if (isMobile()) {
-            modalImagesMobile.innerHTML = '';
-            const scrollIndicator = document.createElement('div');
-            scrollIndicator.className = 'scroll-indicator';
-            scrollIndicator.innerHTML = '<small>Scroll up/down to see more</small>';
-            modalImagesMobile.appendChild(scrollIndicator);
-
-            currentProjectImages.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                modalImagesMobile.appendChild(img);
-            });
-            modalImagesMobile.style.display = 'flex';
-        } else {
-            modalImage.src = currentProjectImages[currentImageIndex];
-            modalImage.style.display = 'block';
-        }
-
-        modal.style.display = 'block';
-    };
-
-    // Modal navigation for desktop
-    const showNextImage = () => {
-        if (currentProjectImages.length > 0) {
-            currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
-            modalImage.src = currentProjectImages[currentImageIndex];
-        }
-    };
-
-    const showPrevImage = () => {
-        if (currentProjectImages.length > 0) {
-            currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
-            modalImage.src = currentProjectImages[currentImageIndex];
-        }
-    };
-
-    // Event Listeners
-    portfolioItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Check if the click was on the view button, if so, open the modal
-            if (e.target.closest('.view-button') || e.target.closest('.image-wrapper')) {
-                const projectId = this.getAttribute('data-project-id');
-                openModal(projectId);
+        let foundProject = null;
+        for (const type in portfolioData) {
+            foundProject = portfolioData[type].find(p => p.id == projectId);
+            if (foundProject) {
+                currentProjectType = type;
+                break;
             }
+        }
+    
+        if (foundProject) {
+            currentProjectImages = foundProject.images;
+            currentImageIndex = 0;
+    
+            if (window.innerWidth <= 768) {
+                // Mobile View
+                modalDesktopCarousel.style.display = 'none';
+                modalMobileImages.style.display = 'flex';
+                modalMobileImages.innerHTML = ''; // Clear previous images
+                currentProjectImages.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = foundProject.title;
+                    modalMobileImages.appendChild(img);
+                });
+                const scrollIndicator = document.createElement('div');
+                scrollIndicator.className = 'scroll-indicator';
+                scrollIndicator.innerHTML = '<small>Scroll up/down to see more</small>';
+                modalMobileImages.prepend(scrollIndicator);
+            } else {
+                // Desktop View
+                modalDesktopCarousel.style.display = 'flex';
+                modalMobileImages.style.display = 'none';
+                modalImage.src = currentProjectImages[currentImageIndex];
+            }
+            modal.style.display = "block";
+        }
+    };
+    
+    // Function to change image in desktop view
+    const showImage = (n) => {
+        currentImageIndex += n;
+        if (currentImageIndex >= currentProjectImages.length) {
+            currentImageIndex = 0;
+        }
+        if (currentImageIndex < 0) {
+            currentImageIndex = currentProjectImages.length - 1;
+        }
+        modalImage.src = currentProjectImages[currentImageIndex];
+    };
+    
+    // Event listeners for portfolio items
+    portfolioItems.forEach(item => {
+        item.querySelector('.view-button').addEventListener('click', () => {
+            const projectId = item.getAttribute('data-project-id');
+            openModal(projectId);
         });
     });
 
-    closeButton.addEventListener('click', () => {
-        modal.style.display = 'none';
-        modalImagesMobile.innerHTML = '';
+    // Event listeners for modal navigation
+    closeButton.addEventListener("click", () => {
+        modal.style.display = "none";
     });
 
-    prevButton.addEventListener('click', showPrevImage);
-    nextButton.addEventListener('click', showNextImage);
-
-    // Close modal on outside click
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-            modalImagesMobile.innerHTML = '';
+    window.addEventListener("click", (event) => {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     });
 
-    // Tab switching functionality
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const tab = button.getAttribute('data-tab');
+    prevButton.addEventListener("click", () => showImage(-1));
+    nextButton.addEventListener("click", () => showImage(1));
 
-            document.querySelector('.tab-button.active').classList.remove('active');
-            button.classList.add('active');
-
-            document.querySelector('.portfolio-grid.active').classList.remove('active');
-            document.getElementById(tab).classList.add('active');
-        });
+    // Responsive behavior for the modal
+    window.addEventListener('resize', () => {
+        if (modal.style.display === "block") {
+            const projectId = document.querySelector(`.portfolio-item[data-project-id='${currentProjectImages[0].split('/').pop().match(/\d+/)}']`).getAttribute('data-project-id');
+            openModal(projectId);
+        }
     });
-
 });
