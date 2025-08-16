@@ -66,113 +66,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioGrid = document.querySelector('.portfolio-grid');
 
-  // Project data with 3 projects for each category
+  // Project data with 6 projects per category (replace images with your assets)
   const projects = [
-    // Graphic Design Projects
-    {
-      id: 1,
-      title: 'Brand Identity Design',
-      category: 'graphic',
-      tools: ['Photoshop', 'Illustrator'],
-      image: 'assets/project1.jpg',
-      images: [
-        'assets/project1-1.jpg',
-        'assets/project1-2.jpg',
-        'assets/project1-3.jpg',
-        'assets/project1-4.jpg',
-        'assets/project1-5.jpg',
-        'assets/project1-6.jpg',
-        'assets/project1-7.jpg',
-        'assets/project1-8.jpg'
-      ]
-    },
-    {
-      id: 2,
-      title: 'Poster & Print Series',
-      category: 'graphic',
-      tools: ['Illustrator', 'Photoshop'],
-      image: 'assets/project2.jpg',
-      images: [
-        'assets/project2-1.jpg',
-        'assets/project2-2.jpg',
-        'assets/project2-3.jpg',
-        'assets/project2-4.jpg',
-        'assets/project2-5.jpg',
-        'assets/project2-6.jpg',
-        'assets/project2-7.jpg',
-        'assets/project2-8.jpg'
-      ]
-    },
-    {
-      id: 3,
-      title: 'Packaging Concepts',
-      category: 'graphic',
-      tools: ['Illustrator', 'Photoshop'],
-      image: 'assets/project3.jpg',
-      images: [
-        'assets/project3-1.jpg',
-        'assets/project3-2.jpg',
-        'assets/project3-3.jpg',
-        'assets/project3-4.jpg',
-        'assets/project3-5.jpg',
-        'assets/project3-6.jpg',
-        'assets/project3-7.jpg',
-        'assets/project3-8.jpg'
-      ]
-    },
+    // Graphic (6)
+    { id: 1, title: 'Project Title', category: 'graphic', image: 'assets/project1.jpg',
+      images: ['assets/project1-1.jpg','assets/project1-2.jpg','assets/project1-3.jpg','assets/project1-4.jpg','assets/project1-5.jpg','assets/project1-6.jpg','assets/project1-7.jpg','assets/project1-8.jpg'] },
+    { id: 2, title: 'Project Title', category: 'graphic', image: 'assets/project2.jpg',
+      images: ['assets/project2-1.jpg','assets/project2-2.jpg','assets/project2-3.jpg','assets/project2-4.jpg','assets/project2-5.jpg','assets/project2-6.jpg','assets/project2-7.jpg','assets/project2-8.jpg'] },
+    { id: 3, title: 'Project Title', category: 'graphic', image: 'assets/project3.jpg',
+      images: ['assets/project3-1.jpg','assets/project3-2.jpg','assets/project3-3.jpg','assets/project3-4.jpg','assets/project3-5.jpg','assets/project3-6.jpg','assets/project3-7.jpg','assets/project3-8.jpg'] },
+    { id: 7, title: 'Project Title', category: 'graphic', image: 'assets/placeholder.jpg',
+      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
+    { id: 8, title: 'Project Title', category: 'graphic', image: 'assets/placeholder.jpg',
+      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
+    { id: 9, title: 'Project Title', category: 'graphic', image: 'assets/placeholder.jpg',
+      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
 
-    // UI/UX Projects
-    {
-      id: 4,
-      title: 'Mobile Banking UI',
-      category: 'uiux',
-      tools: ['Figma'],
-      image: 'assets/project4.jpg',
-      images: [
-        'assets/project4-1.jpg',
-        'assets/project4-2.jpg',
-        'assets/project4-3.jpg',
-        'assets/project4-4.jpg',
-        'assets/project4-5.jpg',
-        'assets/project4-6.jpg',
-        'assets/project4-7.jpg',
-        'assets/project4-8.jpg'
-      ]
-    },
-    {
-      id: 5,
-      title: 'Website Redesign',
-      category: 'uiux',
-      tools: ['Figma', 'Photoshop'],
-      image: 'assets/project5.jpg',
-      images: [
-        'assets/project5-1.jpg',
-        'assets/project5-2.jpg',
-        'assets/project5-3.jpg',
-        'assets/project5-4.jpg',
-        'assets/project5-5.jpg',
-        'assets/project5-6.jpg',
-        'assets/project5-7.jpg',
-        'assets/project5-8.jpg'
-      ]
-    },
-    {
-      id: 6,
-      title: 'E-commerce App',
-      category: 'uiux',
-      tools: ['Figma'],
-      image: 'assets/project6.jpg',
-      images: [
-        'assets/project6-1.jpg',
-        'assets/project6-2.jpg',
-        'assets/project6-3.jpg',
-        'assets/project6-4.jpg',
-        'assets/project6-5.jpg',
-        'assets/project6-6.jpg',
-        'assets/project6-7.jpg',
-        'assets/project6-8.jpg'
-      ]
-    }
+    // UI/UX (6)
+    { id: 4, title: 'Project Title', category: 'uiux', image: 'assets/project4.jpg',
+      images: ['assets/project4-1.jpg','assets/project4-2.jpg','assets/project4-3.jpg','assets/project4-4.jpg','assets/project4-5.jpg','assets/project4-6.jpg','assets/project4-7.jpg','assets/project4-8.jpg'] },
+    { id: 5, title: 'Project Title', category: 'uiux', image: 'assets/project5.jpg',
+      images: ['assets/project5-1.jpg','assets/project5-2.jpg','assets/project5-3.jpg','assets/project5-4.jpg','assets/project5-5.jpg','assets/project5-6.jpg','assets/project5-7.jpg','assets/project5-8.jpg'] },
+    { id: 6, title: 'Project Title', category: 'uiux', image: 'assets/project6.jpg',
+      images: ['assets/project6-1.jpg','assets/project6-2.jpg','assets/project6-3.jpg','assets/project6-4.jpg','assets/project6-5.jpg','assets/project6-6.jpg','assets/project6-7.jpg','assets/project6-8.jpg'] },
+    { id:10, title: 'Project Title', category: 'uiux', image: 'assets/placeholder.jpg',
+      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
+    { id:11, title: 'Project Title', category: 'uiux', image: 'assets/placeholder.jpg',
+      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
+    { id:12, title: 'Project Title', category: 'uiux', image: 'assets/placeholder.jpg',
+      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
   ];
 
   // Default active filter
@@ -192,27 +114,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
       projectCard.innerHTML = `
         <img src="${project.image}" alt="${project.title}" class="project-img" />
-        <div class="project-info">
-          <h4>${project.title}</h4>
-          <span class="project-category">${project.category === 'graphic' ? 'Graphic Design' : 'UI/UX Design'}</span>
-          <div class="project-tools">
-            ${project.tools.map(tool => `<span class="project-tool">${tool}</span>`).join('')}
-          </div>
-        </div>
-        <button class="view-project-btn">View Project</button>
+        <div class="project-caption"><span>Project Title</span></div>
+        <button class="view-project-btn" type="button" aria-label="View Project">View</button>
       `;
 
+      projectCard.querySelector('.project-img').addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(project.id);
+      });
       projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
         e.stopPropagation();
         openModal(project.id);
       });
 
-      // Also let the image open the modal
-      projectCard.querySelector('.project-img').addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(project.id);
-      });
-
+      projectCard.addEventListener('click', () => openModal(project.id));
       portfolioGrid.appendChild(projectCard);
     });
   }
@@ -246,8 +161,22 @@ document.addEventListener('DOMContentLoaded', function() {
   // Ensure modal starts at the top on open (especially on mobile)
   function resetModalScrollPosition() {
     const container = document.querySelector('#project-modal .modal-container');
-    if (container) container.scrollTop = 0;
-    if (modalImages) modalImages.scrollTop = 0;
+    if (container) {
+      try { container.scrollTop = 0; } catch (e) {}
+      try { container.scrollTo && container.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch (e) {}
+    }
+    if (modalImages) {
+      try { modalImages.scrollTop = 0; } catch (e) {}
+      try { modalImages.scrollTo && modalImages.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch (e) {}
+      const firstImg = modalImages.querySelector('img');
+      if (firstImg) {
+        try {
+          firstImg.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'auto' });
+        } catch (e) {
+          try { firstImg.scrollIntoView(); } catch (e) {}
+        }
+      }
+    }
   }
 
   function openModal(projectId) {
@@ -262,21 +191,31 @@ document.addEventListener('DOMContentLoaded', function() {
     modalTitle.textContent = project.title;
     modalImages.innerHTML = '';
 
-    // Add all images to modal (stacked; mobile scrolls through them)
-    project.images.forEach(img => {
+    // Add all images to modal
+    project.images.forEach((img, idx) => {
       const imgElement = document.createElement('img');
       imgElement.src = img;
-      imgElement.alt = `${project.title} - ${project.images.indexOf(img) + 1}`;
+      imgElement.alt = `${project.title} - ${idx + 1}`;
       modalImages.appendChild(imgElement);
+
+      // For the first image, ensure we reset scroll after it loads (handles late image load)
+      if (idx === 0) {
+        imgElement.addEventListener('load', () => {
+          // Small timeout to allow layout to settle
+          setTimeout(resetModalScrollPosition, 0);
+        }, { once: true });
+      }
     });
 
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
 
-    // ⬇️ Critical fix: after rendering, force scroll position to the very top
+    // Multiple attempts to reset scroll position: after paint and a short delay
     requestAnimationFrame(() => {
       requestAnimationFrame(resetModalScrollPosition);
     });
+    setTimeout(resetModalScrollPosition, 50);
+    setTimeout(resetModalScrollPosition, 200);
   }
 
   function closeModal() {
