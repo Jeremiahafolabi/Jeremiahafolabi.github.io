@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Graphic Design Projects (6 projects)
     {
       id: 1,
-      title: 'Project Title',
+      title: 'Branding Project',
       category: 'graphic',
       tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project1.jpg',
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 2,
-      title: 'Project Title',
+      title: 'Branding Project1',
       category: 'graphic',
       tools: ['Illustrator', 'InDesign'],
       image: 'assets/project2.jpg',
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 3,
-      title: 'Project Title',
+      title: 'Branding Project2',
       category: 'graphic',
       tools: ['Photoshop', 'Illustrator', '3D Mockups'],
       image: 'assets/project3.jpg',
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 4,
-      title: 'Project Title',
+      title: 'Flyers/banners',
       category: 'graphic',
       tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project4.jpg',
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 5,
-      title: 'Project Title',
+      title: 'Product Packaging',
       category: 'graphic',
       tools: ['Illustrator', 'InDesign'],
       image: 'assets/project5.jpg',
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 6,
-      title: 'Project Title',
+      title: 'Book Covers',
       category: 'graphic',
       tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project6.jpg',
