@@ -340,7 +340,6 @@ body {
   transition: var(--transition);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   position: relative;
-  cursor: pointer;
 }
 
 .project-card:hover {
@@ -353,33 +352,21 @@ body {
   height: 250px;
   object-fit: cover;
   display: block;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.project-img:hover {
-  transform: scale(1.05);
 }
 
 .project-overlay {
-  padding: 20px;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: fit-content;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 20px;
+  border-top-right-radius: 15px;
 }
 
 .project-title {
   font-size: 1.2rem;
   margin-bottom: 8px;
-  text-align: center;
-  background: rgba(0,0,0,0.8);
-  color: var(--text);
-  padding: 10px;
-  border-radius: 8px;
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  width: calc(100% - 40px);
-  z-index: 2;
 }
 
 .project-category {
@@ -417,8 +404,11 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
+  opacity: 0;
+}
+
+.project-card:hover .view-project-btn {
   opacity: 1;
-  z-index: 3;
 }
 
 .view-project-btn:hover {
@@ -438,17 +428,12 @@ body {
 
 .contact-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 60px;
   margin-top: 50px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .contact-form {
-  width: 100%;
-  margin-bottom: 40px;
+  flex: 1;
 }
 
 .form-group {
@@ -479,39 +464,34 @@ body {
   background: rgba(255,152,0,0.05);
 }
 
-.contact-form .btn {
-  display: block;
-  margin: 30px auto 0;
-}
-
 .contact-info {
+  flex: 0 0 40%;
   display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .contact-method {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 15px;
 }
 
 .contact-method i {
   font-size: 1.5rem;
   color: var(--primary);
+  margin-top: 5px;
 }
 
 .contact-method h3 {
-  display: none;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
 }
 
 .contact-method a {
   color: var(--text);
   text-decoration: none;
   transition: var(--transition);
-  font-size: 1rem;
 }
 
 .contact-method a:hover {
@@ -656,12 +636,6 @@ body {
   scroll-snap-type: x mandatory;
   gap: 20px;
   padding-bottom: 20px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.modal-images::-webkit-scrollbar {
-  display: none;
 }
 
 .modal-images img {
@@ -671,57 +645,17 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.modal-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,152,0,0.8);
-  color: #000;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
+.scroll-indicator {
+  display: none;
   align-items: center;
   justify-content: center;
-  z-index: 4;
-  font-size: 1.2rem;
-  font-weight: bold;
-  opacity: 0.9;
-}
-
-.modal-nav-btn:hover {
-  background: var(--primary);
-  opacity: 1;
-  transform: translateY(-50%) scale(1.1);
-}
-
-#prev-image {
-  left: 20px;
-}
-
-#next-image {
-  right: 20px;
-}
-
-.mobile-scroll-indicator {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: none;
-  flex-direction: column;
-  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
   color: var(--text-muted);
   font-size: 0.9rem;
-  z-index: 3;
 }
 
-.mobile-scroll-indicator i {
-  font-size: 1.5rem;
-  margin-bottom: 5px;
+.scroll-indicator i {
   color: var(--primary);
   animation: bounce 2s infinite;
 }
@@ -731,11 +665,42 @@ body {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
   60% {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
+}
+
+.modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.modal-nav-btn:hover {
+  background: var(--primary);
+  color: #000;
+}
+
+#prev-project {
+  left: 20px;
+}
+
+#next-project {
+  right: 20px;
 }
 
 .project-title-container {
@@ -768,36 +733,15 @@ body {
   color: var(--text-muted);
 }
 
-/* Desktop Mode - Contact Section Alignment */
-@media (min-width: 769px) {
+/* Desktop specific styles */
+@media (min-width: 993px) {
   #contact .section-title {
     text-align: center;
   }
-}
-
-/* Mobile Mode - Section Titles & Button Alignment */
-@media (max-width: 768px) {
-  .section-title {
-    text-align: center;
-  }
   
-  .contact-form .btn {
-    display: block;
-    margin: 0 auto;
-  }
-  
-  .mobile-scroll-indicator {
-    display: flex !important;
-  }
-  
-  .modal-nav-btn {
-    display: none !important;
-  }
-  
-  .header-social-icons a {
-    pointer-events: all;
-    display: inline-block;
-    padding: 5px;
+  #contact .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -836,6 +780,16 @@ body {
   
   .section-title {
     font-size: 2rem;
+    text-align: center;
+  }
+  
+  .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .skills h3 {
+    text-align: center;
   }
   
   .main-nav {
@@ -891,6 +845,17 @@ body {
     transform: translateY(-9px) rotate(-45deg);
   }
   
+  .header-social-icons {
+    z-index: 1002;
+    position: relative;
+  }
+  
+  .header-social-icons a {
+    display: inline-block;
+    position: relative;
+    z-index: 1003;
+  }
+  
   .portfolio-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
@@ -919,11 +884,23 @@ body {
     flex-direction: column;
     overflow-y: auto;
     max-height: 60vh;
+    scroll-snap-type: y mandatory;
   }
 
   .modal-images img {
     min-width: auto;
     margin-bottom: 20px;
+    min-height: 300px;
+    object-fit: cover;
+    scroll-snap-align: start;
+  }
+
+  .scroll-indicator {
+    display: flex;
+  }
+
+  .modal-nav-btn {
+    display: none;
   }
 }
 
@@ -950,15 +927,17 @@ body {
     font-size: 0.9rem;
   }
 
-  .contact-info {
-    flex-direction: column;
-    gap: 20px;
-  }
-
   .contact-method {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 5px;
+  }
+
+  .contact-method i {
+    margin-bottom: 10px;
+  }
+
+  .modal-images img {
+    min-height: 250px;
   }
 }
