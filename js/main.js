@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
+  const headerSocialIcons = document.querySelectorAll('.header-social-icons a');
 
   // Improved hamburger menu animation
   mobileMenu.addEventListener('click', () => {
@@ -20,6 +21,18 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenu.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.classList.remove('no-scroll');
+      }
+    });
+  });
+
+  // Fix social media icon clicks in mobile mode
+  headerSocialIcons.forEach(icon => {
+    icon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // Force the link to open in new tab
+      const href = icon.getAttribute('href');
+      if (href) {
+        window.open(href, '_blank');
       }
     });
   });
@@ -66,12 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioGrid = document.querySelector('.portfolio-grid');
 
-  // Project data with 3 projects for each category
+  // Project data - 6 projects for each category
   const projects = [
-    // Graphic Design Projects
+    // Graphic Design Projects (6 projects)
     {
       id: 1,
-      title: 'Brand Identity Design',
+      title: 'Project Title',
       category: 'graphic',
       tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project1.jpg',
@@ -88,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 2,
-      title: 'Marketing Materials',
+      title: 'Project Title',
       category: 'graphic',
       tools: ['Illustrator', 'InDesign'],
       image: 'assets/project2.jpg',
@@ -105,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 3,
-      title: 'Packaging Design',
+      title: 'Project Title',
       category: 'graphic',
       tools: ['Photoshop', 'Illustrator', '3D Mockups'],
       image: 'assets/project3.jpg',
@@ -120,12 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
         'assets/project3-8.jpg'
       ]
     },
-    // UI/UX Design Projects
     {
       id: 4,
-      title: 'Mobile App UI',
-      category: 'uiux',
-      tools: ['Figma', 'Adobe XD'],
+      title: 'Project Title',
+      category: 'graphic',
+      tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project4.jpg',
       images: [
         'assets/project4-1.jpg',
@@ -140,9 +152,9 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 5,
-      title: 'Website Redesign',
-      category: 'uiux',
-      tools: ['Figma', 'Photoshop'],
+      title: 'Project Title',
+      category: 'graphic',
+      tools: ['Illustrator', 'InDesign'],
       image: 'assets/project5.jpg',
       images: [
         'assets/project5-1.jpg',
@@ -157,9 +169,9 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 6,
-      title: 'Dashboard Interface',
-      category: 'uiux',
-      tools: ['Figma', 'Illustrator'],
+      title: 'Project Title',
+      category: 'graphic',
+      tools: ['Photoshop', 'Illustrator'],
       image: 'assets/project6.jpg',
       images: [
         'assets/project6-1.jpg',
@@ -170,6 +182,109 @@ document.addEventListener('DOMContentLoaded', function() {
         'assets/project6-6.jpg',
         'assets/project6-7.jpg',
         'assets/project6-8.jpg'
+      ]
+    },
+    // UI/UX Design Projects (6 projects)
+    {
+      id: 7,
+      title: 'Project Title',
+      category: 'uiux',
+      tools: ['Figma', 'Adobe XD'],
+      image: 'assets/project7.jpg',
+      images: [
+        'assets/project7-1.jpg',
+        'assets/project7-2.jpg',
+        'assets/project7-3.jpg',
+        'assets/project7-4.jpg',
+        'assets/project7-5.jpg',
+        'assets/project7-6.jpg',
+        'assets/project7-7.jpg',
+        'assets/project7-8.jpg'
+      ]
+    },
+    {
+      id: 8,
+      title: 'Project Title',
+      category: 'uiux',
+      tools: ['Figma', 'Photoshop'],
+      image: 'assets/project8.jpg',
+      images: [
+        'assets/project8-1.jpg',
+        'assets/project8-2.jpg',
+        'assets/project8-3.jpg',
+        'assets/project8-4.jpg',
+        'assets/project8-5.jpg',
+        'assets/project8-6.jpg',
+        'assets/project8-7.jpg',
+        'assets/project8-8.jpg'
+      ]
+    },
+    {
+      id: 9,
+      title: 'Project Title',
+      category: 'uiux',
+      tools: ['Figma', 'Illustrator'],
+      image: 'assets/project9.jpg',
+      images: [
+        'assets/project9-1.jpg',
+        'assets/project9-2.jpg',
+        'assets/project9-3.jpg',
+        'assets/project9-4.jpg',
+        'assets/project9-5.jpg',
+        'assets/project9-6.jpg',
+        'assets/project9-7.jpg',
+        'assets/project9-8.jpg'
+      ]
+    },
+    {
+      id: 10,
+      title: 'Project Title',
+      category: 'uiux',
+      tools: ['Figma', 'Adobe XD'],
+      image: 'assets/project10.jpg',
+      images: [
+        'assets/project10-1.jpg',
+        'assets/project10-2.jpg',
+        'assets/project10-3.jpg',
+        'assets/project10-4.jpg',
+        'assets/project10-5.jpg',
+        'assets/project10-6.jpg',
+        'assets/project10-7.jpg',
+        'assets/project10-8.jpg'
+      ]
+    },
+    {
+      id: 11,
+      title: 'Project Title',
+      category: 'uiux',
+      tools: ['Figma', 'Photoshop'],
+      image: 'assets/project11.jpg',
+      images: [
+        'assets/project11-1.jpg',
+        'assets/project11-2.jpg',
+        'assets/project11-3.jpg',
+        'assets/project11-4.jpg',
+        'assets/project11-5.jpg',
+        'assets/project11-6.jpg',
+        'assets/project11-7.jpg',
+        'assets/project11-8.jpg'
+      ]
+    },
+    {
+      id: 12,
+      title: 'Project Title',
+      category: 'uiux',
+      tools: ['Figma', 'Illustrator'],
+      image: 'assets/project12.jpg',
+      images: [
+        'assets/project12-1.jpg',
+        'assets/project12-2.jpg',
+        'assets/project12-3.jpg',
+        'assets/project12-4.jpg',
+        'assets/project12-5.jpg',
+        'assets/project12-6.jpg',
+        'assets/project12-7.jpg',
+        'assets/project12-8.jpg'
       ]
     }
   ];
@@ -205,21 +320,24 @@ document.addEventListener('DOMContentLoaded', function() {
       projectCard.dataset.category = project.category;
       
       projectCard.innerHTML = `
-        <img src="${project.image}" alt="${project.title}" class="project-img">
-        <div class="project-overlay">
-          <h3 class="project-title">${project.title}</h3>
-          <span class="project-category">${project.category === 'graphic' ? 'Graphic Design' : 'UI/UX Design'}</span>
-          <div class="project-tools">
-            ${project.tools.map(tool => `<span class="project-tool">${tool}</span>`).join('')}
-          </div>
+        <div class="project-img-container" style="position: relative;">
+          <img src="${project.image}" alt="${project.title}" class="project-img">
+          <div class="project-title-overlay">${project.title}</div>
         </div>
-        <button class="view-project-btn">View Project</button>
+        <button class="view-project-btn">View</button>
       `;
       
-      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
+      // Make both image and View button clickable
+      const imgContainer = projectCard.querySelector('.project-img-container');
+      const viewBtn = projectCard.querySelector('.view-project-btn');
+      
+      function openProjectModal(e) {
         e.stopPropagation();
         openModal(project.id);
-      });
+      }
+      
+      imgContainer.addEventListener('click', openProjectModal);
+      viewBtn.addEventListener('click', openProjectModal);
       
       portfolioGrid.appendChild(projectCard);
     });
@@ -235,55 +353,83 @@ document.addEventListener('DOMContentLoaded', function() {
   const prevProjectBtn = document.getElementById('prev-project');
   const nextProjectBtn = document.getElementById('next-project');
   const successModal = document.getElementById('success-modal');
-  const scrollIndicator = document.querySelector('.scroll-indicator');
 
-  let currentProjectIndex = 0;
+  let currentProject = null;
+  let currentProjectImages = [];
   let filteredProjects = [];
 
   function openModal(projectId) {
     // Find the project
-    const projectIndex = projects.findIndex(p => p.id === projectId);
-    if (projectIndex === -1) return;
+    const project = projects.find(p => p.id === projectId);
+    if (!project) return;
     
-    currentProjectIndex = projectIndex;
-    const project = projects[projectIndex];
+    currentProject = project;
+    currentProjectImages = project.images;
     
     // Update modal content
     modalTitle.textContent = project.title;
     modalImages.innerHTML = '';
     
-    // Add all images to modal
-    project.images.forEach(img => {
-      const imgElement = document.createElement('img');
-      imgElement.src = img;
-      imgElement.alt = `${project.title} - ${project.images.indexOf(img) + 1}`;
-      modalImages.appendChild(imgElement);
-    });
+    // Check if we're on mobile/tablet
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // Mobile: Stack images vertically
+      modalImages.style.flexDirection = 'column';
+      modalImages.style.overflowX = 'visible';
+      modalImages.style.overflowY = 'auto';
+      modalImages.style.maxHeight = '60vh';
+      
+      project.images.forEach((img, index) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = img;
+        imgElement.alt = `${project.title} - ${index + 1}`;
+        imgElement.style.width = '100%';
+        imgElement.style.height = 'auto';
+        imgElement.style.marginBottom = '20px';
+        imgElement.style.minWidth = 'auto';
+        modalImages.appendChild(imgElement);
+      });
+      
+      // Show scroll indicator on mobile
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (scrollIndicator) {
+        scrollIndicator.style.display = 'flex';
+      }
+      
+    } else {
+      // Desktop: Horizontal scrolling with navigation
+      modalImages.style.flexDirection = 'row';
+      modalImages.style.overflowX = 'auto';
+      modalImages.style.overflowY = 'visible';
+      modalImages.style.maxHeight = 'none';
+      
+      project.images.forEach((img, index) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = img;
+        imgElement.alt = `${project.title} - ${index + 1}`;
+        imgElement.style.minWidth = '100%';
+        imgElement.style.marginBottom = '0';
+        modalImages.appendChild(imgElement);
+      });
+      
+      // Hide scroll indicator on desktop
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (scrollIndicator) {
+        scrollIndicator.style.display = 'none';
+      }
+    }
     
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
-    
-    // Show scroll indicator on mobile after a short delay
-    if (window.innerWidth <= 768) {
-      setTimeout(() => {
-        if (scrollIndicator) {
-          scrollIndicator.style.opacity = '1';
-          // Hide indicator after 3 seconds
-          setTimeout(() => {
-            scrollIndicator.style.opacity = '0';
-          }, 3000);
-        }
-      }, 500);
-    }
   }
 
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
-    if (scrollIndicator) {
-      scrollIndicator.style.opacity = '0';
-    }
+    currentProject = null;
+    currentProjectImages = [];
   }
 
   // Event listeners
@@ -295,18 +441,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Desktop navigation - only cycle through current project images
   prevProjectBtn.addEventListener('click', () => {
-    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
-    currentProjectIndex = (currentProjectIndex - 1 + filteredProjects.length) % filteredProjects.length;
-    openModal(filteredProjects[currentProjectIndex].id);
+    if (window.innerWidth > 768 && currentProject) {
+      const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      filteredProjects = projects.filter(p => p.category === currentFilter);
+      
+      // Find current project index in filtered projects
+      const currentIndex = filteredProjects.findIndex(p => p.id === currentProject.id);
+      if (currentIndex > -1) {
+        const prevIndex = (currentIndex - 1 + filteredProjects.length) % filteredProjects.length;
+        openModal(filteredProjects[prevIndex].id);
+      }
+    }
   });
 
   nextProjectBtn.addEventListener('click', () => {
-    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
-    currentProjectIndex = (currentProjectIndex + 1) % filteredProjects.length;
-    openModal(filteredProjects[currentProjectIndex].id);
+    if (window.innerWidth > 768 && currentProject) {
+      const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      filteredProjects = projects.filter(p => p.category === currentFilter);
+      
+      // Find current project index in filtered projects
+      const currentIndex = filteredProjects.findIndex(p => p.id === currentProject.id);
+      if (currentIndex > -1) {
+        const nextIndex = (currentIndex + 1) % filteredProjects.length;
+        openModal(filteredProjects[nextIndex].id);
+      }
+    }
   });
 
   // Keyboard navigation
@@ -315,10 +476,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (e.key === 'Escape') {
       closeModal();
-    } else if (e.key === 'ArrowLeft') {
+    } else if (e.key === 'ArrowLeft' && window.innerWidth > 768) {
       prevProjectBtn.click();
-    } else if (e.key === 'ArrowRight') {
+    } else if (e.key === 'ArrowRight' && window.innerWidth > 768) {
       nextProjectBtn.click();
+    }
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (modal.classList.contains('active') && currentProject) {
+      // Reopen modal to apply correct layout for new screen size
+      const projectId = currentProject.id;
+      closeModal();
+      setTimeout(() => openModal(projectId), 100);
     }
   });
 
@@ -367,27 +538,4 @@ document.addEventListener('DOMContentLoaded', function() {
     successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
   });
-
-  // ======================
-  // Mobile Modal Scroll Enhancement
-  // ======================
-  let isScrolling = false;
-  
-  if (modalImages) {
-    modalImages.addEventListener('scroll', () => {
-      if (window.innerWidth <= 768 && scrollIndicator) {
-        if (!isScrolling) {
-          scrollIndicator.style.opacity = '0.3';
-          isScrolling = true;
-        }
-        
-        // Hide indicator completely when scrolling
-        clearTimeout(scrollIndicator.hideTimeout);
-        scrollIndicator.hideTimeout = setTimeout(() => {
-          scrollIndicator.style.opacity = '0';
-          isScrolling = false;
-        }, 1000);
-      }
-    });
-  }
 });
