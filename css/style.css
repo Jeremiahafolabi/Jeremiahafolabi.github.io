@@ -438,12 +438,17 @@ body {
 
 .contact-content {
   display: flex;
-  gap: 60px;
+  flex-direction: column;
+  align-items: center;
   margin-top: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contact-form {
-  flex: 1;
+  width: 100%;
+  margin-bottom: 40px;
 }
 
 .form-group {
@@ -474,34 +479,39 @@ body {
   background: rgba(255,152,0,0.05);
 }
 
+.contact-form .btn {
+  display: block;
+  margin: 30px auto 0;
+}
+
 .contact-info {
-  flex: 0 0 40%;
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-method {
   display: flex;
-  align-items: flex-start;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
 }
 
 .contact-method i {
   font-size: 1.5rem;
   color: var(--primary);
-  margin-top: 5px;
 }
 
 .contact-method h3 {
-  font-size: 1.1rem;
-  margin-bottom: 5px;
+  display: none;
 }
 
 .contact-method a {
   color: var(--text);
   text-decoration: none;
   transition: var(--transition);
+  font-size: 1rem;
 }
 
 .contact-method a:hover {
@@ -760,36 +770,6 @@ body {
 
 /* Desktop Mode - Contact Section Alignment */
 @media (min-width: 769px) {
-  .contact-content {
-    align-items: center;
-  }
-  
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .contact-form .form-group {
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  .contact-form .btn {
-    align-self: center;
-    margin-bottom: 30px;
-  }
-  
-  .contact-info {
-    align-items: center;
-    text-align: center;
-  }
-  
-  .contact-info .contact-method {
-    flex-direction: row;
-    justify-content: center;
-  }
-  
   #contact .section-title {
     text-align: center;
   }
@@ -970,13 +950,15 @@ body {
     font-size: 0.9rem;
   }
 
+  .contact-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .contact-method {
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
-
-  .contact-method i {
-    margin-bottom: 10px;
+    gap: 5px;
   }
 }
