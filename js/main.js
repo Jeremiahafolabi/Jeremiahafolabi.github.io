@@ -132,72 +132,91 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ======================
-  // Project Modal
-  // ======================
-  const modal = document.getElementById('project-modal');
-  const modalImages = document.querySelector('.modal-images');
-  const closeModalBtns = document.querySelectorAll('.close-modal');
-  const prevImageBtn = document.getElementById('prev-image');
-  const nextImageBtn = document.getElementById('next-image');
-  const successModal = document.getElementById('success-modal');
+// COMPLETE MODAL FIX - Replace entire modal section in main.js
 
-  let currentProject = null;
-  let currentImageIndex = 0;
+// ======================
+// Project Modal - FIXED VERSION
+// ======================
+const modal = document.getElementById('project-modal');
+const modalImages = document.querySelector('.modal-images');
+const closeModalBtns = document.querySelectorAll('.close-modal');
+const prevImageBtn = document.getElementById('prev-image');
+const nextImageBtn = document.getElementById('next-image');
+const successModal = document.getElementById('success-modal');
 
-  function isMobile() {
-    return window.matchMedia('(max-width: 768px)').matches;
-  }
+let currentProject = null;
+let currentImageIndex = 0;
+
+function isMobile() {
+  return window.matchMedia('(max-width: 768px)').matches;
+}
 
 function openModal(projectId, startIndex = 0) {
+  console.log('Opening modal for project:', projectId); // Debug log
+  
   currentProject = projects.find(p => p.id === projectId);
-  if (!currentProject) return;
+  if (!currentProject) {
+    console.log('Project not found'); // Debug log
+    return;
+  }
 
-  // Always reset to first image for mobile
-  currentImageIndex = isMobile() ? 0 : startIndex;
+  // ALWAYS start from first image (index 0) regardless of input
+  currentImageIndex = 0;
+  
+  // Clear previous content
   modalImages.innerHTML = '';
+  modalImages.scrollTop = 0;
 
   if (isMobile()) {
-    // Mobile: stack all 8 images vertically, ALWAYS start from image 1
+    console.log('Mobile mode - stacking all images'); // Debug log
+    
+    // Mobile: Create all 8 images in vertical stack
     currentProject.images.forEach((src, idx) => {
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'modal-image-container';
+      
       const img = document.createElement('img');
       img.src = src;
       img.alt = `Project image ${idx + 1}`;
-      img.loading = 'lazy';
-      modalImages.appendChild(img);
+      img.className = 'modal-image';
+      img.loading = idx > 2 ? 'lazy' : 'eager'; // Load first 3 immediately
+      
+      imgContainer.appendChild(img);
+      modalImages.appendChild(imgContainer);
     });
     
-    // Force scroll to absolute top immediately
-    modalImages.scrollTop = 0;
-    
-    // Double-check scroll position after modal opens
-    setTimeout(() => {
-      modalImages.scrollTop = 0;
-      modalImages.scrollTo(0, 0);
-    }, 50);
-    
-    // Triple-check after animation completes
-    setTimeout(() => {
-      modalImages.scrollTop = 0;
-      modalImages.scrollTo(0, 0);
-    }, 300);
-    
   } else {
+    console.log('Desktop mode - single image'); // Debug log
+    
     // Desktop: show only one image at a time
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'modal-image-container';
+    
     const img = document.createElement('img');
     img.src = currentProject.images[currentImageIndex];
     img.alt = `Project image ${currentImageIndex + 1}`;
-    modalImages.appendChild(img);
+    img.className = 'modal-image';
+    
+    imgContainer.appendChild(img);
+    modalImages.appendChild(imgContainer);
   }
 
+  // Show modal
   modal.classList.add('active');
   document.body.classList.add('no-scroll');
+  
+  // Force scroll to top after modal is visible
+  if (isMobile()) {
+    requestAnimationFrame(() => {
+      modalImages.scrollTop = 0;
+      modalImages.scrollLeft = 0;
+    });
+  }
 }
 
-  function closeModal() {
-     // Reset scroll position for next modal open
-  if (modalImages) modalImages.scrollTop = 0;
-  
+function closeModal() {
+  // Reset everything
+  modalImages.scrollTop = 0;
   modal.classList.remove('active');
   successModal.classList.remove('active');
   document.body.classList.remove('no-scroll');
@@ -205,80 +224,53 @@ function openModal(projectId, startIndex = 0) {
   currentImageIndex = 0;
 }
 
-  // Close modal buttons
-  closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
+// Desktop-only image navigation within current project
+function showDesktopImage(index) {
+  if (!currentProject || isMobile()) return;
+  
+  const total = currentProject.images.length;
+  currentImageIndex = (index + total) % total;
+  
+  modalImages.innerHTML = '';
+  const imgContainer = document.createElement('div');
+  imgContainer.className = 'modal-image-container';
+  
+  const img = document.createElement('img');
+  img.src = currentProject.images[currentImageIndex];
+  img.alt = `Project image ${currentImageIndex + 1}`;
+  img.className = 'modal-image';
+  
+  imgContainer.appendChild(img);
+  modalImages.appendChild(imgContainer);
+}
 
-  // Close when clicking outside container
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
+// Event listeners
+closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
 
-  // Desktop-only image navigation within current project (no cross-project jumping)
-  function showDesktopImage(index) {
-    if (!currentProject) return;
-    modalImages.innerHTML = '';
-    const total = currentProject.images.length;
-    currentImageIndex = (index + total) % total;
-    const img = document.createElement('img');
-    img.src = currentProject.images[currentImageIndex];
-    img.alt = `Project image ${currentImageIndex + 1}`;
-    modalImages.appendChild(img);
-  }
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
 
-  prevImageBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (isMobile() || !currentProject) return;
-    showDesktopImage(currentImageIndex - 1);
-  });
+prevImageBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (isMobile() || !currentProject) return;
+  showDesktopImage(currentImageIndex - 1);
+});
 
-  nextImageBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (isMobile() || !currentProject) return;
-    showDesktopImage(currentImageIndex + 1);
-  });
+nextImageBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (isMobile() || !currentProject) return;
+  showDesktopImage(currentImageIndex + 1);
+});
 
-  // Keyboard navigation on desktop
-  document.addEventListener('keydown', (e) => {
-    if (!modal.classList.contains('active') || isMobile() || !currentProject) return;
-    if (e.key === 'Escape') closeModal();
-    else if (e.key === 'ArrowLeft') showDesktopImage(currentImageIndex - 1);
-    else if (e.key === 'ArrowRight') showDesktopImage(currentImageIndex + 1);
-  });
-
-  // ======================
-  // Contact Form Handling
-  // ======================
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const name = this.elements['name'].value.trim();
-      const email = this.elements['email'].value.trim();
-      const message = this.elements['message'].value.trim();
-
-      if (!name || !email || !message) {
-        alert('Please fill in all fields');
-        return;
-      }
-
-      fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          successModal.classList.add('active');
-          document.body.classList.add('no-scroll');
-          this.reset();
-        } else {
-          throw new Error('Network response was not ok');
-        }
-      }).catch(() => {
-        alert('There was a problem sending your message. Please try again later.');
-      });
-    });
-  }
+// Keyboard navigation on desktop
+document.addEventListener('keydown', (e) => {
+  if (!modal.classList.contains('active') || isMobile() || !currentProject) return;
+  if (e.key === 'Escape') closeModal();
+  else if (e.key === 'ArrowLeft') showDesktopImage(currentImageIndex - 1);
+  else if (e.key === 'ArrowRight') showDesktopImage(currentImageIndex + 1);
+});
+    
 
   // Close success modal
   document.querySelector('#success-modal .close-modal').addEventListener('click', () => {
