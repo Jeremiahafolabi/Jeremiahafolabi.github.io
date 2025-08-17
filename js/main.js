@@ -149,30 +149,41 @@ document.addEventListener('DOMContentLoaded', function () {
     return window.matchMedia('(max-width: 768px)').matches;
   }
 
-  function openModal(projectId, startIndex = 0) {
+function openModal(projectId, startIndex = 0) {
   currentProject = projects.find(p => p.id === projectId);
   if (!currentProject) return;
 
-  currentImageIndex = startIndex;
+  // Always reset to first image for mobile
+  currentImageIndex = isMobile() ? 0 : startIndex;
   modalImages.innerHTML = '';
 
   if (isMobile()) {
-    // Mobile: stack all 8 images vertically, always start at top (index 0)
+    // Mobile: stack all 8 images vertically, ALWAYS start from image 1
     currentProject.images.forEach((src, idx) => {
       const img = document.createElement('img');
       img.src = src;
       img.alt = `Project image ${idx + 1}`;
-      img.loading = 'lazy'; // Optimize loading
+      img.loading = 'lazy';
       modalImages.appendChild(img);
     });
     
-    // Ensure scroll starts at top
+    // Force scroll to absolute top immediately
+    modalImages.scrollTop = 0;
+    
+    // Double-check scroll position after modal opens
     setTimeout(() => {
       modalImages.scrollTop = 0;
-    }, 100);
+      modalImages.scrollTo(0, 0);
+    }, 50);
+    
+    // Triple-check after animation completes
+    setTimeout(() => {
+      modalImages.scrollTop = 0;
+      modalImages.scrollTo(0, 0);
+    }, 300);
     
   } else {
-    // Desktop: show only one image at a time; nav arrows cycle within THIS project only
+    // Desktop: show only one image at a time
     const img = document.createElement('img');
     img.src = currentProject.images[currentImageIndex];
     img.alt = `Project image ${currentImageIndex + 1}`;
