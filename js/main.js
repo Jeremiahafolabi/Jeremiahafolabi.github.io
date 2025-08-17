@@ -195,12 +195,15 @@ function openModal(projectId, startIndex = 0) {
 }
 
   function closeModal() {
-    modal.classList.remove('active');
-    successModal.classList.remove('active');
-    document.body.classList.remove('no-scroll');
-    currentProject = null;
-    currentImageIndex = 0;
-  }
+     // Reset scroll position for next modal open
+  if (modalImages) modalImages.scrollTop = 0;
+  
+  modal.classList.remove('active');
+  successModal.classList.remove('active');
+  document.body.classList.remove('no-scroll');
+  currentProject = null;
+  currentImageIndex = 0;
+}
 
   // Close modal buttons
   closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
