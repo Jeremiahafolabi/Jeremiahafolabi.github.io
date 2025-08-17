@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // ======================
   // Mobile Navigation
   // ======================
@@ -6,19 +6,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  // Improved hamburger menu animation
   mobileMenu.addEventListener('click', () => {
+    const expanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+    mobileMenu.setAttribute('aria-expanded', String(!expanded));
     mobileMenu.classList.toggle('active');
     navMenu.classList.toggle('active');
     document.body.classList.toggle('no-scroll');
   });
 
-  // Close mobile menu when link is clicked
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (navMenu.classList.contains('active')) {
         mobileMenu.classList.remove('active');
         navMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('no-scroll');
       }
     });
@@ -27,46 +28,36 @@ document.addEventListener('DOMContentLoaded', function() {
   // ======================
   // Smooth Scrolling
   // ======================
-  navLinks.forEach(link => {
-    link.addEventListener('click', smoothScroll);
-  });
-
+  navLinks.forEach(link => link.addEventListener('click', smoothScroll));
   function smoothScroll(e) {
     e.preventDefault();
     const targetId = this.getAttribute('href');
     const targetElement = document.querySelector(targetId);
-
-    window.scrollTo({
-      top: targetElement.offsetTop - 80,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
   }
 
   // ======================
   // Back to Top Button
   // ======================
   const backToTop = document.querySelector('.back-to-top');
-
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTop.classList.add('active');
-    } else {
-      backToTop.classList.remove('active');
-    }
+    if (window.scrollY > 300) backToTop.classList.add('active');
+    else backToTop.classList.remove('active');
   });
-
   backToTop.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // ======================
-  // Portfolio Filtering
+  // Portfolio Data (6 per category)
   // ======================
   const filterButtons = document.querySelectorAll('.filter-btn');
   const portfolioGrid = document.querySelector('.portfolio-grid');
 
-  // Project data with 6 projects per category (replace images with your assets)
+  // NOTE: Per request, remove tool descriptions and any texts on placeholders.
+  // Card shows only the bottom-left "Project Title" label + sticky View button.
+  const placeholder = 'assets/placeholder.jpg'; // swap with actual placeholder image
   const projects = [
     // Graphic (6)
     { id: 1, title: 'Project Title', category: 'graphic', image: 'assets/project1.jpg',
@@ -75,12 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
       images: ['assets/project2-1.jpg','assets/project2-2.jpg','assets/project2-3.jpg','assets/project2-4.jpg','assets/project2-5.jpg','assets/project2-6.jpg','assets/project2-7.jpg','assets/project2-8.jpg'] },
     { id: 3, title: 'Project Title', category: 'graphic', image: 'assets/project3.jpg',
       images: ['assets/project3-1.jpg','assets/project3-2.jpg','assets/project3-3.jpg','assets/project3-4.jpg','assets/project3-5.jpg','assets/project3-6.jpg','assets/project3-7.jpg','assets/project3-8.jpg'] },
-    { id: 7, title: 'Project Title', category: 'graphic', image: 'assets/placeholder.jpg',
-      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
-    { id: 8, title: 'Project Title', category: 'graphic', image: 'assets/placeholder.jpg',
-      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
-    { id: 9, title: 'Project Title', category: 'graphic', image: 'assets/placeholder.jpg',
-      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
+    { id: 7, title: 'Project Title', category: 'graphic', image: placeholder,
+      images: [placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder] },
+    { id: 8, title: 'Project Title', category: 'graphic', image: placeholder,
+      images: [placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder] },
+    { id: 9, title: 'Project Title', category: 'graphic', image: placeholder,
+      images: [placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder] },
 
     // UI/UX (6)
     { id: 4, title: 'Project Title', category: 'uiux', image: 'assets/project4.jpg',
@@ -89,50 +80,16 @@ document.addEventListener('DOMContentLoaded', function() {
       images: ['assets/project5-1.jpg','assets/project5-2.jpg','assets/project5-3.jpg','assets/project5-4.jpg','assets/project5-5.jpg','assets/project5-6.jpg','assets/project5-7.jpg','assets/project5-8.jpg'] },
     { id: 6, title: 'Project Title', category: 'uiux', image: 'assets/project6.jpg',
       images: ['assets/project6-1.jpg','assets/project6-2.jpg','assets/project6-3.jpg','assets/project6-4.jpg','assets/project6-5.jpg','assets/project6-6.jpg','assets/project6-7.jpg','assets/project6-8.jpg'] },
-    { id:10, title: 'Project Title', category: 'uiux', image: 'assets/placeholder.jpg',
-      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
-    { id:11, title: 'Project Title', category: 'uiux', image: 'assets/placeholder.jpg',
-      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
-    { id:12, title: 'Project Title', category: 'uiux', image: 'assets/placeholder.jpg',
-      images: ['assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg','assets/placeholder.jpg'] },
+    { id:10, title: 'Project Title', category: 'uiux', image: placeholder,
+      images: [placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder] },
+    { id:11, title: 'Project Title', category: 'uiux', image: placeholder,
+      images: [placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder] },
+    { id:12, title: 'Project Title', category: 'uiux', image: placeholder,
+      images: [placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder,placeholder] },
   ];
 
   // Default active filter
-  if (filterButtons.length) {
-    filterButtons[0].classList.add('active');
-  }
-
-  // Render portfolio
-  function displayProjects(filter) {
-    portfolioGrid.innerHTML = '';
-    const filtered = projects.filter(p => filter === 'all' ? true : p.category === filter);
-
-    filtered.forEach(project => {
-      const projectCard = document.createElement('div');
-      projectCard.className = 'project-card';
-      projectCard.dataset.id = project.id;
-
-      projectCard.innerHTML = `
-        <img src="${project.image}" alt="${project.title}" class="project-img" />
-        <div class="project-caption"><span>Project Title</span></div>
-        <button class="view-project-btn" type="button" aria-label="View Project">View</button>
-      `;
-
-      projectCard.querySelector('.project-img').addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(project.id);
-      });
-      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(project.id);
-      });
-
-      projectCard.addEventListener('click', () => openModal(project.id));
-      portfolioGrid.appendChild(projectCard);
-    });
-  }
-
-  // Initial render
+  filterButtons[0].classList.add('active');
   displayProjects('graphic');
 
   // Filter interactions
@@ -144,130 +101,137 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  function displayProjects(filter) {
+    portfolioGrid.innerHTML = '';
+    const filtered = projects.filter(p => p.category === filter);
+    filtered.forEach(project => {
+      const projectCard = document.createElement('div');
+      projectCard.className = 'project-card';
+      projectCard.dataset.id = project.id;
+
+      projectCard.innerHTML = `
+        <img src="${project.image}" alt="Project image" class="project-img" />
+        <div class="project-caption"><span>Project Title</span></div>
+        <button class="view-project-btn" type="button" aria-label="View Project">View</button>
+      `;
+
+      // Open modal on image or button click
+      projectCard.querySelector('.project-img').addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(project.id, 0);
+      });
+      projectCard.querySelector('.view-project-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(project.id, 0);
+      });
+
+      // Also allow clicking the whole card (optional)
+      projectCard.addEventListener('click', () => openModal(project.id, 0));
+
+      portfolioGrid.appendChild(projectCard);
+    });
+  }
+
   // ======================
   // Project Modal
   // ======================
   const modal = document.getElementById('project-modal');
   const modalImages = document.querySelector('.modal-images');
-  const closeModalBtn = document.querySelector('#project-modal .close-modal');
-  const prevProjectBtn = document.getElementById('prev-project');
-  const nextProjectBtn = document.getElementById('next-project');
-  const modalTitle = document.getElementById('modal-project-title');
+  const closeModalBtns = document.querySelectorAll('.close-modal');
+  const prevImageBtn = document.getElementById('prev-image');
+  const nextImageBtn = document.getElementById('next-image');
   const successModal = document.getElementById('success-modal');
 
-  let currentProjectIndex = 0;
-  let filteredProjects = [];
+  let currentProject = null;
+  let currentImageIndex = 0;
 
-  // Ensure modal starts at the top on open (especially on mobile)
-  function resetModalScrollPosition() {
-    const container = document.querySelector('#project-modal .modal-container');
-    if (container) {
-      try { container.scrollTop = 0; } catch (e) {}
-      try { container.scrollTo && container.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch (e) {}
-    }
-    if (modalImages) {
-      try { modalImages.scrollTop = 0; } catch (e) {}
-      try { modalImages.scrollTo && modalImages.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch (e) {}
-      const firstImg = modalImages.querySelector('img');
-      if (firstImg) {
-        try {
-          firstImg.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'auto' });
-        } catch (e) {
-          try { firstImg.scrollIntoView(); } catch (e) {}
-        }
-      }
-    }
+  function isMobile() {
+    return window.matchMedia('(max-width: 768px)').matches;
   }
 
-  function openModal(projectId) {
-    // Find the project
-    const projectIndex = projects.findIndex(p => p.id === projectId);
-    if (projectIndex === -1) return;
+  function openModal(projectId, startIndex = 0) {
+    currentProject = projects.find(p => p.id === projectId);
+    if (!currentProject) return;
 
-    currentProjectIndex = projectIndex;
-    const project = projects[projectIndex];
-
-    // Update modal content
-    modalTitle.textContent = project.title;
+    currentImageIndex = startIndex;
     modalImages.innerHTML = '';
 
-    // Add all images to modal
-    project.images.forEach((img, idx) => {
-      const imgElement = document.createElement('img');
-      imgElement.src = img;
-      imgElement.alt = `${project.title} - ${idx + 1}`;
-      modalImages.appendChild(imgElement);
-
-      // For the first image, ensure we reset scroll after it loads (handles late image load)
-      if (idx === 0) {
-        imgElement.addEventListener('load', () => {
-          // Small timeout to allow layout to settle
-          setTimeout(resetModalScrollPosition, 0);
-        }, { once: true });
-      }
-    });
+    if (isMobile()) {
+      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
+      currentProject.images.forEach((src, idx) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Project image ${idx + 1}`;
+        modalImages.appendChild(img);
+      });
+    } else {
+      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
+      const img = document.createElement('img');
+      img.src = currentProject.images[currentImageIndex];
+      img.alt = `Project image ${currentImageIndex + 1}`;
+      modalImages.appendChild(img);
+    }
 
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
-
-    // Multiple attempts to reset scroll position: after paint and a short delay
-    requestAnimationFrame(() => {
-      requestAnimationFrame(resetModalScrollPosition);
-    });
-    setTimeout(resetModalScrollPosition, 50);
-    setTimeout(resetModalScrollPosition, 200);
   }
 
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
     document.body.classList.remove('no-scroll');
+    currentProject = null;
+    currentImageIndex = 0;
   }
 
-  // Event listeners
-  closeModalBtn.addEventListener('click', closeModal);
+  // Close modal buttons
+  closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
 
+  // Close when clicking outside container
   modal.addEventListener('click', (e) => {
-    if (e.target === modal || e.target.classList.contains('modal-overlay')) {
-      closeModal();
-    }
+    if (e.target === modal) closeModal();
   });
 
-  prevProjectBtn.addEventListener('click', () => {
-    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
-    currentProjectIndex = (currentProjectIndex - 1 + filteredProjects.length) % filteredProjects.length;
-    openModal(filteredProjects[currentProjectIndex].id);
+  // Desktop-only image navigation within current project (no cross-project jumping)
+  function showDesktopImage(index) {
+    if (!currentProject) return;
+    modalImages.innerHTML = '';
+    const total = currentProject.images.length;
+    currentImageIndex = (index + total) % total;
+    const img = document.createElement('img');
+    img.src = currentProject.images[currentImageIndex];
+    img.alt = `Project image ${currentImageIndex + 1}`;
+    modalImages.appendChild(img);
+  }
+
+  prevImageBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMobile() || !currentProject) return;
+    showDesktopImage(currentImageIndex - 1);
   });
 
-  nextProjectBtn.addEventListener('click', () => {
-    const currentFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    filteredProjects = projects.filter(p => currentFilter === 'all' ? true : p.category === currentFilter);
-    currentProjectIndex = (currentProjectIndex + 1) % filteredProjects.length;
-    openModal(filteredProjects[currentProjectIndex].id);
+  nextImageBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMobile() || !currentProject) return;
+    showDesktopImage(currentImageIndex + 1);
   });
 
-  // Keyboard navigation
+  // Keyboard navigation on desktop
   document.addEventListener('keydown', (e) => {
-    if (!modal.classList.contains('active')) return;
-
-    if (e.key === 'Escape') {
-      closeModal();
-    } else if (e.key === 'ArrowLeft') {
-      prevProjectBtn.click();
-    } else if (e.key === 'ArrowRight') {
-      nextProjectBtn.click();
-    }
+    if (!modal.classList.contains('active') || isMobile() || !currentProject) return;
+    if (e.key === 'Escape') closeModal();
+    else if (e.key === 'ArrowLeft') showDesktopImage(currentImageIndex - 1);
+    else if (e.key === 'ArrowRight') showDesktopImage(currentImageIndex + 1);
   });
 
   // ======================
   // Contact Form Handling
   // ======================
   const contactForm = document.getElementById('contact-form');
-
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
+
       const name = this.elements['name'].value.trim();
       const email = this.elements['email'].value.trim();
       const message = this.elements['message'].value.trim();
@@ -289,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           throw new Error('Network response was not ok');
         }
-      }).catch(error => {
+      }).catch(() => {
         alert('There was a problem sending your message. Please try again later.');
       });
     });
