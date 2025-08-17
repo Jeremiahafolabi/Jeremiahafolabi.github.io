@@ -271,7 +271,9 @@ body {
 @media (max-width: 768px) {
   .section { padding: 60px 0; }
   .section-title { font-size: 2rem; display: block; text-align: center; }
-
+.modal-images {
+  scroll-behavior: smooth; /* Add this */
+}
   /* Center these titles on mobile */
   #about .section-title,
   #portfolio .section-title,
