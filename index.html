@@ -170,22 +170,19 @@
 
   <!-- ======= Project Modal ======= -->
   <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-container">
-    <button class="close-modal" aria-label="Close modal">&times;</button>
-    <div class="modal-content">
-      <!-- Scroll indicator for mobile -->
-      <div class="scroll-indicator" aria-hidden="true">
-        <i class="fas fa-arrows-alt-v"></i> Swipe or scroll to view all images
-      </div>
-      <div class="modal-images"><!-- Images injected by JS --></div>
+    <div class="modal-container">
+      <button class="close-modal" aria-label="Close modal">&times;</button>
+      <div class="modal-content">
+        <!-- Small scroll hint for mobile -->
+        <div class="scroll-indicator" aria-hidden="true">
+          <i class="fas fa-angle-double-down"></i> Scroll to view more
+        </div>
+        <div class="modal-images"><!-- Injected by JS --></div>
 
-      <!-- Desktop-only nav buttons -->
-      <button class="modal-nav-btn" id="prev-image" aria-label="Previous image">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="modal-nav-btn" id="next-image" aria-label="Next image">
-        <i class="fas fa-chevron-right"></i>
-        
+        <!-- Desktop-only nav within current project's 1–8 images -->
+        <button class="modal-nav-btn" id="prev-image" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-nav-btn" id="next-image" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+      </div>
       <!-- Title hidden in modal per requirements (only on placeholders) -->
       <div class="project-title-container" aria-hidden="true">
         <h3 id="modal-project-title">Project Title</h3>
