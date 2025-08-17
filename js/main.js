@@ -149,50 +149,69 @@ document.addEventListener('DOMContentLoaded', function () {
     return window.matchMedia('(max-width: 768px)').matches;
   }
 
-  function openModal(projectId, startIndex = 0) {
-    currentProject = projects.find(p => p.id === projectId);
-    if (!currentProject) return;
+ function openModal(projectId, startIndex = 0) {
+  currentProject = projects.find(p => p.id === projectId);
+  if (!currentProject) return;
 
-    currentImageIndex = startIndex;
-    modalImages.innerHTML = '';
+  currentImageIndex = startIndex;
+  modalImages.innerHTML = '';
 
-    if (isMobile()) {
-      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
-      currentProject.images.forEach((src, idx) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Project image ${idx + 1}`;
-        modalImages.appendChild(img);
-      });
-      
-     // Reset scroll position to top on mobile
-modalImages.scrollTop = 0;
-requestAnimationFrame(() => {
-  modalImages.scrollTop = 0;
-  const firstImg = modalImages.querySelector('img');
-  if (firstImg && !firstImg.complete) {
-    firstImg.addEventListener('load', () => {
-      modalImages.scrollTop = 0;
-    }, { once: true });
+  const resetMobileModalScroll = () => {
+    // hard reset
+    modalImages.scrollTop = 0;
+    // explicit: make sure first image is at the top edge
+    const firstImg = modalImages.firstElementChild;
+    if (firstImg) firstImg.scrollIntoView({ block: 'start', inline: 'nearest' });
+  };
+
+  if (isMobile()) {
+    // Mobile: stack all images
+    currentProject.images.forEach((src, idx) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `Project image ${idx + 1}`;
+      modalImages.appendChild(img);
+    });
+
+    // Multi-pass reset to defeat any scroll restoration quirks
+    resetMobileModalScroll();                      // immediately
+    requestAnimationFrame(resetMobileModalScroll); // next frame
+
+    // after first image actually loads (covers cached vs non-cached)
+    const firstImg = modalImages.querySelector('img');
+    if (firstImg) {
+      if (firstImg.complete) {
+        resetMobileModalScroll();
+      } else {
+        firstImg.addEventListener('load', resetMobileModalScroll, { once: true });
+      }
+    }
+  } else {
+    // Desktop: show only one image
+    const img = document.createElement('img');
+    img.src = currentProject.images[currentImageIndex];
+    img.alt = `Project image ${currentImageIndex + 1}`;
+    modalImages.appendChild(img);
   }
-});
-      
-const firstImg = modalImages.firstElementChild;
-if (firstImg) {
-  firstImg.scrollIntoView({ block: 'start' });
+
+  modal.classList.add('active');
+  document.body.classList.add('no-scroll');
+
+  // After the fade-in transition completes (covers iOS/Safari)
+  if (isMobile()) {
+    const onEnd = (e) => {
+      if (e.propertyName === 'opacity') {
+        resetMobileModalScroll();
+        modal.removeEventListener('transitionend', onEnd);
+      }
+    };
+    modal.addEventListener('transitionend', onEnd);
+
+    // Small timeout nudge in case transitionend is skipped
+    setTimeout(resetMobileModalScroll, 60);
+  }
 }
 
-    } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
-      const img = document.createElement('img');
-      img.src = currentProject.images[currentImageIndex];
-      img.alt = `Project image ${currentImageIndex + 1}`;
-      modalImages.appendChild(img);
-    }
-
-    modal.classList.add('active');
-    document.body.classList.add('no-scroll');
-  }
 
   function closeModal() {
     modal.classList.remove('active');
