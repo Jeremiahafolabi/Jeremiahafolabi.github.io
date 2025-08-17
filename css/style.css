@@ -1,5 +1,5 @@
 /* =========================
-   Enhanced CSS - Portfolio & Modal Updates
+   Enhanced CSS - Portfolio & Modal Updates with Mobile Fixes
    ========================= */
 
 /* Global Styles */
@@ -16,6 +16,11 @@
   --border: rgba(255,255,255,0.1);
   --overlay-black: rgba(0,0,0,0.6);
   --transition: all 0.3s ease;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -229,8 +234,11 @@ body {
   justify-content: center;
 }
 .modal-images img {
-  border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 70vh; width: auto; height: auto;
+  border-radius: 10px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-height: 70vh; 
+  width: auto; 
+  height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
@@ -267,122 +275,11 @@ body {
   .contact-content { flex-direction: column; }
 }
 
+/* Mobile & small tablets */
 @media (max-width: 768px) {
-  /* Modal container adjustments */
-  .modal-container {
-    max-height: 90vh;
-    padding: 15px;
-    width: 95%;
-    overflow: hidden;
-  }
-  
-  /* Scroll indicator - enhanced */
-  .scroll-indicator {
-    display: block !important;
-    font-size: 0.85rem;
-    color: var(--primary);
-    text-align: center;
-    margin-bottom: 15px;
-    padding: 10px;
-    background: rgba(255, 152, 0, 0.15);
-    border-radius: 25px;
-    border: 1px solid rgba(255, 152, 0, 0.3);
-    animation: pulse 2s infinite;
-  }
-  
-  .scroll-indicator i {
-    margin-right: 8px;
-    animation: bounce 2s infinite;
-  }
-  
-  /* Modal images container - vertical scroll */
-  .modal-images {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 70vh;
-    padding: 0 5px;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Individual image containers */
-  .modal-image-container {
-    flex-shrink: 0;
-    width: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-  
-  /* Modal images - EXACT same size as project cards */
-  .modal-image {
-    width: 100% !important;
-    height: 250px !important; /* Exact same as .project-img */
-    max-height: 250px !important;
-    min-height: 250px !important;
-    object-fit: cover !important;
-    display: block;
-    border-radius: 0; /* Container handles border-radius */
-  }
-  
-  /* Hide desktop navigation */
-  .modal-nav-btn {
-    display: none !important;
-  }
-  
-  /* Custom scrollbar */
-  .modal-images::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  .modal-images::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
-    border-radius: 2px;
-  }
-  
-  .modal-images::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 2px;
-  }
-  
-  .modal-images::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-hover);
-  }
-  
-  /* Ensure modal content doesn't interfere */
-  .modal-content {
-    position: relative;
-    margin: 0;
-  }
-}
+  .section { padding: 60px 0; }
+  .section-title { font-size: 2rem; display: block; text-align: center; }
 
-/* Animations */
-@keyframes pulse {
-  0%, 100% { 
-    opacity: 0.8; 
-    transform: scale(1);
-  }
-  50% { 
-    opacity: 1; 
-    transform: scale(1.02);
-  }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { 
-    transform: translateY(0); 
-  }
-  40% { 
-    transform: translateY(-4px); 
-  }
-  60% { 
-    transform: translateY(-2px); 
-  }
-}
-   
   /* Center these titles on mobile */
   #about .section-title,
   #portfolio .section-title,
@@ -417,11 +314,35 @@ body {
 
   .quick-links { flex-direction: column; gap: 15px; align-items: center; }
 
-  /* Modal: stack all 8 images vertically and show scroll hint */
-  .scroll-indicator { display: block; }
-  .modal-images { flex-direction: column; overflow-y: auto; max-height: 60vh; }
-  .modal-images img { width: 100%; height: auto; max-height: none; }
-  .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
+  /* Modal: stack all 8 images vertically and show scroll hint - MOBILE FIXES */
+  .scroll-indicator { 
+    display: block; 
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 15px;
+    animation: fadeInOut 2s infinite;
+  }
+  
+  .modal-images { 
+    flex-direction: column; 
+    overflow-y: auto; 
+    max-height: 65vh;
+    gap: 15px;
+    padding: 10px 0;
+  }
+  
+  .modal-images img { 
+    width: 100%; 
+    height: auto; 
+    max-height: none;
+    min-height: 200px;
+    object-fit: cover;
+  }
+  
+  .modal-nav-btn { 
+    display: none; 
+  }
 
   /* Center "Send Message" button on mobile */
   .contact-submit { display: block; margin: 0 auto; }
@@ -437,16 +358,4 @@ body {
 
   .contact-method { flex-direction: column; align-items: center; text-align: center; }
   .contact-method i { margin-bottom: 10px; }
-}
-
-/* Animations for scroll indicator */
-@keyframes pulse {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-3px); }
-  60% { transform: translateY(-2px); }
 }
