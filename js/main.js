@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ======================
-  // Project Modal - MOBILE FIXES APPLIED
+  // Project Modal
   // ======================
   const modal = document.getElementById('project-modal');
   const modalImages = document.querySelector('.modal-images');
@@ -150,39 +150,38 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function openModal(projectId, startIndex = 0) {
-    currentProject = projects.find(p => p.id === projectId);
-    if (!currentProject) return;
+  currentProject = projects.find(p => p.id === projectId);
+  if (!currentProject) return;
 
-    // Always start at first image (index 0) on mobile
-    currentImageIndex = isMobile() ? 0 : startIndex;
-    modalImages.innerHTML = '';
+  currentImageIndex = startIndex;
+  modalImages.innerHTML = '';
 
-    if (isMobile()) {
-      // Mobile: stack ALL 8 images vertically in a single scrollable view
-      currentProject.images.forEach((src, idx) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Project image ${idx + 1}`;
-        img.loading = 'lazy'; // Optimize loading
-        modalImages.appendChild(img);
-      });
-      
-      // Ensure modal starts at the top when opened
-      setTimeout(() => {
-        modalImages.scrollTop = 0;
-      }, 50);
-      
-    } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
+  if (isMobile()) {
+    // Mobile: stack all 8 images vertically, always start at top (index 0)
+    currentProject.images.forEach((src, idx) => {
       const img = document.createElement('img');
-      img.src = currentProject.images[currentImageIndex];
-      img.alt = `Project image ${currentImageIndex + 1}`;
+      img.src = src;
+      img.alt = `Project image ${idx + 1}`;
+      img.loading = 'lazy'; // Optimize loading
       modalImages.appendChild(img);
-    }
-
-    modal.classList.add('active');
-    document.body.classList.add('no-scroll');
+    });
+    
+    // Ensure scroll starts at top
+    setTimeout(() => {
+      modalImages.scrollTop = 0;
+    }, 100);
+    
+  } else {
+    // Desktop: show only one image at a time; nav arrows cycle within THIS project only
+    const img = document.createElement('img');
+    img.src = currentProject.images[currentImageIndex];
+    img.alt = `Project image ${currentImageIndex + 1}`;
+    modalImages.appendChild(img);
   }
+
+  modal.classList.add('active');
+  document.body.classList.add('no-scroll');
+}
 
   function closeModal() {
     modal.classList.remove('active');
@@ -224,22 +223,12 @@ document.addEventListener('DOMContentLoaded', function () {
     showDesktopImage(currentImageIndex + 1);
   });
 
-  // Keyboard navigation on desktop only
+  // Keyboard navigation on desktop
   document.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('active') || isMobile() || !currentProject) return;
     if (e.key === 'Escape') closeModal();
     else if (e.key === 'ArrowLeft') showDesktopImage(currentImageIndex - 1);
     else if (e.key === 'ArrowRight') showDesktopImage(currentImageIndex + 1);
-  });
-
-  // Handle window resize to ensure proper modal behavior
-  window.addEventListener('resize', () => {
-    if (modal.classList.contains('active') && currentProject) {
-      // Reopen modal with current project to apply correct mobile/desktop layout
-      const projectId = currentProject.id;
-      closeModal();
-      setTimeout(() => openModal(projectId, 0), 100);
-    }
   });
 
   // ======================
