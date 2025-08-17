@@ -164,6 +164,10 @@ document.addEventListener('DOMContentLoaded', function () {
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
+      // Reset scroll to top for mobile (add this)
+if (isMobile()) {
+  modalImages.scrollTo(0, 0); // Force scroll to top
+}
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
