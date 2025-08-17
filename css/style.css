@@ -297,15 +297,34 @@ body {
     scroll-behavior: smooth;
   }
   
-  .modal-images img {
-    width: 100%;
-    height: auto;
-    max-height: none;
-    min-height: 250px; /* Match placeholder card height */
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-  }
+  .modal-images {
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 65vh;
+  gap: 20px;
+  padding: 10px;
+  scroll-behavior: smooth;
+  /* Force scroll to start at top */
+  scroll-snap-type: y mandatory;
+}
+
+.modal-images img {
+  width: 100%;
+  height: 250px; /* EXACT same as .project-img height */
+  max-height: 250px;
+  min-height: 250px;
+  object-fit: cover;
+  border-radius: 15px; /* Same as .project-card border-radius */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Same as .project-card shadow */
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* First image gets priority positioning */
+.modal-images img:first-child {
+  margin-top: 0;
+  scroll-snap-align: start;
+}
   
   /* Hide desktop navigation arrows */
   .modal-nav-btn {
