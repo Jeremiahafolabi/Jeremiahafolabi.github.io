@@ -164,8 +164,19 @@ document.addEventListener('DOMContentLoaded', function () {
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
-      // Reset scroll position to top on mobile
+      
+     // Reset scroll position to top on mobile
+modalImages.scrollTop = 0;
+requestAnimationFrame(() => {
   modalImages.scrollTop = 0;
+  const firstImg = modalImages.querySelector('img');
+  if (firstImg && !firstImg.complete) {
+    firstImg.addEventListener('load', () => {
+      modalImages.scrollTop = 0;
+    }, { once: true });
+  }
+});
+
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
