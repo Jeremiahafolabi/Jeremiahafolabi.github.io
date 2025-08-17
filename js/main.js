@@ -149,36 +149,40 @@ document.addEventListener('DOMContentLoaded', function () {
     return window.matchMedia('(max-width: 768px)').matches;
   }
 
-  function openModal(projectId, startIndex = 0) {
-    currentProject = projects.find(p => p.id === projectId);
-    if (!currentProject) return;
+function openModal(projectId, startIndex = 0) {
+  currentProject = projects.find(p => p.id === projectId);
+  if (!currentProject) return;
 
-    currentImageIndex = startIndex;
-    modalImages.innerHTML = '';
+  currentImageIndex = startIndex;
+  modalImages.innerHTML = '';
 
-    if (isMobile()) {
-      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
-      currentProject.images.forEach((src, idx) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Project image ${idx + 1}`;
-        modalImages.appendChild(img);
-      });
-      // Reset scroll to top for mobile (add this)
-if (isMobile()) {
-  modalImages.scrollTo(0, 0); // Force scroll to top
-}
-    } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
-      const img = document.createElement('img');
-      img.src = currentProject.images[currentImageIndex];
-      img.alt = `Project image ${currentImageIndex + 1}`;
-      modalImages.appendChild(img);
-    }
+  // Create all images first
+  currentProject.images.forEach((src, idx) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `Project image ${idx + 1}`;
+    modalImages.appendChild(img);
+  });
 
-    modal.classList.add('active');
-    document.body.classList.add('no-scroll');
+  // Show modal
+  modal.classList.add('active');
+  document.body.classList.add('no-scroll');
+
+  // Mobile-specific fixes
+  if (isMobile()) {
+    // Double insurance for scroll reset
+    setTimeout(() => {
+      modalImages.scrollTo({ top: 0, behavior: 'instant' });
+      modalImages.scrollTop = 0;
+    }, 50);
+    
+    // Prevent any initial scroll jumps
+    modalImages.style.overflow = 'hidden';
+    setTimeout(() => {
+      modalImages.style.overflow = 'auto';
+    }, 100);
   }
+}
 
   function closeModal() {
     modal.classList.remove('active');
