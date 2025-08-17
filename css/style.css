@@ -141,7 +141,7 @@ body {
 }
 .project-caption span { font-size: 0.9rem; font-weight: 600; color: #fff; }
 
-/* Sticky "View" button – always visible bottom-right */
+/* Sticky "View" button — always visible bottom-right */
 .view-project-btn {
   position: absolute; bottom: 15px; right: 15px;
   background: var(--primary); color: #000; border: none; padding: 8px 14px;
@@ -219,15 +219,9 @@ body {
   color: var(--text-muted);
   text-align: center;
   margin-bottom: 10px;
-  animation: pulseDown 2s ease-in-out infinite;
 }
 
-@keyframes pulseDown {
-  0%, 100% { opacity: 0.6; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(3px); }
-}
-
-/* Image area - Desktop vs Mobile behavior */
+/* Image area */
 .modal-images {
   display: flex;
   gap: 20px;
@@ -275,9 +269,68 @@ body {
 
 /* Mobile & small tablets */
 @media (max-width: 768px) {
-  .section { padding: 60px 0; }
-  .section-title { font-size: 2rem; display: block; text-align: center; }
-
+  /* Enhanced scroll indicator styling */
+  .scroll-indicator {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 8px;
+    background: rgba(255, 152, 0, 0.1);
+    border-radius: 20px;
+    animation: pulse 2s infinite;
+  }
+  
+  .scroll-indicator i {
+    margin-right: 5px;
+    animation: bounce 1.5s infinite;
+  }
+  
+  /* Modal images: vertical stack with larger size */
+  .modal-images {
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 65vh;
+    gap: 15px;
+    padding: 10px;
+    scroll-behavior: smooth;
+  }
+  
+  .modal-images img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    min-height: 250px; /* Match placeholder card height */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  }
+  
+  /* Hide desktop navigation arrows */
+  .modal-nav-btn {
+    display: none !important;
+  }
+  
+  /* Custom scrollbar for modal images */
+  .modal-images::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modal-images::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+  }
+  
+  .modal-images::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+  }
+  
+  .modal-images::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+  }
+   
   /* Center these titles on mobile */
   #about .section-title,
   #portfolio .section-title,
@@ -312,44 +365,11 @@ body {
 
   .quick-links { flex-direction: column; gap: 15px; align-items: center; }
 
-  /* MOBILE MODAL FIXES */
-  .modal-container {
-    width: 95%;
-    max-height: 85vh;
-    overflow-y: auto;
-  }
-  
-  .scroll-indicator { 
-    display: block;
-    background: rgba(255,152,0,0.1);
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-  }
-  
-  /* Mobile: stack all 8 images vertically with proper sizing */
-  .modal-images { 
-    flex-direction: column; 
-    overflow-y: auto; 
-    max-height: 65vh;
-    gap: 15px;
-    padding: 0 5px;
-    align-items: stretch;
-  }
-  
-  /* Mobile images: large and clear, matching placeholder dimensions */
-  .modal-images img { 
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    min-height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-  }
-  
-  /* Hide desktop navigation arrows on mobile */
-  .modal-nav-btn { display: none !important; }
+  /* Modal: stack all 8 images vertically and show scroll hint */
+  .scroll-indicator { display: block; }
+  .modal-images { flex-direction: column; overflow-y: auto; max-height: 60vh; }
+  .modal-images img { width: 100%; height: auto; max-height: none; }
+  .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
 
   /* Center "Send Message" button on mobile */
   .contact-submit { display: block; margin: 0 auto; }
@@ -365,14 +385,4 @@ body {
 
   .contact-method { flex-direction: column; align-items: center; text-align: center; }
   .contact-method i { margin-bottom: 10px; }
-  
-  /* Enhanced mobile modal for very small screens */
-  .modal-container {
-    width: 98%;
-    padding: 20px 15px;
-  }
-  
-  .modal-images img {
-    min-height: 180px;
-  }
 }
