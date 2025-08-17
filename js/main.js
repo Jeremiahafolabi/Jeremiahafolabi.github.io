@@ -176,6 +176,11 @@ requestAnimationFrame(() => {
     }, { once: true });
   }
 });
+      
+const firstImg = modalImages.firstElementChild;
+if (firstImg) {
+  firstImg.scrollIntoView({ block: 'start' });
+}
 
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
