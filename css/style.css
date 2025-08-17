@@ -271,8 +271,16 @@ body {
 @media (max-width: 768px) {
   .section { padding: 60px 0; }
   .section-title { font-size: 2rem; display: block; text-align: center; }
-.modal-images {
+
+   .modal-images {
   scroll-behavior: smooth; /* Add this */
+}
+   .modal-images {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.modal-images img {
+  scroll-snap-align: start;
 }
   /* Center these titles on mobile */
   #about .section-title,
