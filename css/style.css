@@ -327,13 +327,13 @@ body {
   .modal-images { 
     flex-direction: column; 
     overflow-y: auto; 
-    max-height: 65vh;
-    gap: 15px;
-    padding: 10px 0;
+    max-height: 80vh;
+    gap: 5px;
+    padding: 5px 0;
   }
   
   .modal-images img { 
-    width: 100%; 
+    width: auto; 
     height: auto; 
     max-height: none;
     min-height: 200px;
