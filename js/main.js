@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ======================
+ // ======================
   // Project Modal
   // ======================
   const modal = document.getElementById('project-modal');
@@ -164,6 +164,10 @@ document.addEventListener('DOMContentLoaded', function () {
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
+      // Scroll to the top when the modal is opened in mobile mode
+      setTimeout(() => {
+        modalImages.scrollTop = 0;
+      }, 50); // Small delay to ensure the modal is rendered before scrolling
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
