@@ -150,6 +150,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function openModal(projectId, startIndex = 0) {
+  // ...
+  if (isMobile()) {
+    // ...
+    setTimeout(() => {
+      modalImages.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+    }, 100);
+  }
+  // ...
+}
     currentProject = projects.find(p => p.id === projectId);
     if (!currentProject) return;
 
