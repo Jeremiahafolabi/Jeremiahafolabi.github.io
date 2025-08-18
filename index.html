@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Afolabi Jeremiah - Designer Portfolio</title>
-  <meta name="description" content="Graphic & UI/UX Designer Portfolio"/>
-
+  <meta name="description" content="Graphic & UI/UX Designer Portfolio">
+  
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+  
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,20 +19,19 @@
   <header id="main-header">
     <div class="container">
       <div class="header-content">
-        <!-- Increased z-index for mobile clickability -->
         <div class="header-social-icons">
-          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin"></i></a>
-          <a href="https://dribbble.com" target="_blank" aria-label="Dribbble" rel="noopener"><i class="fab fa-dribbble"></i></a>
-          <a href="https://behance.net" target="_blank" aria-label="Behance" rel="noopener"><i class="fab fa-behance"></i></a>
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://dribbble.com" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="https://behance.net" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
         </div>
-
-        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0">
+        
+        <div class="menu-toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
-
-        <nav class="main-nav" aria-label="Primary">
+        
+        <nav class="main-nav">
           <a href="#hero" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#portfolio" class="nav-link">Portfolio</a>
@@ -82,9 +81,6 @@
             <span class="skill-tag">UI/UX</span>
             <span class="skill-tag">Web Design</span>
             <span class="skill-tag">Branding</span>
-            <!-- Added per request -->
-            <span class="skill-tag">Logo Design</span>
-            <span class="skill-tag">Product Packaging</span>
           </div>
         </div>
       </div>
@@ -95,14 +91,14 @@
   <section id="portfolio" class="section">
     <div class="container">
       <h2 class="section-title">My Portfolio</h2>
-
-      <div class="portfolio-filter" role="tablist" aria-label="Portfolio categories">
-        <button class="filter-btn" data-filter="graphic" role="tab" aria-selected="true">Graphic Design</button>
-        <button class="filter-btn" data-filter="uiux" role="tab" aria-selected="false">UI/UX Design</button>
+      
+      <div class="portfolio-filter">
+        <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+        <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
       </div>
-
+      
       <div class="portfolio-grid">
-        <!-- Project cards are injected by JavaScript -->
+        <!-- Project cards will be inserted here by JavaScript -->
       </div>
     </div>
   </section>
@@ -111,9 +107,9 @@
   <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title">Get In Touch</h2>
-
+      
       <div class="contact-content">
-        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form" novalidate>
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
           <div class="form-group">
             <input type="text" name="name" placeholder="Your Name" required>
           </div>
@@ -123,23 +119,22 @@
           <div class="form-group">
             <textarea name="message" placeholder="Your Message" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary contact-submit">Send Message</button>
+          <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
-
-        <!-- Reused but repositioned via CSS to sit centered under the button on desktop -->
-        <div class="contact-info" aria-label="Alternative contact">
+        
+        <div class="contact-info">
           <div class="contact-method">
-            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <i class="fas fa-envelope"></i>
             <div>
               <h3>Email</h3>
               <a href="mailto:hello@example.com">hello@example.com</a>
             </div>
           </div>
           <div class="contact-method">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <i class="fab fa-whatsapp"></i>
             <div>
               <h3>WhatsApp</h3>
-              <a href="https://wa.me/1234567890" target="_blank" rel="noopener">+123 456 7890</a>
+              <a href="https://wa.me/1234567890">+123 456 7890</a>
             </div>
           </div>
         </div>
@@ -164,39 +159,34 @@
   </footer>
 
   <!-- ======= Back to Top Button ======= -->
-  <a href="#hero" class="back-to-top" aria-label="Back to top">
-    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  <a href="#hero" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
   </a>
 
   <!-- ======= Project Modal ======= -->
-  <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div id="project-modal" class="modal">
     <div class="modal-container">
-      <button class="close-modal" aria-label="Close modal">&times;</button>
+      <button class="close-modal">&times;</button>
       <div class="modal-content">
-        <!-- Small scroll hint for mobile -->
-        <div class="scroll-indicator" aria-hidden="true">
-          <i class="fas fa-angle-double-down"></i> Scroll to view more
+        <div class="modal-images">
+          <!-- Images will be inserted here by JavaScript -->
         </div>
-        <div class="modal-images"><!-- Injected by JS --></div>
-
-        <!-- Desktop-only nav within current project's 1–8 images -->
-        <button class="modal-nav-btn" id="prev-image" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-        <button class="modal-nav-btn" id="next-image" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        <button class="modal-nav-btn" id="prev-project"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-nav-btn" id="next-project"><i class="fas fa-chevron-right"></i></button>
       </div>
-      <!-- Title hidden in modal per requirements (only on placeholders) -->
-      <div class="project-title-container" aria-hidden="true">
+      <div class="project-title-container">
         <h3 id="modal-project-title">Project Title</h3>
       </div>
     </div>
   </div>
 
   <!-- ======= Success Modal ======= -->
-  <div id="success-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div id="success-modal" class="modal">
     <div class="modal-container small">
-      <button class="close-modal" aria-label="Close success modal">&times;</button>
+      <button class="close-modal">&times;</button>
       <div class="modal-content">
         <div class="success-message">
-          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <i class="fas fa-check-circle"></i>
           <h3>Message Sent Successfully!</h3>
           <p>Thank you for reaching out. I'll get back to you soon.</p>
         </div>
