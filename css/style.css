@@ -272,6 +272,29 @@ body {
   .section { padding: 60px 0; }
   .section-title { font-size: 2rem; display: block; text-align: center; }
 
+     /* Modal: stack all 8 images vertically and show scroll hint */
+    .scroll-indicator { display: block; }
+    .modal-images {
+      flex-direction: column;
+      overflow-y: auto;
+      /* Add the following two lines for scroll snapping */
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: 0;
+      /* Increase modal height to better contain images */
+      max-height: 80vh; 
+    }
+    .modal-images img {
+      /* Add this property to make each image a snap point */
+      scroll-snap-align: start;
+      /* Make images fill the width for clarity on mobile */
+      width: 100%;
+      height: auto;
+      max-height: none;
+      /* Add some spacing between stacked images */
+      margin-bottom: 20px;
+    }
+    .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
+
   /* Center these titles on mobile */
   #about .section-title,
   #portfolio .section-title,
