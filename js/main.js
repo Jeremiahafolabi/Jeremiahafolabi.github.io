@@ -150,39 +150,22 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function openModal(projectId, startIndex = 0) {
-  // ...
-  if (isMobile()) {
-    // ...
-    setTimeout(() => {
-      modalImages.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
-    }, 100);
-  }
-  // ...
-}
     currentProject = projects.find(p => p.id === projectId);
     if (!currentProject) return;
 
-    currentImageIndex = 0; // Always start at first image for mobile
+    currentImageIndex = startIndex;
     modalImages.innerHTML = '';
 
     if (isMobile()) {
-      // Mobile: stack all 8 images vertically, larger size, always start at top
+      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
       currentProject.images.forEach((src, idx) => {
         const img = document.createElement('img');
         img.src = src;
         img.alt = `Project image ${idx + 1}`;
-        img.loading = 'lazy'; // Optimize loading
         modalImages.appendChild(img);
       });
-      
-      // Ensure we scroll to top of modal images
-      setTimeout(() => {
-        modalImages.scrollTop = 0;
-      }, 50);
-      
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
-      currentImageIndex = startIndex;
       const img = document.createElement('img');
       img.src = currentProject.images[currentImageIndex];
       img.alt = `Project image ${currentImageIndex + 1}`;
