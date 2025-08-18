@@ -164,6 +164,8 @@ document.addEventListener('DOMContentLoaded', function () {
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
+      // Add this line to force the scroll position to the top
+      modalImages.scrollTop = 0;
       // Scroll to the top when the modal is opened in mobile mode
       setTimeout(() => {
         modalImages.scrollTop = 0;
