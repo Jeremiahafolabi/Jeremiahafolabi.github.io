@@ -164,10 +164,7 @@ function openModal(projectId, startIndex = 0) {
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
-      // Add a slight delay to ensure the modal is fully rendered before scrolling
-      setTimeout(() => {
-        modalImages.scrollTop = 0;
-      }, 50); 
+      // The CSS scroll-snap properties now handle the scroll-to-top behavior
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
