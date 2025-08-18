@@ -149,33 +149,30 @@ document.addEventListener('DOMContentLoaded', function () {
     return window.matchMedia('(max-width: 768px)').matches;
   }
 
-  function openModal(projectId, startIndex = 0) {
-    currentProject = projects.find(p => p.id === projectId);
-    if (!currentProject) return;
-
-    currentImageIndex = startIndex;
+ function openModal(projectId) {
+    // Find the project
+    const projectIndex = projects.findIndex(p => p.id === projectId);
+    if (projectIndex === -1) return;
+    
+    currentProjectIndex = projectIndex;
+    const project = projects[projectIndex];
+    
+    // Update modal content
+    modalTitle.textContent = project.title;
     modalImages.innerHTML = '';
-
-    if (isMobile()) {
-      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
-      currentProject.images.forEach((src, idx) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Project image ${idx + 1}`;
-        modalImages.appendChild(img);
-      });
-    } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
-      const img = document.createElement('img');
-      img.src = currentProject.images[currentImageIndex];
-      img.alt = `Project image ${currentImageIndex + 1}`;
-      modalImages.appendChild(img);
-    }
-
+    
+    // Add all images to modal
+    project.images.forEach(img => {
+      const imgElement = document.createElement('img');
+      imgElement.src = img;
+      imgElement.alt = `${project.title} - ${project.images.indexOf(img) + 1}`;
+      modalImages.appendChild(imgElement);
+    });
+    
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
   }
-
+  
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
