@@ -132,98 +132,68 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
- // ======================
-  // Project Modal
-  // ======================
-  const modal = document.getElementById('project-modal');
-  const modalImages = document.querySelector('.modal-images');
-  const closeModalBtns = document.querySelectorAll('.close-modal');
-  const prevImageBtn = document.getElementById('prev-image');
-  const nextImageBtn = document.getElementById('next-image');
-  const successModal = document.getElementById('success-modal');
+ // ==================================
+// NEW MODAL SETUP
+// ==================================
+const newModal = document.getElementById('new-modal');
+const closeNewModalBtn = document.querySelector('.close-new-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalImageContainer = document.getElementById('modal-image-container');
 
-  let currentProject = null;
-  let currentImageIndex = 0;
+// A function to open the new modal
+function openNewModal(projectId) {
+  const project = projects.find(p => p.id === projectId);
+  if (!project) return;
 
-  function isMobile() {
-    return window.matchMedia('(max-width: 768px)').matches;
-  }
+  modalTitle.textContent = project.name;
+  modalImageContainer.innerHTML = ''; // Clear previous images
 
-function openModal(projectId, startIndex = 0) {
-    currentProject = projects.find(p => p.id === projectId);
-    if (!currentProject) return;
-
-    currentImageIndex = startIndex;
-    modalImages.innerHTML = '';
-
-    if (isMobile()) {
-      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
-      currentProject.images.forEach((src, idx) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Project image ${idx + 1}`;
-        modalImages.appendChild(img);
-      });
-      // The CSS scroll-snap properties now handle the scroll-to-top behavior
-    } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
+  // For mobile mode, display all images in a vertical, scrollable stack
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    project.images.forEach(src => {
       const img = document.createElement('img');
-      img.src = currentProject.images[currentImageIndex];
-      img.alt = `Project image ${currentImageIndex + 1}`;
-      modalImages.appendChild(img);
-    }
-
-    modal.classList.add('active');
-    document.body.classList.add('no-scroll');
-  }
-  
-  function closeModal() {
-    modal.classList.remove('active');
-    successModal.classList.remove('active');
-    document.body.classList.remove('no-scroll');
-    currentProject = null;
-    currentImageIndex = 0;
-  }
-
-  // Close modal buttons
-  closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
-
-  // Close when clicking outside container
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  // Desktop-only image navigation within current project (no cross-project jumping)
-  function showDesktopImage(index) {
-    if (!currentProject) return;
-    modalImages.innerHTML = '';
-    const total = currentProject.images.length;
-    currentImageIndex = (index + total) % total;
+      img.src = src;
+      modalImageContainer.appendChild(img);
+    });
+    // This will force the scroll to the top once the images are loaded
+    // We use a small delay to ensure the modal is fully rendered
+    setTimeout(() => {
+        modalImageContainer.scrollTop = 0;
+    }, 100);
+  } else {
+    // For desktop, just display the first image (or handle as per your desktop logic)
     const img = document.createElement('img');
-    img.src = currentProject.images[currentImageIndex];
-    img.alt = `Project image ${currentImageIndex + 1}`;
-    modalImages.appendChild(img);
+    img.src = project.images[0];
+    modalImageContainer.appendChild(img);
   }
 
-  prevImageBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (isMobile() || !currentProject) return;
-    showDesktopImage(currentImageIndex - 1);
-  });
+  newModal.style.display = 'block';
+  document.body.style.overflow = 'hidden'; // Prevents background scrolling
+}
 
-  nextImageBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (isMobile() || !currentProject) return;
-    showDesktopImage(currentImageIndex + 1);
-  });
+// A function to close the new modal
+function closeNewModal() {
+  newModal.style.display = 'none';
+  document.body.style.overflow = 'auto'; // Re-enables background scrolling
+}
 
-  // Keyboard navigation on desktop
-  document.addEventListener('keydown', (e) => {
-    if (!modal.classList.contains('active') || isMobile() || !currentProject) return;
-    if (e.key === 'Escape') closeModal();
-    else if (e.key === 'ArrowLeft') showDesktopImage(currentImageIndex - 1);
-    else if (e.key === 'ArrowRight') showDesktopImage(currentImageIndex + 1);
+// Event listeners for opening and closing the modal
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    // Make sure you have a way to get the project ID from your card
+    const projectId = e.currentTarget.getAttribute('data-project-id'); 
+    openNewModal(projectId);
   });
+});
+
+closeNewModalBtn.addEventListener('click', closeNewModal);
+
+// Close when clicking outside the modal content
+window.addEventListener('click', (e) => {
+  if (e.target === newModal) {
+    closeNewModal();
+  }
+});
 
   // ======================
   // Contact Form Handling
