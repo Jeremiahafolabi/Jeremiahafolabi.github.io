@@ -1,5 +1,5 @@
 /* =========================
-   Enhanced CSS - Portfolio & Modal Updates with Mobile Fixes
+   Enhanced CSS - Portfolio & Modal Updates
    ========================= */
 
 /* Global Styles */
@@ -16,11 +16,6 @@
   --border: rgba(255,255,255,0.1);
   --overlay-black: rgba(0,0,0,0.6);
   --transition: all 0.3s ease;
-}
-
-@keyframes fadeInOut {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -234,11 +229,8 @@ body {
   justify-content: center;
 }
 .modal-images img {
-  border-radius: 10px; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 70vh; 
-  width: auto; 
-  height: auto;
+  border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-height: 70vh; width: auto; height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
@@ -314,35 +306,11 @@ body {
 
   .quick-links { flex-direction: column; gap: 15px; align-items: center; }
 
-  /* Modal: stack all 8 images vertically and show scroll hint - MOBILE FIXES */
-  .scroll-indicator { 
-    display: block; 
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    text-align: center;
-    margin-bottom: 15px;
-    animation: fadeInOut 2s infinite;
-  }
-  
-  .modal-images { 
-    flex-direction: column; 
-    overflow-y: auto; 
-    max-height: 80vh;
-    gap: 5px;
-    padding: 5px 0;
-  }
-  
-  .modal-images img { 
-    width: auto; 
-    height: auto; 
-    max-height: none;
-    min-height: 200px;
-    object-fit: cover;
-  }
-  
-  .modal-nav-btn { 
-    display: none; 
-  }
+  /* Modal: stack all 8 images vertically and show scroll hint */
+  .scroll-indicator { display: block; }
+  .modal-images { flex-direction: column; overflow-y: auto; max-height: 60vh; }
+  .modal-images img { width: 100%; height: auto; max-height: none; }
+  .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
 
   /* Center "Send Message" button on mobile */
   .contact-submit { display: block; margin: 0 auto; }
