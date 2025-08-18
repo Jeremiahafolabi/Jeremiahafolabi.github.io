@@ -168,19 +168,16 @@
     <i class="fas fa-arrow-up" aria-hidden="true"></i>
   </a>
 
- <div id="new-modal" class="new-modal">
-  <div class="new-modal-content">
-    <div class="new-modal-header">
-      <h2 id="modal-title">Project Name</h2>
-      <span class="close-new-modal">&times;</span>
-    </div>
-    <div class="new-modal-body">
-      <div id="modal-image-container" class="modal-image-container">
+  <!-- ======= Project Modal ======= -->
+  <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button class="close-modal" aria-label="Close modal">&times;</button>
+      <div class="modal-content">
+        <!-- Small scroll hint for mobile -->
+        <div class="scroll-indicator" aria-hidden="true">
+          <i class="fas fa-angle-double-down"></i> Scroll to view more
         </div>
-      <div class="scroll-indicator">Scroll to view more images</div>
-    </div>
-  </div>
-</div>
+        <div class="modal-images"><!-- Injected by JS --></div>
 
         <!-- Desktop-only nav within current project's 1–8 images -->
         <button class="modal-nav-btn" id="prev-image" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
