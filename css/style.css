@@ -272,29 +272,6 @@ body {
   .section { padding: 60px 0; }
   .section-title { font-size: 2rem; display: block; text-align: center; }
 
-     /* Modal: stack all 8 images vertically and show scroll hint */
-    .scroll-indicator { display: block; }
-    .modal-images {
-      flex-direction: column;
-      overflow-y: auto;
-      /* Add the following two lines for scroll snapping */
-      scroll-snap-type: y mandatory;
-      scroll-padding-top: 0;
-      /* Increase modal height to better contain images */
-      max-height: 80vh; 
-    }
-    .modal-images img {
-      /* Add this property to make each image a snap point */
-      scroll-snap-align: start;
-      /* Make images fill the width for clarity on mobile */
-      width: 100%;
-      height: auto;
-      max-height: none;
-      /* Add some spacing between stacked images */
-      margin-bottom: 20px;
-    }
-    .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
-
   /* Center these titles on mobile */
   #about .section-title,
   #portfolio .section-title,
@@ -350,65 +327,3 @@ body {
   .contact-method { flex-direction: column; align-items: center; text-align: center; }
   .contact-method i { margin-bottom: 10px; }
 }
-// ==================================
-// NEW MODAL SETUP
-// ==================================
-const newModal = document.getElementById('new-modal');
-const closeNewModalBtn = document.querySelector('.close-new-modal');
-const modalTitle = document.getElementById('modal-title');
-const modalImageContainer = document.getElementById('modal-image-container');
-
-// A function to open the new modal
-function openNewModal(projectId) {
-  const project = projects.find(p => p.id === projectId);
-  if (!project) return;
-
-  modalTitle.textContent = project.name;
-  modalImageContainer.innerHTML = ''; // Clear previous images
-
-  // For mobile mode, display all images in a vertical, scrollable stack
-  if (window.matchMedia('(max-width: 768px)').matches) {
-    project.images.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      modalImageContainer.appendChild(img);
-    });
-    // This will force the scroll to the top once the images are loaded
-    // We use a small delay to ensure the modal is fully rendered
-    setTimeout(() => {
-        modalImageContainer.scrollTop = 0;
-    }, 100);
-  } else {
-    // For desktop, just display the first image (or handle as per your desktop logic)
-    const img = document.createElement('img');
-    img.src = project.images[0];
-    modalImageContainer.appendChild(img);
-  }
-
-  newModal.style.display = 'block';
-  document.body.style.overflow = 'hidden'; // Prevents background scrolling
-}
-
-// A function to close the new modal
-function closeNewModal() {
-  newModal.style.display = 'none';
-  document.body.style.overflow = 'auto'; // Re-enables background scrolling
-}
-
-// Event listeners for opening and closing the modal
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('click', (e) => {
-    // Make sure you have a way to get the project ID from your card
-    const projectId = e.currentTarget.getAttribute('data-project-id'); 
-    openNewModal(projectId);
-  });
-});
-
-closeNewModalBtn.addEventListener('click', closeNewModal);
-
-// Close when clicking outside the modal content
-window.addEventListener('click', (e) => {
-  if (e.target === newModal) {
-    closeNewModal();
-  }
-});
