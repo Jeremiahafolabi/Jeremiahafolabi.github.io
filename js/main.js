@@ -260,3 +260,303 @@ document.addEventListener('DOMContentLoaded', function() {
             updateModalImage();
         }
     });
+
+    modalNext.addEventListener('click', function() {
+        if (currentProject && currentImageIndex < currentProject.images.length - 1) {
+            currentImageIndex++;
+            updateModalImage();
+        }
+    });
+
+    // Keyboard navigation for modal
+    document.addEventListener('keydown', function(e) {
+        if (modal.classList.contains('active')) {
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    if (currentProject && currentImageIndex > 0) {
+                        currentImageIndex--;
+                        updateModalImage();
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (currentProject && currentImageIndex < currentProject.images.length - 1) {
+                        currentImageIndex++;
+                        updateModalImage();
+                    }
+                    break;
+            }
+        }
+    });
+
+    // Touch/Swipe support for modal on mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    modal.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    modal.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0 && currentProject && currentImageIndex > 0) {
+                // Swipe right - previous image
+                currentImageIndex--;
+                updateModalImage();
+            } else if (swipeDistance < 0 && currentProject && currentImageIndex < currentProject.images.length - 1) {
+                // Swipe left - next image
+                currentImageIndex++;
+                updateModalImage();
+            }
+        }
+    }
+
+    // Back to Top Button Functionality
+    const backToTopBtn = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Contact Form Functionality with Formspree Integration
+    const contactForm = document.querySelector('.contact-form');
+    const successMessage = document.getElementById('successMessage');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        
+        // Submit to Formspree (replace YOUR_FORM_ID with actual Formspree form ID)
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show success message
+                showSuccessMessage();
+                // Reset form
+                this.reset();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // You can add error handling here
+            alert('There was an error sending your message. Please try again.');
+        });
+    });
+
+    function showSuccessMessage() {
+        successMessage.classList.add('show');
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+        }, 5000);
+    }
+
+    // Lazy Loading for Images
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+
+    // Smooth reveal animations on scroll
+    const revealElements = document.querySelectorAll('.portfolio-item, .testimonial-card, .skill-tag');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        revealObserver.observe(element);
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('.header');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down - hide header
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up - show header
+            header.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Preload critical images for better performance
+    function preloadImage(src) {
+        const img = new Image();
+        img.src = src;
+    }
+
+    // Preload hero image and first few portfolio images
+    preloadImage('profile.jpg');
+    preloadImage('project1.jpg');
+    preloadImage('project2.jpg');
+    preloadImage('uiux1.jpg');
+
+    // Skill tags hover effect enhancement
+    const skillTags = document.querySelectorAll('.skill-tag');
+    skillTags.forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.05)';
+        });
+        
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Portfolio items hover effect enhancement
+    const portfolioItemsHover = document.querySelectorAll('.portfolio-item');
+    portfolioItemsHover.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px)';
+            this.style.boxShadow = '0 25px 50px rgba(255, 152, 0, 0.25)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+
+    // Add loading state to contact form button
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+
+    contactForm.addEventListener('submit', function() {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Re-enable button after 3 seconds (in case of success or error)
+        setTimeout(() => {
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+        }, 3000);
+    });
+
+    // Initialize tooltips for social media icons
+    const socialLinks = document.querySelectorAll('.social-links a, .footer-social a');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            const platform = this.querySelector('i').className.includes('linkedin') ? 'LinkedIn' :
+                           this.querySelector('i').className.includes('dribbble') ? 'Dribbble' :
+                           this.querySelector('i').className.includes('behance') ? 'Behance' : '';
+            
+            if (platform) {
+                this.setAttribute('title', `View my ${platform} profile`);
+            }
+        });
+    });
+
+    // Performance optimization: Debounce scroll events
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Apply debounce to scroll-intensive functions
+    const debouncedScrollHandler = debounce(function() {
+        // Handle scroll-based animations and effects here
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        
+        // Update a progress bar if you add one later
+        // progressBar.style.width = scrollPercent + '%';
+    }, 10);
+
+    window.addEventListener('scroll', debouncedScrollHandler);
+
+    // Add focus management for accessibility
+    const focusableElements = document.querySelectorAll(
+        'a, button, [tabindex]:not([tabindex="-1"]), input, textarea, select'
+    );
+
+    // Trap focus in modal when open
+    modal.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            const modalFocusableElements = modal.querySelectorAll(
+                'button, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = modalFocusableElements[0];
+            const lastElement = modalFocusableElements[modalFocusableElements.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+    });
+
+    // Initialize all functionality when DOM is ready
+    console.log('Portfolio website loaded successfully!');
+    
+    // Add a small delay to ensure smooth initial animations
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 100);
+
+});
