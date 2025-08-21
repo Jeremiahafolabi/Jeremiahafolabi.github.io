@@ -1,446 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Afolabi Jeremiah Boluwatife - Graphic Designer & UI/UX Designer crafting functional designs and user-centered solutions for startups and businesses">
-    <meta name="keywords" content="graphic design, UI/UX design, branding, logo design, web design, product packaging">
-    <meta name="author" content="Afolabi Jeremiah Boluwatife">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Afolabi Jeremiah Boluwatife - Graphic & UI/UX Designer">
-    <meta property="og:description" content="Crafting functional designs and user-centered solutions for startups and businesses">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com">
-    
-    <title>Afolabi Jeremiah Boluwatife - Graphic & UI/UX Designer</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Afolabi Jeremiah - Designer Portfolio</title>
+  <meta name="description" content="Graphic & UI/UX Designer Portfolio"/>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <!-- Social Media Links -->
-            <div class="social-links">
-                <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://dribbble.com/your-profile" target="_blank" rel="noopener noreferrer" aria-label="Dribbble Profile">
-                    <i class="fab fa-dribbble"></i>
-                </a>
-                <a href="https://behance.net/your-profile" target="_blank" rel="noopener noreferrer" aria-label="Behance Profile">
-                    <i class="fab fa-behance"></i>
-                </a>
-            </div>
-            
-            <!-- Navigation -->
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                
-                <!-- Mobile Menu Toggle -->
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
+  <!-- ======= Header ======= -->
+  <header id="main-header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Increased z-index for mobile clickability -->
+        <div class="header-social-icons">
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin"></i></a>
+          <a href="https://dribbble.com" target="_blank" aria-label="Dribbble" rel="noopener"><i class="fab fa-dribbble"></i></a>
+          <a href="https://behance.net" target="_blank" aria-label="Behance" rel="noopener"><i class="fab fa-behance"></i></a>
         </div>
-    </header>
 
-    <!-- Mobile Navigation Overlay -->
-    <div class="mobile-nav-overlay">
-        <ul class="mobile-nav-list">
-            <li><a href="#home" class="mobile-nav-link">Home</a></li>
-            <li><a href="#about" class="mobile-nav-link">About</a></li>
-            <li><a href="#portfolio" class="mobile-nav-link">Portfolio</a></li>
-            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-        </ul>
+        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <nav class="main-nav" aria-label="Primary">
+          <a href="#hero" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+      </div>
     </div>
+  </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-name">Afolabi Jeremiah Boluwatife</h1>
-                        <p class="hero-title">Graphic Designer | UI/UX Designer</p>
-                        <p class="hero-description">Crafting functional designs and user-centered solutions for startups and businesses.</p>
-                        
-                        <div class="hero-buttons">
-                            <a href="#portfolio" class="btn btn-primary">View My Work</a>
-                            <a href="#contact" class="btn btn-secondary">Hire Me</a>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-image">
-                        <div class="profile-frame">
-                            <img src="profile.jpg" alt="Afolabi Jeremiah Boluwatife - Graphic Designer and UI/UX Designer" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2 class="section-title">About Me</h2>
-                        <p class="about-description">I'm a passionate Graphic Designer with a focus on clean, impactful visuals. Currently expanding into UI/UX design to create intuitive, user-centered digital experiences.</p>
-                        
-                        <a href="cv.pdf" download="Afolabi_Jeremiah_CV.pdf" class="btn btn-outline">Download CV</a>
-                    </div>
-                    
-                    <div class="skills">
-                        <h3 class="skills-title">My Skills</h3>
-                        <div class="skills-grid">
-                            <span class="skill-tag">Photoshop</span>
-                            <span class="skill-tag">Illustrator</span>
-                            <span class="skill-tag">Figma</span>
-                            <span class="skill-tag">UI/UX</span>
-                            <span class="skill-tag">Web Design</span>
-                            <span class="skill-tag">Branding</span>
-                            <span class="skill-tag">Logo Design</span>
-                            <span class="skill-tag">Product Packaging</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="portfolio">
-            <div class="container">
-                <h2 class="section-title">My Portfolio</h2>
-                
-                <!-- Portfolio Filter Tabs -->
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="graphic-design">Graphic Design</button>
-                    <button class="filter-btn" data-filter="uiux-design">UI/UX Design</button>
-                </div>
-                
-                <!-- Portfolio Grid -->
-                <div class="portfolio-grid">
-                    <!-- Graphic Design Projects -->
-                    <div class="portfolio-item" data-category="graphic-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=Project+Image" alt="Graphic Design Project 1" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="graphic-1">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-category="graphic-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=Project+Image" alt="Graphic Design Project 2" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="graphic-2">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-category="graphic-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=Project+Image" alt="Graphic Design Project 3" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="graphic-3">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-category="graphic-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=Project+Image" alt="Graphic Design Project 4" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="graphic-4">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-category="graphic-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=Project+Image" alt="Graphic Design Project 5" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="graphic-5">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-category="graphic-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=Project+Image" alt="Graphic Design Project 6" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="graphic-6">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- UI/UX Design Projects -->
-                    <div class="portfolio-item hidden" data-category="uiux-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=UIUX+Project" alt="UI/UX Design Project 1" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="uiux-1">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item hidden" data-category="uiux-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=UIUX+Project" alt="UI/UX Design Project 2" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="uiux-2">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item hidden" data-category="uiux-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=UIUX+Project" alt="UI/UX Design Project 3" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="uiux-3">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item hidden" data-category="uiux-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=UIUX+Project" alt="UI/UX Design Project 4" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="uiux-4">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item hidden" data-category="uiux-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=UIUX+Project" alt="UI/UX Design Project 5" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="uiux-5">View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item hidden" data-category="uiux-design">
-                        <div class="portfolio-card">
-                            <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/400x300/333/666?text=UIUX+Project" alt="UI/UX Design Project 6" loading="lazy">
-                            </div>
-                            <div class="portfolio-overlay">
-                                <h3 class="portfolio-title">Project Title</h3>
-                                <button class="btn btn-small view-project-btn" data-project="uiux-6">View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="testimonials">
-            <div class="container">
-                <h2 class="section-title">What Clients Say</h2>
-                
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Afolabi delivered exceptional designs that perfectly captured our brand vision. His attention to detail and creativity exceeded our expectations."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <h4>Sarah Johnson</h4>
-                            <span>CEO, TechStart Inc.</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Working with Afolabi was a game-changer for our brand. His UI/UX designs transformed our user experience completely."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <h4>Michael Chen</h4>
-                            <span>Founder, Digital Solutions</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Professional, creative, and always on time. Afolabi's designs helped us increase our conversion rates by 40%."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <h4>Emily Davis</h4>
-                            <span>Marketing Director, GrowthCo</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                
-                <div class="contact-content">
-                    <div class="contact-form-container">
-                        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder="Your Name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Your Email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea name="message" placeholder="Your Message" rows="8" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
-                        </form>
-                        
-                        <div class="form-success hidden">
-                            <i class="fas fa-check-circle"></i>
-                            <h3>Message Sent Successfully!</h3>
-                            <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p>hello@example.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>WhatsApp</h4>
-                                <p>+123 456 7890</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Afolabi Jeremiah Boluwatife. All rights reserved.</p>
-                <div class="footer-social">
-                    <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://dribbble.com/your-profile" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">
-                        <i class="fab fa-dribbble"></i>
-                    </a>
-                    <a href="https://behance.net/your-profile" target="_blank" rel="noopener noreferrer" aria-label="Behance">
-                        <i class="fab fa-behance"></i>
-                    </a>
-                </div>
-            </div>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Afolabi Jeremiah Boluwatife</h1>
+          <h2>Graphic Designer | UI/UX Designer</h2>
+          <p class="hero-description">Crafting functional designs and user-centered solutions for startups and businesses.</p>
+          <div class="hero-cta">
+            <a href="#portfolio" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Hire Me</a>
+          </div>
         </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Project Modal -->
-    <div class="modal-overlay">
-        <div class="modal">
-            <button class="modal-close" aria-label="Close modal">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Project Title</h3>
-                    <span class="modal-page-info">Page <span class="current-page">1</span>/<span class="total-pages">8</span></span>
-                </div>
-                
-                <div class="modal-gallery">
-                    <button class="modal-nav prev-btn" aria-label="Previous image">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    
-                    <div class="modal-images">
-                        <!-- Project images will be dynamically loaded here -->
-                    </div>
-                    
-                    <button class="modal-nav next-btn" aria-label="Next image">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                
-                <div class="mobile-scroll-indicator">
-                    <i class="fas fa-arrows-alt-v"></i>
-                    <span>Swipe or scroll to view more images</span>
-                </div>
-            </div>
+        <div class="hero-image">
+          <div class="profile-image-frame">
+            <img src="assets/profile.jpg" alt="Profile Photo" class="profile-image" loading="lazy">
+          </div>
         </div>
+      </div>
     </div>
+  </section>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+  <!-- ======= About Section ======= -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a passionate Graphic Designer with a focus on clean, impactful visuals. Currently expanding into UI/UX design to create intuitive, user-centered digital experiences.</p>
+          <a href="assets/cv.pdf" download="Afolabi_Jeremiah_CV.pdf" class="btn btn-outline">Download CV</a>
+        </div>
+        <div class="skills">
+          <h3>My Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Photoshop</span>
+            <span class="skill-tag">Illustrator</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">UI/UX</span>
+            <span class="skill-tag">Web Design</span>
+            <span class="skill-tag">Branding</span>
+            <!-- Added per request -->
+            <span class="skill-tag">Logo Design</span>
+            <span class="skill-tag">Product Packaging</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Portfolio Section ======= -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <h2 class="section-title">My Portfolio</h2>
+
+      <div class="portfolio-filter" role="tablist" aria-label="Portfolio categories">
+        <button class="filter-btn" data-filter="graphic" role="tab" aria-selected="true">Graphic Design</button>
+        <button class="filter-btn" data-filter="uiux" role="tab" aria-selected="false">UI/UX Design</button>
+      </div>
+
+      <div class="portfolio-grid">
+        <!-- Project cards are injected by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+
+      <div class="contact-content">
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form" novalidate>
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary contact-submit">Send Message</button>
+        </form>
+
+        <!-- Reused but repositioned via CSS to sit centered under the button on desktop -->
+        <div class="contact-info" aria-label="Alternative contact">
+          <div class="contact-method">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:hello@example.com">hello@example.com</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <div>
+              <h3>WhatsApp</h3>
+              <a href="https://wa.me/1234567890" target="_blank" rel="noopener">+123 456 7890</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <ul class="quick-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======= Back to Top Button ======= -->
+  <a href="#hero" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </a>
+
+  <!-- ======= Project Modal ======= -->
+  <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button class="close-modal" aria-label="Close modal">&times;</button>
+      <div class="modal-content">
+        <!-- Small scroll hint for mobile -->
+        <div class="scroll-indicator" aria-hidden="true">
+          <i class="fas fa-angle-double-down"></i> Scroll to view more
+        </div>
+        <div class="modal-images"><!-- Injected by JS --></div>
+
+        <!-- Desktop-only nav within current project's 1–8 images -->
+        <button class="modal-nav-btn" id="prev-image" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-nav-btn" id="next-image" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <!-- Title hidden in modal per requirements (only on placeholders) -->
+      <div class="project-title-container" aria-hidden="true">
+        <h3 id="modal-project-title">Project Title</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Success Modal ======= -->
+  <div id="success-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-container small">
+      <button class="close-modal" aria-label="Close success modal">&times;</button>
+      <div class="modal-content">
+        <div class="success-message">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <h3>Message Sent Successfully!</h3>
+          <p>Thank you for reaching out. I'll get back to you soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= JavaScript ======= -->
+  <script src="js/main.js"></script>
 </body>
 </html>
