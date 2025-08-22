@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentImageIndex = 0;
   let touchStartX = 0;
   let touchEndX = 0;
+  let isScrolling = false;
 
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches;
@@ -163,6 +164,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Update image counter
     totalImagesEl.textContent = currentProject.images.length;
     currentImageEl.textContent = currentImageIndex + 1;
+
+    // Prevent body scrolling
+    document.body.classList.add('no-scroll');
 
     if (isMobile()) {
       // Mobile: stack all images, show scroll hint; nav arrows hidden via CSS
@@ -180,6 +184,14 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Add scroll event to update image counter
       modalImages.addEventListener('scroll', updateMobileImageCounter);
+      
+      // Scroll to the first image immediately
+      setTimeout(() => {
+        const firstImage = modalImages.querySelector('img[data-index="0"]');
+        if (firstImage) {
+          firstImage.scrollIntoView();
+        }
+      }, 50);
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
@@ -194,16 +206,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     modal.classList.add('active');
-    document.body.classList.add('no-scroll');
   }
 
   function handleTouchStart(event) {
     touchStartX = event.changedTouches[0].screenX;
+    isScrolling = false;
   }
 
   function handleTouchEnd(event) {
     touchEndX = event.changedTouches[0].screenX;
-    handleSwipe();
+    
+    // Only handle swipe if not currently scrolling
+    if (!isScrolling) {
+      handleSwipe();
+    }
   }
 
   function handleSwipe() {
@@ -225,43 +241,60 @@ document.addEventListener('DOMContentLoaded', function () {
     let targetIndex;
     
     if (direction === 'next') {
-      targetIndex = (currentImageIndex + 1) % totalImages;
+      targetIndex = Math.min(currentImageIndex + 1, totalImages - 1);
     } else {
-      targetIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+      targetIndex = Math.max(currentImageIndex - 1, 0);
     }
     
-    // Scroll to the target image
-    const targetImage = modalImages.querySelector(`img[data-index="${targetIndex}"]`);
-    if (targetImage) {
-      targetImage.scrollIntoView({ behavior: 'smooth' });
-      currentImageIndex = targetIndex;
-      currentImageEl.textContent = currentImageIndex + 1;
+    // Only navigate if we're not at the boundary
+    if (targetIndex !== currentImageIndex) {
+      // Scroll to the target image
+      const targetImage = modalImages.querySelector(`img[data-index="${targetIndex}"]`);
+      if (targetImage) {
+        targetImage.scrollIntoView({ behavior: 'smooth' });
+        currentImageIndex = targetIndex;
+        currentImageEl.textContent = currentImageIndex + 1;
+      }
     }
   }
 
   function updateMobileImageCounter() {
     if (!currentProject || !isMobile()) return;
     
+    // Set flag to indicate we're scrolling
+    isScrolling = true;
+    
+    // Clear the flag after a short delay
+    clearTimeout(window.scrollTimeout);
+    window.scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+    }, 100);
+    
     // Calculate which image is currently in view
     const images = modalImages.querySelectorAll('img');
     const container = modalImages;
+    const containerRect = container.getBoundingClientRect();
+    const containerCenter = containerRect.top + (containerRect.height / 2);
     
-    let visibleIndex = 0;
+    let closestIndex = 0;
     let minDistance = Infinity;
     
     images.forEach((img, index) => {
-      const rect = img.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      const distance = Math.abs(rect.top - containerRect.top);
+      const imgRect = img.getBoundingClientRect();
+      const imgCenter = imgRect.top + (imgRect.height / 2);
+      const distance = Math.abs(imgCenter - containerCenter);
       
       if (distance < minDistance) {
         minDistance = distance;
-        visibleIndex = index;
+        closestIndex = index;
       }
     });
     
-    currentImageIndex = visibleIndex;
-    currentImageEl.textContent = currentImageIndex + 1;
+    // Only update if the index has changed
+    if (closestIndex !== currentImageIndex) {
+      currentImageIndex = closestIndex;
+      currentImageEl.textContent = currentImageIndex + 1;
+    }
   }
 
   function closeModal() {
@@ -303,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
     showDesktopImage(currentImageIndex - 1);
   });
 
-  nextImageBtn.addEventListener('click', (e) => {
+  nextImageBtn.addEventListener('click', (e) {
     e.stopPropagation();
     if (isMobile() || !currentProject) return;
     showDesktopImage(currentImageIndex + 1);
