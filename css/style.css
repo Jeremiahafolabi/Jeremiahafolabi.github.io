@@ -1,7 +1,10 @@
 /* =========================
    Enhanced CSS - Portfolio & Modal Updates
    ========================= */
-
+/* Prevents scrolling on the body when the modal is active */
+body.no-scroll {
+  overflow: hidden;
+}
 /* Global Styles */
 :root {
   --primary: #ff9800;
