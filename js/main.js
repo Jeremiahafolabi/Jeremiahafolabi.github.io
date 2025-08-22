@@ -148,15 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches;
   }
-
-  function openModal(projectId, startIndex = 0) {
+  
+function openModal(projectId, startIndex = 0) {
     currentProject = projects.find(p => p.id === projectId);
     if (!currentProject) return;
     
-// Reset the scroll position to the top for mobile
-    if (window.innerWidth <= 768) {
-        modalContent.scrollTop = 0;
-    }
     currentImageIndex = startIndex;
     modalImages.innerHTML = '';
 
@@ -168,6 +164,8 @@ document.addEventListener('DOMContentLoaded', function () {
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
+      // Corrected: Reset the scroll position to the top after images are appended
+      modalContent.scrollTop = 0;
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
@@ -178,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
-  }
+}
 
   function closeModal() {
     modal.classList.remove('active');
