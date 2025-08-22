@@ -3,114 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Professional portfolio of [Your Name], showcasing Graphic Design and UI/UX projects." />
-  <title>[Your Name] Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <meta name="description" content="Creative portfolio showcasing graphic design and UI/UX projects." />
+  <meta name="keywords" content="graphic design, UI/UX, portfolio, creative projects" />
+  <meta name="author" content="Your Name" />
+  <link rel="preload" href="assets/images/hero.jpg" as="image" />
   <link rel="stylesheet" href="style.css" />
+  <title>Your Portfolio</title>
 </head>
 <body>
-
-  <!-- Back to Top Button -->
-  <button id="backToTop" aria-label="Back to top">↑</button>
-
-  <!-- Header -->
   <header>
-    <div class="social-icons">
-      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <!-- Add more as needed -->
-    </div>
     <nav>
+      <div class="logo">YourName</div>
+      <div class="hamburger" aria-label="Toggle menu">&#9776;</div>
       <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="cv.pdf" download>Download CV</a></li>
       </ul>
-      <div class="hamburger" aria-label="Menu">&#9776;</div>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <div class="hero-content">
-      <div class="profile-pic">
-        <img src="profile.jpg" alt="Profile picture of [Your Name]" loading="lazy" />
-      </div>
-      <h1>Hello, I'm [Your Name]</h1>
-      <p>Creative Designer & UI/UX Specialist</p>
-    </div>
-  </section>
+  <main>
+    <section id="home">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Explore my work in Graphic Design and UI/UX.</p>
+    </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>[Brief bio goes here]</p>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <h2>My Work</h2>
-    <div class="tabs">
-      <button class="tab active" data-tab="graphic">Graphic Design</button>
-      <button class="tab" data-tab="uiux">UI/UX Design</button>
-    </div>
-    <div class="gallery" id="graphic">
-      <!-- 6 placeholders with editable titles -->
-      <!-- Repeat this block 6 times -->
-      <div class="project-card">
-        <img src="placeholder.jpg" alt="Graphic Design Project" loading="lazy" />
-        <div class="project-title">Project Title</div>
-        <button class="view-btn">Click to view</button>
+    <section id="projects">
+      <div class="tabs">
+        <button class="tab active" data-tab="graphic">Graphic Design</button>
+        <button class="tab" data-tab="uiux">UI/UX</button>
       </div>
-    </div>
-    <div class="gallery hidden" id="uiux">
-      <!-- Same structure as above -->
-    </div>
-  </section>
 
-  <!-- Modal Gallery -->
-  <div id="modal" class="hidden">
-    <button class="close-modal">×</button>
-    <div class="modal-gallery">
-      <!-- 8 images go here -->
-      <button class="nav-arrow left">&lt;</button>
-      <div class="images-container">
-        <!-- Images will be injected via JS -->
+      <div id="graphic" class="gallery">
+        <div class="project">
+          <img src="assets/images/graphic1-1.jpg" alt="Graphic Project 1" loading="lazy" />
+          <button class="view-project" data-project="graphic1">View Project</button>
+        </div>
       </div>
-      <button class="nav-arrow right">&gt;</button>
-    </div>
-    <div class="scroll-indicator">Swipe or scroll to view more</div>
+
+      <div id="uiux" class="gallery hidden">
+        <div class="project">
+          <img src="assets/images/uiux1-1.jpg" alt="UI/UX Project 1" loading="lazy" />
+          <button class="view-project" data-project="uiux1">View Project</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Email: yourname@example.com</p>
+    </section>
+  </main>
+
+  <div id="projectModal" class="modal hidden" role="dialog" aria-modal="true">
+    <button class="close-modal" aria-label="Close modal">✖</button>
+    <div class="modal-images"></div>
+    <button class="nav-arrow left" aria-label="Scroll left">←</button>
+    <button class="nav-arrow right" aria-label="Scroll right">→</button>
   </div>
 
-  <!-- Testimonials Section -->
-  <section id="testimonials">
-    <h2>Testimonials</h2>
-    <div class="testimonial">
-      <p>"[Client feedback goes here]"</p>
-      <span>- Client Name</span>
-    </div>
-  </section>
+  <button id="backToTop" aria-label="Back to top">↑</button>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <form action="https://formspree.io/f/yourformid" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-      <p class="confirmation hidden">Thanks! Your message has been sent.</p>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; [Your Name] 2025. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
