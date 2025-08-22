@@ -3,327 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional portfolio showcasing graphic design and UI/UX design work. Explore creative projects and get in touch for collaborations.">
-    <meta name="keywords" content="graphic design, UI/UX design, portfolio, creative design, web design">
-    <meta name="author" content="Your Name">
-    
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="Your Name - Creative Designer Portfolio">
-    <meta property="og:description" content="Professional portfolio showcasing graphic design and UI/UX design work">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com">
-    <meta property="og:image" content="https://yourwebsite.com/profile.jpg">
-    
-    <title>Your Name - Creative Designer Portfolio</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
+    <title>Your Name | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Your Name",
-        "jobTitle": "Creative Designer",
-        "description": "Professional graphic designer and UI/UX specialist",
-        "url": "https://yourwebsite.com",
-        "sameAs": [
-            "https://linkedin.com/in/yourprofile",
-            "https://twitter.com/yourhandle",
-            "https://instagram.com/yourhandle"
-        ]
-    }
-    </script>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #333;
+            --light-text: #f8fafc;
+            --background: #f1f5f9;
+            --card-background: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background);
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            font-size: 2.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--card-background);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+        }
+
+        .nav-link {
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--light-text);
+        }
+
+        .btn-outline:hover {
+            background: var(--light-text);
+            color: var(--primary-color);
+        }
+
+        .hero-shape {
+            position: absolute;
+            bottom: -5%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill {
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-background);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            background: var(--background);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--card-background);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: var(--shadow);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-link {
+                margin: 1.5rem 0;
+                display: block;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Social Media Links - Top Left -->
-    <div class="social-links" role="navigation" aria-label="Social media links">
-        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://behance.net/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Behance Portfolio">
-            <i class="fab fa-behance"></i>
-        </a>
-    </div>
-
     <!-- Header -->
-    <header class="header" id="header">
-        <nav class="navbar" role="navigation" aria-label="Main navigation">
-            <!-- Logo/Brand -->
-            <div class="logo">
-                <a href="#home" aria-label="Go to homepage">YN</a>
+    <header>
+        <div class="nav-container container">
+            <a href="#" class="logo">Portfolio</a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
-            
-            <!-- Desktop Navigation -->
-            <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#home" role="menuitem">Home</a></li>
-                <li role="none"><a href="#about" role="menuitem">About</a></li>
-                <li role="none"><a href="#portfolio" role="menuitem">Portfolio</a></li>
-                <li role="none"><a href="#testimonials" role="menuitem">Testimonials</a></li>
-                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            
-            <!-- Mobile Hamburger Menu -->
-            <div class="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" tabindex="0">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="profile-image">
-                <img src="profile.jpg" alt="Your Name - Creative Designer Profile Picture" loading="eager">
-            </div>
-            <h1>Hi, I'm <span class="accent-text">Your Name</span></h1>
-            <p class="hero-subtitle">Creative Designer specializing in Graphic Design & UI/UX</p>
-            <p class="hero-description">I craft beautiful digital experiences that blend creativity with functionality. Let's bring your vision to life.</p>
-            <div class="hero-buttons">
-                <a href="#portfolio" class="btn btn-primary" role="button">View My Work</a>
-                <a href="cv.pdf" class="btn btn-secondary" download="YourName-CV.pdf" role="button">
-                    <i class="fas fa-download"></i> Download CV
-                </a>
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Hi, I'm <span style="color: #ffd43b;">Your Name</span></h1>
+            <h2 class="hero-subtitle">A Frontend Developer & UI/UX Designer</h2>
+            <div class="hero-btns">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
             </div>
         </div>
-        <div class="scroll-indicator" aria-hidden="true">
-            <div class="scroll-arrow"></div>
-        </div>
+        <div class="hero-shape"></div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section id="about" class="section">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile Image">
+                </div>
                 <div class="about-text">
-                    <p>I'm a passionate creative designer with over [X] years of experience in graphic design and UI/UX design. I believe in creating designs that not only look beautiful but also solve real problems and enhance user experiences.</p>
-                    <p>My expertise spans across brand identity, digital design, user interface design, and user experience optimization. I'm constantly learning and staying updated with the latest design trends and technologies.</p>
-                    
+                    <h2>Curious about who I am?</h2>
+                    <p>I'm a passionate frontend developer with 5 years of experience creating beautiful, functional websites and applications. I specialize in HTML, CSS, JavaScript, and React.</p>
+                    <p>My approach combines technical expertise with an eye for design, ensuring that the websites I build not only work flawlessly but also provide an exceptional user experience.</p>
+                    <p>When I'm not coding, you can find me hiking, reading tech blogs, or experimenting with new design tools.</p>
                     <div class="skills">
-                        <h3>Skills & Expertise</h3>
-                        <div class="skills-grid">
-                            <div class="skill-item">
-                                <i class="fas fa-palette"></i>
-                                <span>Graphic Design</span>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-mobile-alt"></i>
-                                <span>UI/UX Design</span>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-paint-brush"></i>
-                                <span>Brand Identity</span>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-code"></i>
-                                <span>Web Design</span>
-                            </div>
-                        </div>
+                        <span class="skill">HTML</span>
+                        <span class="skill">CSS</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">React</span>
+                        <span class="skill">UI/UX Design</span>
+                        <span class="skill">Responsive Design</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
+    <!-- Projects Section -->
+    <section id="projects" class="section" style="background: #f8fafc;">
         <div class="container">
-            <h2 class="section-title">My Portfolio</h2>
-            
-            <!-- Portfolio Tabs -->
-            <div class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
-                <button class="tab-button active" data-tab="graphic-design" role="tab" aria-selected="true" aria-controls="graphic-design-panel">Graphic Design</button>
-                <button class="tab-button" data-tab="uiux-design" role="tab" aria-selected="false" aria-controls="uiux-design-panel">UI/UX Design</button>
-            </div>
-            
-            <!-- Graphic Design Portfolio -->
-            <div class="portfolio-content active" id="graphic-design-panel" role="tabpanel" aria-labelledby="graphic-design-tab">
-                <div class="portfolio-grid">
-                    <!-- Project placeholders for Graphic Design -->
-                    <div class="portfolio-item" data-project="graphic-1">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=Graphic+Project+1" alt="Graphic Design Project 1" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Brand Identity Design</div>
-                                <button class="view-project-btn" aria-label="View Graphic Design Project 1">Click to View</button>
-                            </div>
-                        </div>
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Project 1">
                     </div>
-                    
-                    <div class="portfolio-item" data-project="graphic-2">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=Graphic+Project+2" alt="Graphic Design Project 2" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Logo Design</div>
-                                <button class="view-project-btn" aria-label="View Graphic Design Project 2">Click to View</button>
-                            </div>
+                    <div class="project-info">
+                        <h3 class="project-title">E-Commerce Website</h3>
+                        <p class="project-desc">A fully responsive e-commerce platform with product filtering, cart functionality, and secure checkout.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
                         </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="graphic-3">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=Graphic+Project+3" alt="Graphic Design Project 3" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Print Design</div>
-                                <button class="view-project-btn" aria-label="View Graphic Design Project 3">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="graphic-4">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=Graphic+Project+4" alt="Graphic Design Project 4" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Social Media Design</div>
-                                <button class="view-project-btn" aria-label="View Graphic Design Project 4">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="graphic-5">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=Graphic+Project+5" alt="Graphic Design Project 5" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Packaging Design</div>
-                                <button class="view-project-btn" aria-label="View Graphic Design Project 5">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="graphic-6">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=Graphic+Project+6" alt="Graphic Design Project 6" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Editorial Design</div>
-                                <button class="view-project-btn" aria-label="View Graphic Design Project 6">Click to View</button>
-                            </div>
-                        </div>
+                        <a href="#" class="btn">View Project</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- UI/UX Design Portfolio -->
-            <div class="portfolio-content" id="uiux-design-panel" role="tabpanel" aria-labelledby="uiux-design-tab">
-                <div class="portfolio-grid">
-                    <!-- Project placeholders for UI/UX Design -->
-                    <div class="portfolio-item" data-project="uiux-1">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=UIUX+Project+1" alt="UI/UX Design Project 1" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Mobile App Design</div>
-                                <button class="view-project-btn" aria-label="View UI/UX Design Project 1">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="uiux-2">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=UIUX+Project+2" alt="UI/UX Design Project 2" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Website Redesign</div>
-                                <button class="view-project-btn" aria-label="View UI/UX Design Project 2">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="uiux-3">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=UIUX+Project+3" alt="UI/UX Design Project 3" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">E-commerce Platform</div>
-                                <button class="view-project-btn" aria-label="View UI/UX Design Project 3">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="uiux-4">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=UIUX+Project+4" alt="UI/UX Design Project 4" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Dashboard Design</div>
-                                <button class="view-project-btn" aria-label="View UI/UX Design Project 4">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="uiux-5">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=UIUX+Project+5" alt="UI/UX Design Project 5" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">SaaS Application</div>
-                                <button class="view-project-btn" aria-label="View UI/UX Design Project 5">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item" data-project="uiux-6">
-                        <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/400x300/333333/ffffff?text=UIUX+Project+6" alt="UI/UX Design Project 6" loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="project-title">Landing Page</div>
-                                <button class="view-project-btn" aria-label="View UI/UX Design Project 6">Click to View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Clients Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p>"Exceptional work and great attention to detail. The design exceeded our expectations and perfectly captured our brand essence."</p>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 2">
                     </div>
-                    <div class="testimonial-author">
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <span>CEO, Tech Startup</span>
+                    <div class="project-info">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p class="project-desc">A drag-and-drop task management application with user authentication and real-time updates.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Vue.js</span>
+                            <span class="project-tag">Firebase</span>
+                            <span class="project-tag">CSS</span>
                         </div>
+                        <a href="#" class="btn">View Project</a>
                     </div>
                 </div>
-                
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p>"Professional, creative, and delivered on time. The UI/UX design significantly improved our user engagement rates."</p>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Project 3">
                     </div>
-                    <div class="testimonial-author">
-                        <div class="author-info">
-                            <h4>Mike Chen</h4>
-                            <span>Product Manager, E-commerce</span>
+                    <div class="project-info">
+                        <h3 class="project-title">Financial Dashboard</h3>
+                        <p class="project-desc">An interactive dashboard for visualizing financial data with charts, graphs, and export functionality.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">D3.js</span>
+                            <span class="project-tag">Material UI</span>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <p>"Amazing graphic design skills! The brand identity created for us stands out and truly represents our values."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-info">
-                            <h4>Emily Rodriguez</h4>
-                            <span>Marketing Director, Agency</span>
-                        </div>
+                        <a href="#" class="btn">View Project</a>
                     </div>
                 </div>
             </div>
@@ -331,145 +546,95 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section id="contact" class="section">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
+            <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Let's Work Together</h3>
-                    <p>I'm always interested in new opportunities and exciting projects. Whether you need a complete brand identity or a user-friendly interface, I'm here to help bring your vision to life.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>hello@yourname.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
-                        </div>
-                        <div class="contact-item">
+                    <div class="contact-item">
+                        <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Your City, Country</span>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>San Francisco, California</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>your.email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (123) 456-7890</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-form">
-                    <!-- Formspree Integration -->
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required aria-describedby="name-error">
-                            <span class="error-message" id="name-error"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required aria-describedby="email-error">
-                            <span class="error-message" id="email-error"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required aria-describedby="subject-error">
-                            <span class="error-message" id="subject-error"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
-                            <span class="error-message" id="message-error"></span>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" id="submit-btn">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-loading" style="display: none;">Sending...</span>
-                        </button>
-                    </form>
-                    
-                    <!-- Success Message -->
-                    <div class="form-success" id="form-success" style="display: none;">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Message Sent Successfully!</h3>
-                        <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="Your Name" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-input" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2024 Your Name. All rights reserved. | Designed with passion and creativity.</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://behance.net/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Behance">
-                        <i class="fab fa-behance"></i>
-                    </a>
-                </div>
+            <div class="logo" style="color: var(--light-text);">Portfolio</div>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
             </div>
+            <p class="copyright">&copy; 2023 Your Name. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
 
-    <!-- Project Modal -->
-    <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-overlay" aria-hidden="true"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Project Gallery</h3>
-                <button class="modal-close" aria-label="Close modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Desktop: Horizontal scrolling with navigation -->
-                <div class="desktop-gallery">
-                    <button class="gallery-nav prev" aria-label="Previous image">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="gallery-container">
-                        <div class="gallery-track" id="gallery-track">
-                            <!-- Images will be dynamically loaded here -->
-                        </div>
-                    </div>
-                    <button class="gallery-nav next" aria-label="Next image">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                
-                <!-- Mobile: Vertical scrolling -->
-                <div class="mobile-gallery">
-                    <div class="scroll-hint">
-                        <i class="fas fa-arrows-alt-v"></i>
-                        <span>Scroll to view all images</span>
-                    </div>
-                    <div class="mobile-gallery-container" id="mobile-gallery-container">
-                        <!-- Images will be dynamically loaded here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+        // Close mobile menu when clicking on a nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Form submission (for demonstration purposes)
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for your message! This is a demo form, so your message wasn\'t actually sent.');
+            contactForm.reset();
+        });
+    </script>
 </body>
 </html>
