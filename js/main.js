@@ -152,7 +152,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function openModal(projectId, startIndex = 0) {
     currentProject = projects.find(p => p.id === projectId);
     if (!currentProject) return;
-
+    
+// Reset the scroll position to the top for mobile
+    if (window.innerWidth <= 768) {
+        modalContent.scrollTop = 0;
+    }
     currentImageIndex = startIndex;
     modalImages.innerHTML = '';
 
