@@ -199,7 +199,7 @@ body {
 
 .modal-container {
   background: var(--card-bg); border-radius: 15px; width: 90%; max-width: 900px;
-  overflow: hidden; position: relative; z-index: 2; padding: 30px;
+  max-height: 90vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
@@ -230,7 +230,7 @@ body {
 }
 .modal-images img {
   border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 70vh; width: auto; height: auto;
+  width: auto; height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
@@ -308,7 +308,7 @@ body {
 
   /* Modal: stack all 8 images vertically and show scroll hint */
   .scroll-indicator { display: block; }
-  .modal-images { flex-direction: column; overflow-y: auto; }
+  .modal-images { flex-direction: column; overflow-y: auto; max-height: 60vh; }
   .modal-images img { width: 100%; height: auto; max-height: none; }
   .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
 
