@@ -230,7 +230,7 @@ body {
 }
 .modal-images img {
   border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  width: auto; height: auto;
+  max-height: 70vh; width: auto; height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
@@ -308,8 +308,26 @@ body {
 
   /* Modal: stack all 8 images vertically and show scroll hint */
   .scroll-indicator { display: block; }
-  .modal-images { flex-direction: column; overflow-y: auto; max-height: 60vh; }
-  .modal-images img { width: 100%; height: auto; max-height: none; }
+
+  /* CORRECTED: Removed overflow from images container, added to modal-content */
+  .modal-images { 
+    flex-direction: column; 
+    /* No overflow-y: auto here */
+  }
+
+  /* CORRECTED: The parent container for modal-images handles the scroll */
+  .modal-content {
+    overflow-y: auto;
+    max-height: 65vh; /* Sets the scrollable area height */
+  }
+
+  /* CORRECTED: Removed max-height from image element, allowing it to take full height */
+  .modal-images img { 
+    width: 100%; 
+    height: auto; 
+    max-height: none; 
+  }
+  
   .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
 
   /* Center "Send Message" button on mobile */
