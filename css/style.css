@@ -30,6 +30,14 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent body scrolling when modal is open */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .section { padding: 80px 0; }
 
@@ -281,25 +289,42 @@ body {
 /* Modal */
 .modal {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center;
   z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition);
+  overflow: hidden;
 }
 .modal.active { opacity: 1; visibility: visible; }
 
 .modal-container {
-  background: var(--card-bg); border-radius: 15px; width: 90%; max-width: 900px;
-  max-height: 90vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
+  background: var(--card-bg); border-radius: 15px; width: 95%; 
+  max-height: 95vh; overflow: hidden; position: relative; z-index: 2; padding: 20px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
 
 .close-modal {
-  position: absolute; top: 20px; right: 20px; font-size: 1.5rem; color: var(--text);
+  position: absolute; top: 15px; right: 15px; font-size: 1.8rem; color: var(--text);
   cursor: pointer; background: none; border: none; transition: var(--transition); z-index: 4;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
 }
-.close-modal:hover { color: var(--primary); }
+.close-modal:hover { color: var(--primary); background: rgba(0,0,0,0.7); }
 
-.modal-content { position: relative; margin: 10px 0 0; }
+.modal-content { 
+  position: relative; 
+  margin: 10px 0 0; 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
 /* Scroll hint for mobile */
 .scroll-indicator {
@@ -313,13 +338,23 @@ body {
 /* Image area */
 .modal-images {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 15px;
   align-items: center;
-  justify-content: center;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  padding: 5px;
 }
 .modal-images img {
-  border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 70vh; width: auto; height: auto;
+  border-radius: 10px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 100%;
+  height: auto;
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 /* Desktop-only nav arrows that stay visible */
@@ -341,7 +376,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: var(--overlay-black);
-  padding: 5px 15px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
   color: var(--text);
@@ -360,6 +395,26 @@ body {
   .contact-info {
     flex-direction: row; justify-content: center; align-items: center;
     gap: 60px; margin-top: 20px;
+  }
+  
+  /* Desktop modal adjustments */
+  .modal-container {
+    width: 90%; 
+    max-width: 900px;
+    padding: 30px;
+  }
+  
+  .modal-images {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .modal-images img {
+    width: auto;
+    max-height: 70vh;
+    max-width: 100%;
   }
 }
 
@@ -415,22 +470,30 @@ body {
 
   .quick-links { flex-direction: column; gap: 15px; align-items: center; }
 
-  /* Modal: stack all 8 images vertically and show scroll hint */
-  .scroll-indicator { display: block; }
+  /* Modal adjustments for mobile */
+  .modal-container {
+    width: 95%;
+    height: 90vh;
+    padding: 15px;
+  }
+  
+  .scroll-indicator { 
+    display: block;
+    margin-bottom: 15px;
+  }
+  
   .modal-images { 
     flex-direction: column; 
-    overflow-y: auto; 
-    max-height: 60vh; 
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 5px;
   }
+  
   .modal-images img { 
-    width: 100%; 
-    height: auto; 
-    max-height: none;
-    scroll-snap-align: start;
+    width: 100%;
+    height: auto;
   }
-  .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
+  
+  .modal-nav-btn { display: none; }
   
   /* Show mobile image counter */
   .mobile-image-counter {
@@ -464,4 +527,19 @@ body {
 
   .contact-method { flex-direction: column; align-items: center; text-align: center; }
   .contact-method i { margin-bottom: 10px; }
+  
+  /* Even smaller modal for very small devices */
+  .modal-container {
+    width: 98%;
+    height: 85vh;
+    padding: 10px;
+  }
+  
+  .close-modal {
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
+  }
 }
