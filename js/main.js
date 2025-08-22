@@ -141,14 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const prevImageBtn = document.getElementById('prev-image');
   const nextImageBtn = document.getElementById('next-image');
   const successModal = document.getElementById('success-modal');
-  const currentImageEl = document.getElementById('current-image');
-  const totalImagesEl = document.getElementById('total-images');
 
   let currentProject = null;
   let currentImageIndex = 0;
-  let touchStartX = 0;
-  let touchEndX = 0;
-  let isScrolling = false;
 
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches;
@@ -160,141 +155,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     currentImageIndex = startIndex;
     modalImages.innerHTML = '';
-    
-    // Update image counter
-    totalImagesEl.textContent = currentProject.images.length;
-    currentImageEl.textContent = currentImageIndex + 1;
-
-    // Prevent body scrolling
-    document.body.classList.add('no-scroll');
 
     if (isMobile()) {
-      // Mobile: stack all images, show scroll hint; nav arrows hidden via CSS
+      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
       currentProject.images.forEach((src, idx) => {
         const img = document.createElement('img');
         img.src = src;
         img.alt = `Project image ${idx + 1}`;
-        img.dataset.index = idx;
         modalImages.appendChild(img);
       });
-      
-      // Add touch events for mobile swipe navigation
-      modalImages.addEventListener('touchstart', handleTouchStart, false);
-      modalImages.addEventListener('touchend', handleTouchEnd, false);
-      
-      // Add scroll event to update image counter
-      modalImages.addEventListener('scroll', updateMobileImageCounter);
-      
-      // Scroll to the first image immediately
-      setTimeout(() => {
-        const firstImage = modalImages.querySelector('img[data-index="0"]');
-        if (firstImage) {
-          firstImage.scrollIntoView();
-        }
-      }, 50);
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
       img.src = currentProject.images[currentImageIndex];
       img.alt = `Project image ${currentImageIndex + 1}`;
       modalImages.appendChild(img);
-      
-      // Remove touch events for desktop
-      modalImages.removeEventListener('touchstart', handleTouchStart, false);
-      modalImages.removeEventListener('touchend', handleTouchEnd, false);
-      modalImages.removeEventListener('scroll', updateMobileImageCounter);
     }
 
     modal.classList.add('active');
-  }
-
-  function handleTouchStart(event) {
-    touchStartX = event.changedTouches[0].screenX;
-    isScrolling = false;
-  }
-
-  function handleTouchEnd(event) {
-    touchEndX = event.changedTouches[0].screenX;
-    
-    // Only handle swipe if not currently scrolling
-    if (!isScrolling) {
-      handleSwipe();
-    }
-  }
-
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    
-    if (touchEndX < touchStartX - swipeThreshold) {
-      // Swipe left - next image
-      navigateMobileImages('next');
-    } else if (touchEndX > touchStartX + swipeThreshold) {
-      // Swipe right - previous image
-      navigateMobileImages('prev');
-    }
-  }
-
-  function navigateMobileImages(direction) {
-    if (!currentProject) return;
-    
-    const totalImages = currentProject.images.length;
-    let targetIndex;
-    
-    if (direction === 'next') {
-      targetIndex = Math.min(currentImageIndex + 1, totalImages - 1);
-    } else {
-      targetIndex = Math.max(currentImageIndex - 1, 0);
-    }
-    
-    // Only navigate if we're not at the boundary
-    if (targetIndex !== currentImageIndex) {
-      // Scroll to the target image
-      const targetImage = modalImages.querySelector(`img[data-index="${targetIndex}"]`);
-      if (targetImage) {
-        targetImage.scrollIntoView({ behavior: 'smooth' });
-        currentImageIndex = targetIndex;
-        currentImageEl.textContent = currentImageIndex + 1;
-      }
-    }
-  }
-
-  function updateMobileImageCounter() {
-    if (!currentProject || !isMobile()) return;
-    
-    // Set flag to indicate we're scrolling
-    isScrolling = true;
-    
-    // Clear the flag after a short delay
-    clearTimeout(window.scrollTimeout);
-    window.scrollTimeout = setTimeout(() => {
-      isScrolling = false;
-    }, 100);
-    
-    // Calculate which image is currently in view
-    const images = modalImages.querySelectorAll('img');
-    const container = modalImages;
-    const containerRect = container.getBoundingClientRect();
-    const containerCenter = containerRect.top + (containerRect.height / 2);
-    
-    let closestIndex = 0;
-    let minDistance = Infinity;
-    
-    images.forEach((img, index) => {
-      const imgRect = img.getBoundingClientRect();
-      const imgCenter = imgRect.top + (imgRect.height / 2);
-      const distance = Math.abs(imgCenter - containerCenter);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
-      }
-    });
-    
-    // Only update if the index has changed
-    if (closestIndex !== currentImageIndex) {
-      currentImageIndex = closestIndex;
-      currentImageEl.textContent = currentImageIndex + 1;
-    }
+    document.body.classList.add('no-scroll');
   }
 
   function closeModal() {
@@ -303,11 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.remove('no-scroll');
     currentProject = null;
     currentImageIndex = 0;
-    
-    // Clean up event listeners
-    modalImages.removeEventListener('touchstart', handleTouchStart, false);
-    modalImages.removeEventListener('touchend', handleTouchEnd, false);
-    modalImages.removeEventListener('scroll', updateMobileImageCounter);
   }
 
   // Close modal buttons
@@ -336,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
     showDesktopImage(currentImageIndex - 1);
   });
 
-  nextImageBtn.addEventListener('click', (e) {
+  nextImageBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (isMobile() || !currentProject) return;
     showDesktopImage(currentImageIndex + 1);
