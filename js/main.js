@@ -164,8 +164,7 @@ function openModal(projectId, startIndex = 0) {
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
       });
-      // Corrected: Reset the scroll position to the top after images are appended
-      modalContent.scrollTop = 0;
+      
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
