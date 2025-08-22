@@ -308,7 +308,7 @@ body {
 
   /* Modal: stack all 8 images vertically and show scroll hint */
   .scroll-indicator { display: block; }
-  .modal-images { flex-direction: column; overflow-y: auto; max-height: 60vh; }
+  .modal-images { flex-direction: column; overflow-y: auto; }
   .modal-images img { width: 100%; height: auto; max-height: none; }
   .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
 
