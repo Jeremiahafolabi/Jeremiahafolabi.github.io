@@ -163,12 +163,17 @@ function openModal(projectId, startIndex = 0) {
         img.src = src;
         img.alt = `Project image ${idx + 1}`;
         modalImages.appendChild(img);
+
+        // Check if this is the last image
+        if (idx === currentProject.images.length - 1) {
+          // Add a load event listener to the last image
+          img.onload = () => {
+            modalContent.scrollTop = 0;
+            console.log("Scroll position has been reset to the top.");
+          };
+        }
       });
       
-      // Corrected: Reset the scroll position to the top after images are appended, with a slight delay
-      setTimeout(() => {
-        modalContent.scrollTop = 0;
-      }, 100); // 100ms delay to allow images to load
     } else {
       // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
