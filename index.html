@@ -523,17 +523,20 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Contact Section */
+        /* Contact Section - CENTERED FORM */
         .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
         }
 
         .contact-info {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            width: 100%;
         }
 
         .contact-item {
@@ -567,6 +570,9 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .form-group {
@@ -600,7 +606,7 @@
         }
 
         .form-submit {
-            align-self: flex-start;
+            align-self: center;
         }
 
         /* Footer */
@@ -689,8 +695,7 @@
         }
 
         @media (max-width: 900px) {
-            .about-content,
-            .contact-container {
+            .about-content {
                 grid-template-columns: 1fr;
             }
             
@@ -712,6 +717,13 @@
             
             .hero-btns {
                 justify-content: center;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 2rem;
             }
         }
 
@@ -789,6 +801,11 @@
             
             .gallery-nav {
                 flex-wrap: wrap;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -965,7 +982,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section - CENTERED FORM -->
     <section id="contact" class="section">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
