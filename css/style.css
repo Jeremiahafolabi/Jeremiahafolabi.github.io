@@ -205,8 +205,9 @@ body {
 .modal-container.small { max-width: 500px; padding: 40px; }
 
 .close-modal {
-  position: absolute; top: 20px; right: 20px; font-size: 1.5rem; color: var(--text);
-  cursor: pointer; background: none; border: none; transition: var(--transition); z-index: 4;
+  position: absolute; top: 15px; right: 15px; font-size: 2rem; color: #000;
+  cursor: pointer; background: var(--primary); border: none; border-radius: 50%;  width: 45px; 
+  height: 45px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); z-index: 200;
 }
 .close-modal:hover { color: var(--primary); }
 
@@ -318,7 +319,7 @@ body {
   /* CORRECTED: The parent container for modal-images handles the scroll */
   .modal-content {
     overflow-y: auto;
-    max-height: 65vh; /* Sets the scrollable area height */
+    max-height: 85vh; /* Sets the scrollable area height */
   }
 
   /* CORRECTED: Removed max-height from image element, allowing it to take full height */
