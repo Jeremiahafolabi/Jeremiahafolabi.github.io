@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
-
+const modalContent = document.querySelector('.modal-content');
   mobileMenu.addEventListener('click', () => {
     const expanded = mobileMenu.getAttribute('aria-expanded') === 'true';
     mobileMenu.setAttribute('aria-expanded', String(!expanded));
@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
   modal.classList.add('active');
   document.body.classList.add('no-scroll');
 }
+
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
