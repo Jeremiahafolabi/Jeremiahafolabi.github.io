@@ -149,43 +149,40 @@ document.addEventListener('DOMContentLoaded', function () {
     return window.matchMedia('(max-width: 768px)').matches;
   }
   
-function openModal(projectId, startIndex = 0) {
-    currentProject = projects.find(p => p.id === projectId);
-    if (!currentProject) return;
-    
-    currentImageIndex = startIndex;
-    modalImages.innerHTML = '';
+function openModal(projectId) {
+  currentProject = projects.find(p => p.id === projectId);
+  if (!currentProject) return;
 
-    if (isMobile()) {
-      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
-      currentProject.images.forEach((src, idx) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Project image ${idx + 1}`;
-        modalImages.appendChild(img);
+  // ✅ Always reset to the first image
+  currentImageIndex = 0;
+  modalImages.innerHTML = '';
 
-        // Check if this is the last image
-        if (idx === currentProject.images.length - 1) {
-          // Add a load event listener to the last image
-          img.onload = () => {
-            modalContent.scrollTop = 0;
-            console.log("Scroll position has been reset to the top.");
-          };
-        }
-      });
-      
-    } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
+  if (isMobile()) {
+    // Mobile: stack all images; always start from the top (image 1)
+    currentProject.images.forEach((src, idx) => {
       const img = document.createElement('img');
-      img.src = currentProject.images[currentImageIndex];
-      img.alt = `Project image ${currentImageIndex + 1}`;
+      img.src = src;
+      img.alt = Project image ${idx + 1};
       modalImages.appendChild(img);
-    }
+    });
 
-    modal.classList.add('active');
-    document.body.classList.add('no-scroll');
+    // Force scroll position to the very top (so image 1 is visible)
+    setTimeout(() => {
+      modalImages.scrollTop = 0;
+    }, 50);
+
+  } else {
+    // Desktop: show only one image at a time
+    const img = document.createElement('img');
+    img.src = currentProject.images[currentImageIndex];
+    img.alt = Project image ${currentImageIndex + 1};
+    modalImages.appendChild(img);
+  }
+
+  modal.classList.add('active');
+  document.body.classList.add('no-scroll');
 }
-
+  
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
