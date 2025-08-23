@@ -7,6 +7,7 @@ body.no-scroll {
 }
 /* Global Styles */
 :root {
+  --crimson-red: #a10e2d;
   --primary: #ff9800;
   --primary-hover: #ffb74d;
   --secondary: #00bfa6;
@@ -184,7 +185,7 @@ body {
 /* Back to Top */
 .back-to-top {
   position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-  background: var(--primary); color: #000; border-radius: 50%;
+  background: var(--crimson-red); color: #000; border-radius: 50%;
   display: flex; align-items: center; justify-content: center; text-decoration: none;
   opacity: 0; visibility: hidden; transition: var(--transition); z-index: 999;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
