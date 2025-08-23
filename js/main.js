@@ -148,41 +148,35 @@ document.addEventListener('DOMContentLoaded', function () {
   function isMobile() {
     return window.matchMedia('(max-width: 768px)').matches;
   }
-  
-function openModal(projectId) {
+
+  function openModal(projectId, startIndex = 0) {
   currentProject = projects.find(p => p.id === projectId);
   if (!currentProject) return;
 
-  // ✅ Always reset to the first image
-  currentImageIndex = 0;
+  currentImageIndex = startIndex;
   modalImages.innerHTML = '';
 
   if (isMobile()) {
-    // Mobile: stack all images; always start from the top (image 1)
+    // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
     currentProject.images.forEach((src, idx) => {
       const img = document.createElement('img');
       img.src = src;
-      img.alt = Project image ${idx + 1};
+      img.alt = `Project image ${idx + 1}`;
       modalImages.appendChild(img);
     });
-
-    // Force scroll position to the very top (so image 1 is visible)
-    setTimeout(() => {
-      modalImages.scrollTop = 0;
-    }, 50);
-
+    // This line will reset the scroll position to the top
+    modalContent.scrollTop = 0;
   } else {
-    // Desktop: show only one image at a time
+    // Desktop: show only one image at a time; nav arrows cycle within THIS project only
     const img = document.createElement('img');
     img.src = currentProject.images[currentImageIndex];
-    img.alt = Project image ${currentImageIndex + 1};
+    img.alt = `Project image ${currentImageIndex + 1}`;
     modalImages.appendChild(img);
   }
 
   modal.classList.add('active');
   document.body.classList.add('no-scroll');
 }
-  
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
