@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Add this line to reset the scroll position on page load
+  window.scrollTo(0, 0);
+   
    // ======================\
   // Page Loader
   // ======================\
