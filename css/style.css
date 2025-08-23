@@ -162,7 +162,7 @@ body {
 }
 .filter-btn {
   padding: 8px 20px; background: transparent; color: var(--text);
-  border: 2px solid var(--border); border-radius: 50px; cursor: pointer; transition: var(--transition); font-weight: 500;
+  border: 2px solid var(--border); border-radius: 50px; cursor: pointer; transition: var(--transition); font-weight: 700;
 }
 .filter-btn:hover, .filter-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
 
