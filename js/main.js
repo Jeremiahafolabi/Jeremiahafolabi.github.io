@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
-const modalContent = document.querySelector('.modal-content');
+
   mobileMenu.addEventListener('click', () => {
     const expanded = mobileMenu.getAttribute('aria-expanded') === 'true';
     mobileMenu.setAttribute('aria-expanded', String(!expanded));
@@ -150,33 +150,31 @@ const modalContent = document.querySelector('.modal-content');
   }
 
   function openModal(projectId, startIndex = 0) {
-  currentProject = projects.find(p => p.id === projectId);
-  if (!currentProject) return;
+    currentProject = projects.find(p => p.id === projectId);
+    if (!currentProject) return;
 
-  currentImageIndex = startIndex;
-  modalImages.innerHTML = '';
+    currentImageIndex = startIndex;
+    modalImages.innerHTML = '';
 
-  if (isMobile()) {
-    // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
-    currentProject.images.forEach((src, idx) => {
+    if (isMobile()) {
+      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
+      currentProject.images.forEach((src, idx) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Project image ${idx + 1}`;
+        modalImages.appendChild(img);
+      });
+    } else {
+      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
       const img = document.createElement('img');
-      img.src = src;
-      img.alt = `Project image ${idx + 1}`;
+      img.src = currentProject.images[currentImageIndex];
+      img.alt = `Project image ${currentImageIndex + 1}`;
       modalImages.appendChild(img);
-    });
-    // This line will reset the scroll position to the top
-    modalContent.scrollTop = 0;
-  } else {
-    // Desktop: show only one image at a time; nav arrows cycle within THIS project only
-    const img = document.createElement('img');
-    img.src = currentProject.images[currentImageIndex];
-    img.alt = `Project image ${currentImageIndex + 1}`;
-    modalImages.appendChild(img);
-  }
+    }
 
-  modal.classList.add('active');
-  document.body.classList.add('no-scroll');
-}
+    modal.classList.add('active');
+    document.body.classList.add('no-scroll');
+  }
 
   function closeModal() {
     modal.classList.remove('active');
