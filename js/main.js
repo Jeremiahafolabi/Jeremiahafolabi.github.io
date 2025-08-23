@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
+   // ======================\
+  // Page Loader
+  // ======================\
+  const pageLoader = document.getElementById('page-loader');
+
+  // Hide the loader once the page content is fully loaded
+  window.addEventListener('load', () => {
+    if (pageLoader) {
+      pageLoader.classList.add('hidden');
+    }
+  });
+  
   // ======================
   // Mobile Navigation
   // ======================
