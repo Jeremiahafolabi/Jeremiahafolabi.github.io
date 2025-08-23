@@ -156,26 +156,23 @@ document.addEventListener('DOMContentLoaded', function () {
     currentImageIndex = startIndex;
     modalImages.innerHTML = '';
 
-    if (isMobile()) {
-      // Mobile: stack all 8 images, show scroll hint; nav arrows hidden via CSS
-      currentProject.images.forEach((src, idx) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Project image ${idx + 1}`;
-        modalImages.appendChild(img);
-      });
-    } else {
-      // Desktop: show only one image at a time; nav arrows cycle within THIS project only
-      const img = document.createElement('img');
-      img.src = currentProject.images[currentImageIndex];
-      img.alt = `Project image ${currentImageIndex + 1}`;
-      modalImages.appendChild(img);
-    }
+    // Consolidated logic for both mobile and desktop
+    const img = document.createElement('img');
+    img.src = currentProject.images[currentImageIndex];
+    img.alt = `Project image ${currentImageIndex + 1}`;
+    modalImages.appendChild(img);
 
     modal.classList.add('active');
     document.body.classList.add('no-scroll');
+    
+    // Check if it's mobile to show the scroll hint
+    if (isMobile()) {
+      modal.querySelector('.scroll-indicator').style.display = 'block';
+    } else {
+      modal.querySelector('.scroll-indicator').style.display = 'none';
+    }
   }
-
+  
   function closeModal() {
     modal.classList.remove('active');
     successModal.classList.remove('active');
