@@ -323,29 +323,6 @@ body {
 
   /* Also center "My Skills" heading on mobile */
   .skills h3 { text-align: center; }
-   
-   /* Make the modal full-screen for mobile devices */
-  .modal-container {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-    max-height: 100vh;
-    border-radius: 0;
-  }
-
-  /* Make images fill the modal container without padding */
-  .modal-images {
-    width: 100%;
-    padding: 0;
-  }
-   
-  .modal-images img {
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
 
   .main-nav {
     position: fixed; top: 80px; left: 0; width: 100%; background: var(--darker);
