@@ -313,15 +313,14 @@ body {
 
 /* Mobile & small tablets */
 @media (max-width: 768px) {
+  /* General Mobile Styles */
   .section { padding: 60px 0; }
   .section-title { font-size: 2rem; display: block; text-align: center; }
-
-  /* Center these titles on mobile */
+  
   #about .section-title,
   #portfolio .section-title,
   #contact .section-title { text-align: center; }
-
-  /* Also center "My Skills" heading on mobile */
+  
   .skills h3 { text-align: center; }
 
   .main-nav {
@@ -350,19 +349,16 @@ body {
 
   .quick-links { flex-direction: column; gap: 15px; align-items: center; }
 
-  /* Modal: stack all 8 images vertically and show scroll hint */
+  /* Modal Specifics for Mobile */
   .scroll-indicator { display: block; }
-
-  /* The parent container for modal-images handles the scroll */
   .modal-content {
     overflow-y: auto;
-    max-height: 85vh; /* Sets the scrollable area height */
+    max-height: 85vh;
   }
-
-  /*
-   * CORRECTED: These are the mobile-specific full-screen modal styles.
-   * Note that they are now inside this @media block.
-   */
+  
+  .modal-nav-btn { display: none; }
+  
+  /* NEW: Full-screen modal overrides for mobile */
   .modal-container {
     width: 100%;
     max-width: none;
@@ -371,40 +367,36 @@ body {
     border-radius: 0;
   }
 
-  /* Make images fill the modal container without padding */
   .modal-images {
     width: 100%;
     padding: 0;
-    flex-direction: column; /* Re-add flex-direction here */
+    flex-direction: column;
   }
-
+  
   .modal-images img {
     width: 100%;
     height: auto;
     border-radius: 0;
     box-shadow: none;
-    max-height: none; /* Re-add max-height: none here */
+    max-height: none;
   }
   
-  .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
-
-  /* Center "Send Message" button on mobile */
-  .contact-submit { display: block; margin: 0 auto; }
-}
-
- /* NEW: Fixes for buttons on mobile */
+  /* NEW: Button hover/active fixes for mobile */
   .btn-primary:hover,
   .btn-primary:active {
     background: var(--primary);
     transform: none;
     box-shadow: none;
   }
-
+  
   .btn-secondary:hover,
   .btn-secondary:active {
     background: transparent;
     transform: none;
   }
+
+  /* Center "Send Message" button on mobile */
+  .contact-submit { display: block; margin: 0 auto; }
 }
 
 /* Small phones */
