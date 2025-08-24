@@ -221,6 +221,11 @@ body {
   opacity: 0; visibility: hidden; transition: var(--transition); z-index: 999;
 }
 
+back-to-top:hover {
+  background-color: var(--primary);
+  transform: translateY(-5px); /* Optional: Adds a slight lift effect on hover */
+}
+
 .back-to-top.active {
   opacity: 1;
   visibility: visible;
