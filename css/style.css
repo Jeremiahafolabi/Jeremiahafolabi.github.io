@@ -241,8 +241,8 @@ body {
 .modal.active { opacity: 1; visibility: visible; }
 
 .modal-container {
-  background: var(--card-bg); border-radius: 15px; width: 90%; max-width: 1200px;
-  max-height: 95vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
+  background: var(--card-bg); border-radius: 15px; width: 100%; max-width: none;
+  max-height: 95vh; overflow: hidden; position: relative; z-index: 2; padding: 0;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
@@ -271,10 +271,6 @@ body {
   gap: 20px;
   align-items: center;
   justify-content: center;
-}
-.modal-images img {
-  border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 85vh; width: auto; height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
@@ -315,7 +311,17 @@ body {
 @media (max-width: 768px) {
   .section { padding: 60px 0; }
   .section-title { font-size: 2rem; display: block; text-align: center; }
-
+   
+/* CORRECTED: Removed overflow from images container, added to modal-content */
+  .modal-images { 
+    flex-direction: column; 
+    /* No overflow-y: auto here */
+  }
+   .modal-images img {
+  border-radius: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 100%; height: auto;
+}
+   
   /* Center these titles on mobile */
   #about .section-title,
   #portfolio .section-title,
@@ -352,12 +358,6 @@ body {
 
   /* Modal: stack all 8 images vertically and show scroll hint */
   .scroll-indicator { display: block; }
-
-  /* CORRECTED: Removed overflow from images container, added to modal-content */
-  .modal-images { 
-    flex-direction: column; 
-    /* No overflow-y: auto here */
-  }
 
   /* CORRECTED: The parent container for modal-images handles the scroll */
   .modal-content {
