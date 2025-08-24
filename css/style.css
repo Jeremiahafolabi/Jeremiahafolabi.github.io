@@ -213,17 +213,29 @@ body {
 .contact-method a { color: var(--text); text-decoration: none; transition: var(--transition); }
 .contact-method a:hover { color: var(--primary); }
 
-/* Back to Top */
 .back-to-top {
-  position: fixed; bottom: 15px; right: 15px; width: 50px; height: 50px;
-  background: var(--card-bg); border: 2px border-radius: 10px;
-  display: flex; align-items: center; justify-content: center; text-decoration: none;
-  opacity: 0; visibility: hidden; transition: var(--transition); z-index: 999;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  background: var(--card-bg);
+  border: 2px solid var(--border); /* Added a complete border property */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 999;
 }
 
-back-to-top:hover {
+/* This is the corrected hover state */
+.back-to-top:hover {
   background-color: var(--primary);
-  transform: translateY(-5px); /* Optional: Adds a slight lift effect on hover */
+  transform: translateY(-5px);
 }
 
 .back-to-top.active {
