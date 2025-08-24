@@ -258,8 +258,8 @@ body {
 .modal.active { opacity: 1; visibility: visible; }
 
 .modal-container {
-  background: var(--card-bg); border-radius: 4px; width: 100%; max-width: 1500px;
-  max-height: 95vh; overflow: hidden; position: relative; z-index: 2; padding: 10px;
+  background: var(--card-bg); border-radius: 15px; width: 90%; max-width: 1200px;
+  max-height: 95vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
@@ -290,8 +290,8 @@ body {
   justify-content: center;
 }
 .modal-images img {
-  border-radius: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 85vh; width: 100%; height: auto;
+  border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-height: 85vh; width: auto; height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
