@@ -316,6 +316,14 @@ body {
   .section { padding: 60px 0; }
   .section-title { font-size: 2rem; display: block; text-align: center; }
 
+  /* Center these titles on mobile */
+  #about .section-title,
+  #portfolio .section-title,
+  #contact .section-title { text-align: center; }
+
+  /* Also center "My Skills" heading on mobile */
+  .skills h3 { text-align: center; }
+   
    /* Make the modal full-screen for mobile devices */
   .modal-container {
     width: 100%;
@@ -338,14 +346,6 @@ body {
     box-shadow: none;
   }
 }
-
-  /* Center these titles on mobile */
-  #about .section-title,
-  #portfolio .section-title,
-  #contact .section-title { text-align: center; }
-
-  /* Also center "My Skills" heading on mobile */
-  .skills h3 { text-align: center; }
 
   .main-nav {
     position: fixed; top: 80px; left: 0; width: 100%; background: var(--darker);
