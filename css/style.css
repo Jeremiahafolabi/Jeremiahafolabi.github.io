@@ -353,32 +353,16 @@ body {
   /* Modal: stack all 8 images vertically and show scroll hint */
   .scroll-indicator { display: block; }
 
-  /* CORRECTED: Removed overflow from images container, added to modal-content */
-  .modal-images { 
-    flex-direction: column; 
-    /* No overflow-y: auto here */
-  }
-
-  /* CORRECTED: The parent container for modal-images handles the scroll */
+  /* The parent container for modal-images handles the scroll */
   .modal-content {
     overflow-y: auto;
     max-height: 85vh; /* Sets the scrollable area height */
   }
 
-  /* CORRECTED: Removed max-height from image element, allowing it to take full height */
-  .modal-images img { 
-    width: 100%; 
-    height: auto; 
-    max-height: none; 
-  }
-  
-  .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
-
-  /* Center "Send Message" button on mobile */
-  .contact-submit { display: block; margin: 0 auto; }
-}
-
-/* Make the modal full-screen for mobile devices */
+  /*
+   * CORRECTED: These are the mobile-specific full-screen modal styles.
+   * Note that they are now inside this @media block.
+   */
   .modal-container {
     width: 100%;
     max-width: none;
@@ -391,6 +375,7 @@ body {
   .modal-images {
     width: 100%;
     padding: 0;
+    flex-direction: column; /* Re-add flex-direction here */
   }
 
   .modal-images img {
@@ -398,7 +383,13 @@ body {
     height: auto;
     border-radius: 0;
     box-shadow: none;
+    max-height: none; /* Re-add max-height: none here */
   }
+  
+  .modal-nav-btn { display: none; } /* hide desktop arrows on mobile */
+
+  /* Center "Send Message" button on mobile */
+  .contact-submit { display: block; margin: 0 auto; }
 }
 
 /* Small phones */
