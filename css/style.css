@@ -369,25 +369,23 @@ body {
   }
 
   .modal-images {
-    /* Make the image container fill the entire modal area */
-    width: 100%;
+    width: 100%; /* The image container must fill the modal */
     height: 100%;
-    /* Keep flexbox for centering */
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Ensure images are in a row */
     align-items: center;
     justify-content: center;
-    /* Remove gap that conflicts with single image display */
-    gap: 0;
+    gap: 0; /* Remove space between images on desktop */
   }
 
   .modal-images img {
     border-radius: 15px;
     box-shadow: none;
     max-height: 85vh; /* Prevents image from exceeding viewport height */
-    width: auto; /* IMPORTANT: Ensures image keeps its aspect ratio */
-    height: auto; /* Prevents stretching */
-    object-fit: contain; /* Ensures image fits container without cropping */
+    max-width: 100%; /* Ensures image fits container */
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Ensures image fits without stretching or cropping */
   }
 }
 
