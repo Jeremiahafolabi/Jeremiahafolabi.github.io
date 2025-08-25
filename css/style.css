@@ -357,7 +357,7 @@ body {
   .modal-container {
     width: 90%;
     max-width: 1200px; /* Constrains the modal width on large screens */
-    max-height: 95vh;
+    max-height: 100vh;
     overflow: hidden;
     position: relative;
     z-index: 2;
@@ -381,10 +381,10 @@ body {
   .modal-images img {
     border-radius: 15px;
     box-shadow: none;
-    max-height: 85vh; /* Prevents image from exceeding viewport height */
+    max-height: 100vh; /* Prevents image from exceeding viewport height */
     max-width: 100%; /* Ensures image fits container */
     width: auto;
-    height: auto;
+    height: 100%;
     object-fit: contain; /* Ensures image fits without stretching or cropping */
   }
 }
