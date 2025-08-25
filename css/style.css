@@ -259,7 +259,7 @@ body {
 
 .modal-container {
   background: var(--card-bg); border-radius: 0; width: 80%; max-width: none;
-  max-height: 90vh; overflow: hidden; position: relative; z-index: 2; padding: 0;
+  max-height: 95vh; overflow: hidden; position: relative; z-index: 2; padding: 0;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
@@ -284,6 +284,8 @@ body {
 
 /* Image area */
 .modal-images {
+    align-items: center;
+    justify-content: center;
     width: 80%;
     padding: 0;
     flex-direction: column;
@@ -291,7 +293,7 @@ body {
 
 .modal-images img {
   border-radius: 0; box-shadow: none;
-  max-height: 90vh; width: 80%; height: auto;
+  max-height: 95vh; width: 80%; height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
