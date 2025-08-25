@@ -356,36 +356,38 @@ body {
 @media (min-width: 769px) {
   .modal-container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1200px; /* Constrains the modal width on large screens */
     max-height: 95vh;
     overflow: hidden;
     position: relative;
     z-index: 2;
     padding: 30px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: flex; /* Use flexbox to center the content */
     justify-content: center;
     align-items: center;
   }
 
-  /* The image container within the modal */
   .modal-images {
-    width: 100%; /* Make the image container fill the width of the modal */
+    /* Make the image container fill the entire modal area */
+    width: 100%;
+    height: 100%;
+    /* Keep flexbox for centering */
+    display: flex;
     flex-direction: row;
-    padding: 0;
-    gap: 0; /* Remove gap to prevent extra spacing */
     align-items: center;
     justify-content: center;
+    /* Remove gap that conflicts with single image display */
+    gap: 0;
   }
 
-  /* The image itself */
   .modal-images img {
     border-radius: 15px;
     box-shadow: none;
-    max-height: 85vh;
-    width: 100%; /* IMPORTANT: Image now takes 100% of the container width */
-    height: auto;
-    object-fit: contain; /* Ensures the image scales properly without stretching */
+    max-height: 85vh; /* Prevents image from exceeding viewport height */
+    width: auto; /* IMPORTANT: Ensures image keeps its aspect ratio */
+    height: auto; /* Prevents stretching */
+    object-fit: contain; /* Ensures image fits container without cropping */
   }
 }
 
