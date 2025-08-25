@@ -258,8 +258,8 @@ body {
 .modal.active { opacity: 1; visibility: visible; }
 
 .modal-container {
-  background: var(--card-bg); border-radius: 0; width: 80%; max-width: none;
-  max-height: 100vh; overflow: hidden; position: relative; z-index: 2; padding: 15px;
+  background: var(--card-bg); border-radius: 15px; width: 80%; max-width: none;
+  max-height: 100vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
