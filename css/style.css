@@ -258,7 +258,7 @@ body {
 .modal.active { opacity: 1; visibility: visible; }
 
 .modal-container {
-  background: var(--card-bg); border-radius: 0; width: 100%; max-width: none;
+  background: var(--card-bg); border-radius: 0; width: 80%; max-width: none;
   max-height: 100vh; overflow: hidden; position: relative; z-index: 2; padding: 0;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
@@ -284,14 +284,14 @@ body {
 
 /* Image area */
 .modal-images {
-    width: 100%;
+    width: 80%;
     padding: 0;
     flex-direction: column;
   }
 
 .modal-images img {
   border-radius: 0; box-shadow: none;
-  max-height: none; width: 100%; height: auto;
+  max-height: none; width: 80%; height: auto;
 }
 
 /* Desktop-only nav arrows that stay visible */
