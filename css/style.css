@@ -368,22 +368,24 @@ body {
     align-items: center;
   }
 
+  /* The image container within the modal */
   .modal-images {
-    width: auto;
+    width: 100%; /* Make the image container fill the width of the modal */
     flex-direction: row;
     padding: 0;
-    gap: 20px;
+    gap: 0; /* Remove gap to prevent extra spacing */
     align-items: center;
     justify-content: center;
   }
 
+  /* The image itself */
   .modal-images img {
     border-radius: 15px;
     box-shadow: none;
     max-height: 85vh;
-    width: auto;
+    width: 100%; /* IMPORTANT: Image now takes 100% of the container width */
     height: auto;
-    object-fit: contain;
+    object-fit: contain; /* Ensures the image scales properly without stretching */
   }
 }
 
