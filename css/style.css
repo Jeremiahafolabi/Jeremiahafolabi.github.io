@@ -259,7 +259,7 @@ body {
 
 .modal-container {
   background: var(--card-bg); border-radius: 15px; width: 90%; max-width: 1200px;
-  max-height: 100vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
+  max-height: 95vh; overflow: hidden; position: relative; z-index: 2; padding: 30px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 .modal-container.small { max-width: 500px; padding: 40px; }
@@ -271,7 +271,7 @@ body {
 }
 .close-modal:hover { color: var(--primary); }
 
-.modal-content { position: relative; margin: 10px 0 0; }
+.modal-content { position: relative; overflow-y: auto; margin: 10px 0 0; }
 
 /* Scroll hint for mobile */
 .scroll-indicator {
@@ -291,7 +291,7 @@ body {
 }
 .modal-images img {
   border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-height: 95vh; width: auto; height: auto;
+  max-height: 95vh; width: auto; height: auto; object-fit: contain;
 }
 
 /* Desktop-only nav arrows that stay visible */
