@@ -427,3 +427,11 @@ body {
   .contact-method { flex-direction: column; align-items: center; text-align: center; }
   .contact-method i { margin-bottom: 10px; }
 }
+
+/* =======================================
+   Temporary Hide for UI/UX Tab
+   ======================================= */
+.uiux-hidden {
+    /* Hides the tab button completely until projects are ready */
+    display: none !important; 
+}
