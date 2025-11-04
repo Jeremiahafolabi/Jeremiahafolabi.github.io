@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Use a data attribute for the real image and a placeholder src
       projectCard.innerHTML = `
         <img src="${placeholder}" data-src="${project.image}" alt="Project image" class="project-img lazy-load" />
-        <div class="project-caption"><span>Project Title</span></div>
+        <div class="project-caption"><span>${project.title}</span></div>
         <button class="view-project-btn" type="button" aria-label="View Project">View</button>
       `;
 
