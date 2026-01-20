@@ -1,6 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Add this line to reset the scroll position on page load
+  // 1. Force the browser to stop remembering the scroll position
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // 2. Force scroll to top and CLEAN the URL (removes your email/name from the bar)
   window.scrollTo(0, 0);
+  if (window.location.search.length > 0) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+  
+  // ... rest of your code
 
   // ======================
   // Page Loader
@@ -270,12 +280,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }).then(response => {
         if (response.ok) {
-          successModal.classList.add('active');
-          document.body.classList.add('no-scroll');
-          this.reset();
-        } else {
-          throw new Error('Network response was not ok');
-        }
+        successModal.classList.add('active');
+        document.body.classList.add('no-scroll');
+        this.reset();
+        
+        // ADD THIS LINE: It removes the form data from the URL bar immediately 
+        // so that if you refresh, it doesn't load the "last position"
+        window.history.replaceState({}, document.title, window.location.pathname);
+        
+      } else {
+        throw new Error('Network response was not ok');
+      }
+        
       }).catch(() => {
         alert('There was a problem sending your message. Please try again later.');
       });
